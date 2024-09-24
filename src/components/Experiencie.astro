@@ -1,0 +1,44 @@
+---
+import { experiences } from '../data/experiences';
+
+interface Experience {
+  title: string;
+  companyName: string;
+  icon: string;
+  iconBg: string;
+  date: string;
+  points: string[];
+}
+---
+
+<section class="py-16 bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-bold text-white mb-12 text-center">Experiencia Laboral</h2>
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gray-700"></div>
+      
+      {experiences.map((experience: Experience, index: number) => (
+        <div class={`relative flex items-center mb-8 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+          <div class={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-bold text-white mb-2">{experience.title}</h3>
+              <p class="text-gray-400 mb-4">{experience.companyName}</p>
+              <ul class="list-disc list-inside text-gray-300">
+                {experience.points.map((point) => (
+                  <li class="mb-2">{point}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-24 h-24 flex items-center justify-center z-10">
+            <img src={experience.icon} alt={experience.companyName} class="w-30 h-30" />
+          </div>
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-1 px-2 rounded">
+            {experience.date}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
