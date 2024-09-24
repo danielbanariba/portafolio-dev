@@ -1,0 +1,37 @@
+---
+export interface Skill {
+  name: string;
+  icon: string;
+}
+
+interface Props {
+  title: string;
+  skills: Skill[];
+}
+
+const { title, skills } = Astro.props;
+
+// Determine the number of columns based on the number of skills
+const getCols = (skillCount: number) => {
+  if (skillCount <= 3) return skillCount;
+  return 4; // Max 4 columns
+};
+
+const cols = getCols(skills.length);
+---
+
+<div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
+  <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
+    {title}
+  </h3>
+  <ul class={`grid grid-cols-${cols} gap-8 mt-4 ${skills.length < 4 ? 'justify-center' : ''}`}>
+    {skills.map((skill) => (
+      <li class="flex justify-center">
+        <a class="flex flex-col items-center gap-2">
+          <img src={skill.icon} alt={skill.name} class="w-12 h-12 text-white" />
+          <span class="text-sm text-white">{skill.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
