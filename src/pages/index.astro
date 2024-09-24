@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
+import Skills from '../components/Skills.astro'
 ---
 
 <Layout title="Tu Portafolio">
@@ -13,7 +14,7 @@ import Navbar from '../components/Navbar.astro';
             <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">¡Hola! Soy</span>
           </div>
           <h1 class="text-5xl font-bold mb-4">
-            Tu Nombre
+            Daniel Banariba
           </h1>
           <p class="text-xl mb-8 text-gray-300">Ingeniero en Sistemas / Programador Entusiasta</p>
           <div class="flex space-x-4">
@@ -45,95 +46,8 @@ import Navbar from '../components/Navbar.astro';
         </p>
       </div>
 
-	  <!-- Sección de Habilidades actualizada -->
-      <div class="mt-20">
-        <h2 class="text-3xl font-bold mb-10">Mis Habilidades</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Backend -->
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Backend</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <img src="/public/icon/python.svg" alt="Python" class="w-6 h-6 mr-2" />
-                <span>Python</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/java.svg" alt="Java" class="w-6 h-6 mr-2" />
-                <span>Java</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/cpp.svg" alt="C++" class="w-6 h-6 mr-2" />
-                <span>C++</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Frontend -->
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Frontend</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <img src="/public/icon/html5.svg" alt="HTML" class="w-6 h-6 mr-2" />
-                <span>HTML</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/css.svg" alt="CSS" class="w-6 h-6 mr-2" />
-                <span>CSS</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/javascript.svg" alt="JavaScript" class="w-6 h-6 mr-2" />
-                <span>JavaScript</span>
-              </li>
-			  <li class="flex items-center">
-                <img src="/public/icon/tailwindcss.svg" alt="Tailwind CSS" class="w-6 h-6 mr-2" />
-                <span>Tailwind CSS</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Frameworks -->
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Frameworks</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <img src="/public/icon/reflex.svg" alt="Reflex" class="w-6 h-6 mr-2" />
-                <span>Reflex</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/fastapi.svg" alt="FastAPI" class="w-6 h-6 mr-2" />
-                <span>FastAPI</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/spring.svg" alt="Spring" class="w-6 h-6 mr-2" />
-                <span>Spring</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Gestores de Bases de Datos -->
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Gestores de Bases de Datos</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center">
-                <img src="/public/icon/oracle.svg" alt="Oracle" class="w-6 h-6 mr-2" />
-                <span>Oracle</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/mysql.svg" alt="MySQL" class="w-6 h-6 mr-2" />
-                <span>MySQL</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/postgresql.svg" alt="PostgreSQL" class="w-6 h-6 mr-2" />
-                <span>PostgreSQL</span>
-              </li>
-              <li class="flex items-center">
-                <img src="/public/icon/mongodb.svg" alt="MongoDB" class="w-6 h-6 mr-2" />
-                <span>MongoDB</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+	<!--Habilidades o conocimientos que poseo -->
+	<Skills />
 
       <div class="mt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div class="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition duration-300">
