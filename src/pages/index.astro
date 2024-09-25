@@ -3,11 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Skills from '../components/Skills.astro';
 import Experience from '../components/Experiencie.astro'; 
+import ProfileImage from '../components/ProfileImage.astro';
+import Project from '../components/Project.astro';
 ---
 
 <Layout title="Tu Portafolio">
   <Navbar />
   <main class="bg-gray-900 min-h-screen text-white">
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -28,12 +31,7 @@ import Experience from '../components/Experiencie.astro';
           </div>
         </div>
         <div class="relative">
-          <div class="w-64 h-64 mx-auto bg-purple-600 rounded-full overflow-hidden">
-            <!-- Placeholder para tu foto de perfil -->
-            <div class="w-full h-full bg-gray-700 flex items-center justify-center text-4xl font-bold">
-              TN
-            </div>
-          </div>
+          <ProfileImage />
           <!-- Elementos decorativos -->
           <div class="absolute top-0 right-0 w-20 h-20 bg-purple-500 opacity-20 rounded-full"></div>
           <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-500 opacity-20 rounded-full"></div>
@@ -46,23 +44,16 @@ import Experience from '../components/Experiencie.astro';
           Ingeniero en sistemas/Programador entusiasta, con sólida experiencia en resolver problemas mediante el desarrollo de soluciones tecnológicas. Tengo experiencia en el desarrollo de software utilizando Java, Python, JavaScript, entre otras tecnologías, así como en la gestión de bases de datos relacionales con Oracle. Mi capacidad para traducir ideas creativas en productos se refleja en proyectos destacados que he realizado. Con un compromiso inquebrantable con la excelencia y una mentalidad orientada a resultados, estoy preparado para aportar soluciones innovadoras y superar los desafíos tecnológicos que se presenten.
         </p>
       </div>
-    	<!--Habilidades o conocimientos que poseo -->
+
+      <!--Habilidades o conocimientos que poseo -->
       <Skills />
+      
+      <!-- Experiencia Laboral -->
       <Experience />
-      <div class="mt-20 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition duration-300">
-          <h3 class="text-2xl font-semibold mb-4">Mis Proyectos</h3>
-          <p>Explora algunos de los proyectos en los que he trabajado.</p>
-        </div>
-        <div class="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition duration-300">
-          <h3 class="text-2xl font-semibold mb-4">Habilidades</h3>
-          <p>Descubre las tecnologías y herramientas que manejo.</p>
-        </div>
-        <div class="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition duration-300">
-          <h3 class="text-2xl font-semibold mb-4">Contacto</h3>
-          <p>¿Interesado en trabajar juntos? ¡Contáctame!</p>
-        </div>
-      </div>
+      
+      <!-- Proyectos Personales-->
+      <Project />
+
     </div>
   </main>
 </Layout>
