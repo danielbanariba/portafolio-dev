@@ -1,0 +1,61 @@
+---
+---
+
+<button class="button">
+    <span class="text">Descargar CV</span>
+    <div class="svg">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+      </svg>
+    </div>
+  </button>
+  
+  <style>
+    .button {
+      background-color: #9333ea; /* bg-purple-600 */
+      color: white;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s, transform 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+    }
+  
+    .button:hover {
+      background-color: #7e22ce; /* bg-purple-700 */
+    }
+  
+    .text {
+      transition: opacity 0.3s, transform 0.3s;
+    }
+  
+    .svg {
+      position: absolute;
+      width: 1.25rem;
+      height: 1.25rem;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(100%) rotate(30deg);
+    }
+  
+    .button:hover .text {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  
+    .button:hover .svg {
+      opacity: 1;
+      transform: translateY(0) rotate(0);
+    }
+  
+    .button:active {
+      transform: scale(0.95);
+    }
+  </style>
