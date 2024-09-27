@@ -1,123 +1,38 @@
+---
+import { skills } from '../data/skills';
+
+const categories = Array.from(new Set(skills.map(skill => skill.category)));
+
+function getGridColumns(skillCount: number) {
+  if (skillCount <= 3) return 3;
+  if (skillCount === 4) return 4;
+  return Math.min(6, skillCount); // Limita a un máximo de 6 columnas
+}
+---
+
 <div class="w-full max-w-6xl space-y-8 bg-gray-900 p-8 rounded-lg">
   <h2 class="text-3xl font-bold mb-8 text-white">Mis Habilidades</h2>
   
-  <!-- Backend -->
-  <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
-    <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
-      Backend
-    </h3>
-    <ul class="grid grid-cols-3 gap-8 mt-4">
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/python.svg" alt="Python" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">Python</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/java.svg" alt="Java" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">Java</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/cpp.svg" alt="C++" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">C++</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-  <!-- Frontend -->
-  <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
-    <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
-      Frontend
-    </h3>
-    <ul class="grid grid-cols-4 gap-8 mt-4">
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/html5.svg" alt="HTML" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">HTML</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/css.svg" alt="CSS" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">CSS</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/javascript.svg" alt="JavaScript" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">JavaScript</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/tailwindcss.svg" alt="Tailwind CSS" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">Tailwind CSS</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-  <!-- Frameworks -->
-  <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
-    <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
-      Frameworks
-    </h3>
-    <ul class="grid grid-cols-3 gap-8 mt-4">
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/reflex.svg" alt="Reflex" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">Reflex</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/fastapi.svg" alt="FastAPI" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">FastAPI</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/spring.svg" alt="Spring" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">Spring</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-  <!-- Gestores de Bases de Datos -->
-  <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
-    <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
-      Gestores de Bases de Datos
-    </h3>
-    <ul class="grid grid-cols-4 gap-8 mt-4">
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/oracle.svg" alt="Oracle" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">Oracle</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/mysql.svg" alt="MySQL" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">MySQL</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/postgresql.svg" alt="PostgreSQL" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">PostgreSQL</span>
-        </a>
-      </li>
-      <li>
-        <a class="flex flex-col items-center gap-2">
-          <img src="/icon/mongodb.svg" alt="MongoDB" class="w-12 h-12 text-white" />
-          <span class="text-sm text-white">MongoDB</span>
-        </a>
-      </li>
-    </ul>
-  </div>
+  {categories.map((category) => {
+    const categorySkills = skills.filter((skill) => skill.category === category);
+    const columns = getGridColumns(categorySkills.length);
+    
+    return (
+      <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
+        <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
+          {category}
+        </h3>
+        <ul class={`grid grid-cols-${columns} gap-8 mt-4`}>
+          {categorySkills.map((skill) => (
+            <li>
+              <a class="flex flex-col items-center gap-2">
+                <img src={skill.icon} alt={skill.name} class="w-12 h-12 text-white" />
+                <span class="text-sm text-white">{skill.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  })}
 </div>

@@ -6,11 +6,13 @@ import Experience from '../components/Experiencie.astro';
 import ProfileImage from '../components/ProfileImage.astro';
 import Project from '../components/Project.astro';
 import DownloadButton from '../components/DownloadButton.astro';
+import Education from '../components/Education.astro';
 ---
 
 <Layout title="Tu Portafolio">
   <Navbar />
-  <main class="bg-gray-900 min-h-screen text-white">
+  <!-- La clase Main ABARCA TODO EL COLOR DEL FONDO! -->
+  <main class="bg-gray-900 min-h-screen text-white"> 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -51,6 +53,9 @@ import DownloadButton from '../components/DownloadButton.astro';
       
       <!-- Proyectos Personales-->
       <Project />
+
+      <!--  -->
+      <Education />
 
       <!-- TODO Testimonios, buscar a los ingenieros y que me dejan buenos comentarios con respecto a mis proyectos -->
       
