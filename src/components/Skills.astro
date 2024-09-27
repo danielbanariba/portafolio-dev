@@ -1,6 +1,6 @@
 ---
 import { skills } from '../data/skills';
-
+import MovingBorder from './MovingBorder.astro';
 const categories = ['Backend', 'Frontend', 'Frameworks', 'Gestores de Bases de Datos'];
 ---
 
@@ -8,22 +8,21 @@ const categories = ['Backend', 'Frontend', 'Frameworks', 'Gestores de Bases de D
   <h2 class="text-3xl font-bold mb-8 text-white">Mis Habilidades</h2>
   
   {categories.map((category) => (
-    <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
-      <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
+    <MovingBorder className="mb-8">
+        <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
         {category}
       </h3>
-      <ul class="grid grid-cols-4 gap-8 mt-4">
-        {skills
-          .filter((skill) => skill.category === category)
-          .map((skill) => (
-            <li>
-              <a class="flex flex-col items-center gap-2">
-                <img src={skill.icon} alt={skill.name} class="w-12 h-12 text-white" />
+        <ul class="grid grid-cols-4 gap-8 mt-1">
+          {skills
+            .filter((skill) => skill.category === category)
+            .map((skill) => (
+              <li class="flex flex-col items-center">
+                <img src={skill.icon} alt={skill.name} class="w-12 h-12 mb-2" />
                 <span class="text-sm text-white">{skill.name}</span>
-              </a>
-            </li>
-          ))}
-      </ul>
-    </div>
+              </li>
+            ))}
+        </ul>
+      </MovingBorder>
+      
   ))}
 </div>
