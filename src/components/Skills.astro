@@ -1,29 +1,21 @@
 ---
 import { skills } from '../data/skills';
 
-const categories = Array.from(new Set(skills.map(skill => skill.category)));
-
-function getGridColumns(skillCount: number) {
-  if (skillCount <= 3) return 3;
-  if (skillCount === 4) return 4;
-  return Math.min(6, skillCount); // Limita a un máximo de 6 columnas
-}
+const categories = ['Backend', 'Frontend', 'Frameworks', 'Gestores de Bases de Datos'];
 ---
 
 <div class="w-full max-w-6xl space-y-8 bg-gray-900 p-8 rounded-lg">
   <h2 class="text-3xl font-bold mb-8 text-white">Mis Habilidades</h2>
   
-  {categories.map((category) => {
-    const categorySkills = skills.filter((skill) => skill.category === category);
-    const columns = getGridColumns(categorySkills.length);
-    
-    return (
-      <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
-        <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
-          {category}
-        </h3>
-        <ul class={`grid grid-cols-${columns} gap-8 mt-4`}>
-          {categorySkills.map((skill) => (
+  {categories.map((category) => (
+    <div class="relative border border-gray-700 bg-gray-800 px-6 py-4 rounded-lg">
+      <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
+        {category}
+      </h3>
+      <ul class="grid grid-cols-4 gap-8 mt-4">
+        {skills
+          .filter((skill) => skill.category === category)
+          .map((skill) => (
             <li>
               <a class="flex flex-col items-center gap-2">
                 <img src={skill.icon} alt={skill.name} class="w-12 h-12 text-white" />
@@ -31,8 +23,7 @@ function getGridColumns(skillCount: number) {
               </a>
             </li>
           ))}
-        </ul>
-      </div>
-    );
-  })}
+      </ul>
+    </div>
+  ))}
 </div>
