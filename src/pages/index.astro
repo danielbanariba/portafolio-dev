@@ -8,6 +8,7 @@ import Project from '../components/Project.astro';
 import DownloadButton from '../components/DownloadButton.astro';
 import Education from '../components/Education.astro';
 import BongoCat  from '../components/BongoCat.astro';
+import Testimonial from '../components/Testimonial.astro';
 ---
 
 <Layout title="Tu Portafolio">
@@ -55,11 +56,15 @@ import BongoCat  from '../components/BongoCat.astro';
       <!-- Proyectos Personales-->
       <Project />
 
-      <!--  -->
+      <Testimonial />
+
       <Education />
 
+      <!-- Extra -->
+
+      <h3 class="text-3xl font-bold mb-6" id="programando">Yo cuando programo 🤠🧑‍💻</h3>
+
       <BongoCat />
-      <!-- TODO Testimonios, buscar a los ingenieros y que me dejan buenos comentarios con respecto a mis proyectos -->
       
     </div>
   </main>
