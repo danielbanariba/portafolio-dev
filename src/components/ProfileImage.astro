@@ -2,6 +2,20 @@
 ---
 
 <div class="container">
+  <div class="small-monitor">
+    <div class="bar">
+      <div class="button" id="red"></div>
+      <div class="button" id="yellow"></div>
+      <div class="button" id="green"></div>
+    </div>
+    <div class="screen">
+      <ul class="code">
+        {[...Array(17)].map((_, i) => (
+          <li class={i >= 7 && i <= 10 ? "inline-code" : ""}></li>
+        ))}
+      </ul>
+    </div>
+  </div>
   <div class="main-monitor">
     <div class="bar">
       <div class="button" id="red"></div>
@@ -27,116 +41,233 @@
 
 <style>
   :root {
-    --ideBackground: #301353;
-    --buttonRed: #FF4766;
-    --buttonYellow: #FFB023;
-    --buttonGreen: #4CAF50;
-    --buttonOffset: 20px;
-  }
+  --windowFrame: #393d73;
+  --windowMetal: #a6a9d3;
+  --ideBackground: #301353;
+  --buttonRed: #FF4766;
+  --buttonYellow: #FFB023;
+  --buttonGreen: #4CAF50;
+  --buttonOffset: 20px;
+}
 
-  .container {
-    width: 450px;
-    height: 450px;
-    background: var(--background);
-    border-radius: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
+.container {
+  width: 450px;
+  height: 450px;
+  position: relative;
+  background: transparent;
+}
 
-  .main-monitor {
-    width: 280px;
-    height: 220px;
-    background: var(--ideBackground);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 6px solid #b8bae0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .window {
+    width: 200px;
+    height: 200px;
+    background: var(--sky);
     position: absolute;
-    top: 50%;
-    left: 30px;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid var(--windowFrame);
+    border-radius: 10px;
+    animation: skyChange 40s ease-in-out infinite;
+    overflow: hidden;
   }
+
+  .cloud {
+    position: absolute;
+    background: white;
+    width: 35px;
+    height: 30px;
+    top: 20px;
+    left: 20px;
+    border-radius: 100px;
+  }
+
+  .cloud:before, .cloud:after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 100px;
+  }
+
+  .cloud:before {
+    width: 30px;
+    left: -5px;
+    top: 10px;
+  }
+
+  .cloud:after {
+    width: 40px;
+    left: 15px;
+    top: 12px;
+  }
+
+  #first-cloud {
+    animation: cloudMove 25s linear infinite, cloudChange 40s ease-in-out infinite;
+  }
+
+  #second-cloud {
+    top: 80px;
+    left: -60px;
+    animation: cloudMove 40s 10s linear infinite, cloudChange 40s ease-in-out infinite;
+  }
+
+  .small-monitor, .main-monitor {
+  position: absolute;
+  border-radius: 10px;
+  background: var(--ideBackground);
+  overflow: hidden;
+  border: 8px solid #b8bae0;
+  border-bottom: 50px solid #b8bae0;
+  box-shadow: -5px 5px var(--windowMetal);
+}
+
+.small-monitor {
+  width: 160px;
+  height: 210px;
+  top: 20%;
+  left: 10px;
+}
+
+.main-monitor {
+  width: 250px;
+  height: 200px;
+  top: 30%;
+  left: 25%;
+}
 
   .bar {
-    height: 25px;
+    position: absolute;
+    width: 100%;
+    height: 30px;
     background: black;
-    display: flex;
-    align-items: center;
-    padding-left: 8px;
+    z-index: 5;
   }
 
   .button {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 15px;
     width: 10px;
     height: 10px;
-    border-radius: 50%;
-    margin-right: 6px;
+    border-radius: 100%;
   }
 
   #red { background: var(--buttonRed); }
-  #yellow { background: var(--buttonYellow); }
-  #green { background: var(--buttonGreen); }
+  #yellow {
+    left: var(--buttonOffset);
+    background: var(--buttonYellow);
+  }
+  #green {
+    left: calc(var(--buttonOffset) * 2);
+    background: var(--buttonGreen);
+  }
 
   .screen {
-    height: calc(100% - 25px);
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 30px);
+    top: 30px;
     overflow: hidden;
-    position: relative;
   }
 
   .screen ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    position: absolute;
-    top: 0;
-    animation: codeMove 10s linear infinite;
   }
 
   .screen li {
+    position: relative;
     height: 5px;
-    margin: 6px 0;
-    border-radius: 2px;
-    margin-left: 10px;
+    margin: 5px 0;
+    left: -20px;
+    border-radius: 5px;
   }
 
-  .screen li:nth-child(3n) {
-    background: var(--buttonRed);
-    width: 160px;
-  }
-
-  .screen li:nth-child(3n+1) {
+  .small-monitor .screen li {
+    width: 80px;
     background: var(--buttonGreen);
-    width: 200px;
   }
 
-  .screen li:nth-child(3n+2) {
+  .small-monitor .screen li:nth-child(n+5):nth-child(-n+7) {
+    background: var(--buttonRed);
+    width: 60px;
+    left: 8px;
+  }
+
+  .small-monitor .screen li:nth-child(n+8) {
     background: var(--buttonYellow);
-    width: 120px;
+    width: 40px;
+  }
+
+  .main-monitor .screen ul {
+    position: absolute;
+    top: 0;
+    animation: codeMove 5s linear infinite;
+  }
+
+  .main-monitor .screen li:nth-child(3n) {
+    background: var(--buttonRed);
+    width: 60px;
+  }
+
+  .main-monitor .screen li:nth-child(3n+1) {
+    background: var(--buttonGreen);
+    width: 80px;
+  }
+
+  .main-monitor .screen li:nth-child(3n+2) {
+    background: var(--buttonYellow);
+    width: 45px;
   }
 
   .profile-image {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid #8B5CF6;
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-    position: absolute;
-    top: 50%;
-    right: 30px;
-    transform: translateY(-50%);
-  }
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  /* Modifica este valor para mover la imagen horizontalmente */
+  left: 90%; /* Comentario: Ajusta este porcentaje para mover la imagen */
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #8B5CF6;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
 
-  .avatar-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
   @keyframes codeMove {
-    0% { top: 0; }
-    100% { top: -50%; }
+    100% { top: -60%; }
+  }
+
+  @keyframes skyChange {
+    0% { background: var(--sky); }
+    20% { background: var(--sunset); }
+    40% { background: var(--night); }
+    60% { background: var(--sky); }
+  }
+
+  @keyframes wallChange {
+    0% { background: var(--background); }
+    20% { background: #f7b8c6; }
+    40% { background: var(--ideBackground); }
+    60% { background: var(--background); }
+  }
+
+  @keyframes cloudChange {
+    0% { background: white; }
+    20% { background: #d9d9d9; }
+    40% { background: #b3b3b3; }
+    60% { background: white; }
+  }
+
+  @keyframes cloudMove {
+    0% { left: -30%; }
+    100% { left: 100%; }
   }
 </style>
