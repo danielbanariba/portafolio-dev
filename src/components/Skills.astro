@@ -9,20 +9,23 @@ const categories = ['Backend', 'Frontend', 'Frameworks', 'Gestores de Bases de D
   
   {categories.map((category) => (
     <MovingBorder className="mb-8">
-        <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white">
+      <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white mb-12">
         {category}
       </h3>
-        <ul class="grid grid-cols-4 gap-8 mt-1">
-          {skills
-            .filter((skill) => skill.category === category)
-            .map((skill) => (
-              <li class="flex flex-col items-center">
-                <img src={skill.icon} alt={skill.name} class="w-12 h-12 mb-2" />
-                <span class="text-sm text-white">{skill.name}</span>
-              </li>
-            ))}
-        </ul>
-      </MovingBorder>
-      
-  ))}
+      <ul class="grid grid-cols-4 gap-8">
+        {skills
+          .filter((skill) => skill.category === category)
+          .map((skill) => (
+            <li class="flex justify-center">
+              <div class="relative flex flex-col items-center group">
+                <img src={skill.icon} alt={skill.name} class="w-16 h-16 mb-2 hover:scale-110 hover:-translate-y-2 transition-transform duration-300" />
+                <span class="absolute bottom-0 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 bg-gray-800 text-white text-xs rounded-md px-2 py-1">
+                  {skill.name}
+                </span>
+              </div>
+            </li>
+          ))} 
+      </ul>
+    </MovingBorder>
+  ))} 
 </div>
