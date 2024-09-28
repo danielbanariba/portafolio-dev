@@ -7,7 +7,7 @@ import ProfileImage from '../components/ProfileImage.astro';
 import Project from '../components/Project.astro';
 import DownloadButton from '../components/DownloadButton.astro';
 import Education from '../components/Education.astro';
-import BongoCat  from '../components/BongoCat.astro';
+import BongoCat from '../components/BongoCat.astro';
 import Testimonial from '../components/Testimonial.astro';
 import Footer from '../components/Footer.astro';
 import Extra from '../components/Extra/Extra.astro';
@@ -16,37 +16,51 @@ import Extra from '../components/Extra/Extra.astro';
 <Layout title="Portafolio Dev">
   <Navbar />
   <!-- La clase Main ABARCA TODO EL COLOR DEL FONDO! -->
-  <main class="bg-gray-900 min-h-screen text-white">   
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-5 border-b border-b-1">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+  <main class="bg-gray-900 min-h-screen text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-5">
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
         <div>
           <div class="mb-6">
             <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">¡Hola! Soy</span>
           </div>
-          <h1 class="text-5xl font-bold mb-4">
-            Daniel Banariba
-          </h1>
-          <p class="text-xl mb-8 text-gray-300">Ingeniero en Sistemas / Programador Entusiasta</p>
+          <h1 class="text-5xl font-bold mb-4">Daniel Banariba</h1>
+          <p class="text-2xl mb-8 text-purple-400">Ingeniero en Sistemas / Programador Entusiasta</p>
           <div class="flex space-x-4">
             <DownloadButton />
-            <a href="#projects" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+            <a href="#portfolio" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300">
               Mi Trabajo
             </a>
           </div>
         </div>
         <div class="relative">
           <ProfileImage />
-          <!-- Elementos decorativos -->
-          <div class="absolute top-0 right-0 w-20 h-20 bg-purple-500 opacity-20 rounded-full"></div>
-          <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-500 opacity-20 rounded-full"></div>
         </div>
       </div>
 
-      <div class="mt-20">
+      <div class="mb-20">
         <h2 class="text-3xl font-bold mb-6">About Me</h2>
         <p class="text-gray-300 mb-8">
           Ingeniero en sistemas/Programador entusiasta, con sólida experiencia en resolver problemas mediante el desarrollo de soluciones tecnológicas. Tengo experiencia en el desarrollo de software utilizando Java, Python, JavaScript, entre otras tecnologías, así como en la gestión de bases de datos relacionales con Oracle. Mi capacidad para traducir ideas creativas en productos se refleja en proyectos destacados que he realizado. Con un compromiso inquebrantable con la excelencia y una mentalidad orientada a resultados, estoy preparado para aportar soluciones innovadoras y superar los desafíos tecnológicos que se presenten.
         </p>
+      </div>
+
+      <div class="grid grid-cols-4 gap-8 mb-20">
+        <div class="text-center">
+          <h3 class="text-4xl font-bold text-purple-400">5+</h3>
+          <p class="text-gray-400">Años de Experiencia</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-4xl font-bold text-purple-400">6</h3>
+          <p class="text-gray-400">Proyectos Personales</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-4xl font-bold text-purple-400">17+</h3>
+          <p class="text-gray-400">Tecnologías Aprendidas</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-4xl font-bold text-purple-400">2</h3>
+          <p class="text-gray-400">Proyectos Terminados</p>
+        </div>
       </div>
 
       <!--Habilidades o conocimientos que poseo -->
