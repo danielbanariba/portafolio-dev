@@ -15,7 +15,7 @@ export const skills: Skill[] = [
     { name: 'HTML', icon: '/icon/html5.svg', category: 'Frontend' },
     { name: 'CSS', icon: '/icon/css.svg', category: 'Frontend' },
     { name: 'JavaScript', icon: '/icon/javascript.svg', category: 'Frontend' },
-    { name: 'Tailwind CSS', icon: '/icon/tailwindcss.svg', category: 'Frontend' },
+    { name: 'TailwindCSS', icon: '/icon/tailwindcss.svg', category: 'Frontend' },
 
     //---------------------------------------------Frameworks-------------------------------------------
     { name: 'Astro', icon: '/icon/astro.svg', category: 'Frameworks' },
