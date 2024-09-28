@@ -1,7 +1,7 @@
 ---
 ---
 
-<div class="container">
+<div class="bongo-cat-container">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 783.55 354.91">
       <g id="bongo-cat">
         <g class="head">
@@ -209,19 +209,26 @@
     --cyan: #7ed1e2;
   }
 
-  .container {
-    width: 80vw;
-    height: 80vh;
+  .bongo-cat-container {
+    width: 100%;
+    max-width: 6000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: visible; /* Asegúrate de que el contenedor permita desbordamiento visible */
   }
 
-  .container svg {
-    height: 100%;
+  .bongo-cat-container svg {
     width: 100%;
-    overflow: visible;
+    height: auto;
+    display: block;
+    max-height: none; /* Asegúrate de que esta línea esté presente */
+    overflow: visible; /* Asegúrate de que el SVG permita desbordamiento visible */
   }
 
   #bongo-cat {
-    fill: var(--bg);
+    fill: var(--bg, #1a1e2d);
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 4;
