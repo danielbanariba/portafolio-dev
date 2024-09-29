@@ -10,11 +10,13 @@ import { educations } from '../data/education';
         <div class="education-card relative bg-gray-800 p-4 rounded-lg overflow-hidden z-[1]">
           <div class="flex items-start">
             <div class="flex-shrink-0 mr-4">
-              <img
-                src={education.logoUrl}
-                alt={`Logo de ${education.institution}`}
-                class="w-16 h-16 object-contain"
-              />
+              <a href={education.url} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={education.logoUrl}
+                  alt={`Logo de ${education.institution}`}
+                  class="w-16 h-16 object-contain"
+                />
+              </a>
             </div>
             <div class="flex-grow">
               <div class="flex items-center justify-between">
@@ -46,7 +48,6 @@ import { educations } from '../data/education';
 
 <style>
   .education-card {
-    cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
 
