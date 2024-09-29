@@ -7,37 +7,48 @@ import { educations } from '../data/education';
     <h2 class="text-3xl font-bold text-white mb-8">Formación</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {educations.map((education) => (
-        <div class="bg-gray-800 p-4 rounded-lg flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <img
-              src={education.logoUrl}
-              alt={`Logo de ${education.institution}`}
-              class="w-16 h-16 object-contain"
-            />
-          </div>
-          <div class="flex-grow">
-            <div class="flex items-center justify-between">
-              <h3 class="text-xl font-semibold text-white">{education.title}</h3>
-              {education.certificateUrl && (
-                <a 
-                  href={education.certificateUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="group"
-                >
-                  <img 
-                    src={education.iconUrl}
-                    alt="Verificar certificado"
-                    class="w-8 h-8 transition-colors duration-300 ease-in-out [filter:invert(1)] group-hover:[filter:invert(1)_sepia(1)_saturate(5000%)_hue-rotate(240deg)]"
-                  />
-                </a>
-              )}
+        <div class="card bg-gradient-to-br from-[#00ff75] to-[#3700ff] p-[0px] rounded-[20px] transition-all duration-300 hover:shadow-[0px_0px_30px_1px_rgba(0,255,117,0.30)]">
+          <div class="card2 bg-gray-800 p-4 rounded-[18px] transition-all duration-200 hover:scale-[0.98] hover:rounded-[20px] flex items-start h-full">
+            <div class="flex-shrink-0 mr-4">
+              <img
+                src={education.logoUrl}
+                alt={`Logo de ${education.institution}`}
+                class="w-16 h-16 object-contain"
+              />
             </div>
-            <p class="text-gray-400">{education.institution}</p>
-            <p class="text-sm text-gray-500">{education.date}</p>
+            <div class="flex-grow">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-semibold text-white">{education.title}</h3>
+                {education.certificateUrl && (
+                  <a
+                    href={education.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="group"
+                  >
+                    <img
+                      src={education.iconUrl}
+                      alt="Verificar certificado"
+                      class="w-8 h-8 transition-colors duration-300 ease-in-out [filter:invert(1)] group-hover:[filter:invert(1)_sepia(1)_saturate(5000%)_hue-rotate(240deg)]"
+                    />
+                  </a>
+                )}
+              </div>
+              <p class="text-gray-400">{education.institution}</p>
+              <p class="text-sm text-gray-500">{education.date}</p>
+            </div>
           </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .card {
+    transition: all 0.3s;
+  }
+  .card2 {
+    transition: all 0.2s;
+  }
+</style>
