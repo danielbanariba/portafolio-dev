@@ -2,460 +2,467 @@
 ---
 
 <div class="flex flex-col md:flex-row gap-2 mb-20">
-    <div class="md:w-1/2">
-      <div class="container">
-        <div class="objects">
-          <div class="objects_computer"></div>
-          <div class="objects_table"></div>
-          <div class="objects_cup"></div>
-          <div class="smoke"></div>
-          <div class="objects_chair"></div>
-        </div>
-        <div class="box">
-          <div class="box_1">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="box_2">
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-          <div class="box_3"></div>
-        </div>
+  <div class="md:w-1/2">
+    <div class="container">
+      <div class="objects">
+        <div class="objects_computer"></div>
+        <div class="objects_table"></div>
+        <div class="objects_cup"></div>
+        <div class="smoke"></div>
+        <div class="objects_chair"></div>
       </div>
-    </div>
-    <div class="md:w-1/2">
-      <div class="card">
-        <div class="tools">
-          <div class="circle">
-            <span class="red box"></span>
-          </div>
-          <div class="circle">
-            <span class="yellow box"></span>
-          </div>
-          <div class="circle">
-            <span class="green box"></span>
-          </div>
+      <div class="box">
+        <div class="box_1">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-        <div class="card__content p-6">
-          <h2 class="text-3xl font-bold mb-4">Sobre Mí</h2>
-          <p class="text-base">
-            👨‍💻 <strong>Ingeniero en Sistemas y Programador Entusiasta</strong> con amplia experiencia en el desarrollo de soluciones tecnológicas innovadoras. A lo largo de mi carrera, he abordado una variedad de <strong>desafíos tecnológicos</strong> en diversas industrias. 
-            <br><br>
-            💡 <strong>Tarea:</strong> Mi principal objetivo ha sido diseñar y desarrollar aplicaciones de software que resuelvan problemas complejos y mejoren la eficiencia de los labores.
-            <br><br>
-            🎯 <strong>Acciones:</strong> He utilizado tecnologías como <strong>Java, Python y JavaScript</strong>, integrándolas con bases de datos como <strong>Oracle</strong> para crear aplicaciones robustas. Algunas de mis principales acciones incluyen:
-            <ul class="list-disc pl-6">
-              <li>Diseño de arquitecturas escalables.</li>
-              <li>Implementación de soluciones backend eficientes.</li>
-              <li>Desarrollo de interfaces de usuario intuitivas.</li>
-              <li>Optimización del rendimiento de bases de datos.</li>
-            </ul>
-            <br>
-            🚀 Con una mentalidad orientada a resultados y un <strong>compromiso inquebrantable con la excelencia</strong>, estoy siempre en la búsqueda de nuevos retos para ofrecer soluciones <strong>tecnológicamente avanzadas</strong> y <strong>superar los desafíos más complejos</strong>.
-          </p>
+        <div class="box_2">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
+        <div class="box_3"></div>
       </div>
     </div>
   </div>
-  
-  <style>
-  @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-  
-  /* Variables Color */
-  :root {
-    --background: #222;
-    --box-bg: rgba(99,102,115,0.709804);
-    --pink: #e67da4;
-    --pink-shadow: #f36b9d;
-    --grey-l: darkgrey;
-    --grey: #bfbfbf;
-    --table: #63321f;
-    --table-shadow: #582714;
-    --chair: #3c3c3c;
-    --chair-shadow: #424242;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 46rem;
-    height: 46rem;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  /* Objects + Code Lines + Smoke */
-  .objects_computer {
-    position: absolute;
-    width: 7rem;
-    height: 5.5rem;
-    background: var(--grey);
-    left: 3.8rem;
-    top: 14.8rem;
-    transform: skew(17deg, 0deg);
-    border-radius: 0.6rem 0.6rem 0 0;
-    box-shadow: inset -6px 1px var(--grey-l);
-  }
-  
-  .objects_computer:after {
-    content: '';
-    position: absolute;
-    width: 2rem;
-    height: 0.5rem;
-    background: var(--grey-l);
-    top: 5.1rem;
-    left: 7rem;
-    transform: skew(0deg, 2deg);
-  }
-  
-  .objects_table {
-    position: absolute;
-    width: 22rem;
-    top: 20.4rem;
-    height: 1.4rem;
-    background: var(--table);
-    left: 2rem;
-    box-shadow: 0px -3px var(--table-shadow);
-  }
-  
-  .objects_table:before {
-    content: '';
-    width: 19rem;
-    height: 1.2rem;
-    position: absolute;
-    background: var(--table-shadow);
-    border-radius: 0 1rem;
-    top: 1.4rem;
-    left: 3rem;
-    z-index: 1;
-  }
-  
-  .objects_cup {
-    position: absolute;
-    width: 2.4rem;
-    top: 17.2rem;
-    background: var(--pink);
-    left: 16.8rem;
-    height: 3rem;
-    border-radius: 0.3rem 0.3rem 0 0;
-    z-index: 55;
-    box-shadow: -2px 0px var(--pink-shadow);
-  }
-  
-  .objects_cup:after {
-    content: '';
-    width: 2rem;
-    height: 2rem;
-    background: var(--pink);
-    position: absolute;
-    top: 0.7rem;
-    left: 0.4rem;
-    border: none;
-    border-radius: 0;
-    z-index: 5;
-  }
-  
-  .objects_cup:before {
-    content: '';
-    position: absolute;
-    width: 1rem;
-    height: 1.3rem;
-    border: 4px solid var(--pink-shadow);
-    left: 1.6rem;
-    top: 0.8rem;
-    border-radius: 1rem;
-    z-index: 1;
-  }
-  
-  .objects_chair {
-    height: 10.2rem;
-    position: absolute;
-    width: 9.1rem;
-    background: var(--chair);
-    left: 16.6rem;
-    top: 10rem;
-    border-radius: 2rem 2rem 0 0;
-    transform: skew(-9deg, 0deg);
-    box-shadow: inset -9px 5px var(--chair-shadow);
-  }
-  
-  .box_1 {
-    position: absolute;
-    width: 5.4rem;
-    height: 6.8rem;
-    left: 1rem;
-    top: 6.7rem;
-    background-color: var(--box-bg);
-    border-radius: 0.6rem;
-    box-shadow: 1px 3px 5px #00000052;
-    animation: float 2s infinite;
-  }
-  
-  .box_1 div {
-    background: var(--pink);
-    position: absolute;
-    border-radius: 1rem;
-  }
-  
-  .box_1 :nth-child(1) {
-    width: 1.8rem;
-    height: 0.3rem;
-    top: 1.2rem;
-    left: 1.3rem;
-  }
-  
-  .box_1 :nth-child(2) {
-    width: 1rem;
-    height: 0.3rem;
-    top: 1.2rem;
-    left: 3.3rem;
-  }
-  
-  .box_1 :nth-child(3) {
-    width: 1.1rem;
-    height: 0.3rem;
-    top: 2rem;
-    left: 2.1rem;
-  }
-  
-  .box_1 :nth-child(4) {
-    width: 1.4rem;
-    height: 0.3rem;
-    top: 2rem;
-    left: 3.3rem;
-  }
-  
-  .box_1 :nth-child(5) {
-    width: 0.7rem;
-    height: 0.3rem;
-    top: 2.7rem;
-    left: 2.7rem;
-    box-shadow: 1rem 0px var(--pink), 1.8rem 0px var(--pink), -0.5rem 11px var(--pink);
-  }
-  
-  .box_1 :nth-child(6) {
-    width: 1.8rem;
-    height: 0.3rem;
-    top: 4.1rem;
-    left: 1.2rem;
-    box-shadow: 1rem 22px var(--pink), 0rem 43px var(--pink);
-  }
-  
-  .box_1 :nth-child(7) {
-    width: 0.8rem;
-    height: 0.3rem;
-    top: 4.8rem;
-    left: 1.7rem;
-    box-shadow: 0rem 22px var(--pink);
-  }
-  
-  .box_2 {
-    position: absolute;
-    width: 6.4rem;
-    height: 4.4rem;
-    left: 7.3rem;
-    top: 1.7rem;
-    background-color: var(--box-bg);
-    border-radius: 0.6rem;
-    box-shadow: 1px 3px 5px #00000052;
-    animation: float2 2s 1s infinite;
-  }
-  
-  .box_2 div {
-    position: absolute;
-    border-radius: 1rem;
-    background: var(--pink);
-  }
-  
-  .box_2 :nth-child(1) {
-    transform: rotate(45deg);
-    width: 0.2rem;
-    height: 0.6rem;
-    left: 0.8rem;
-    top: -0.4rem;
-    box-shadow: 1.1rem 0.5rem var(--pink), 2.5rem -0.5rem var(--pink), 6rem 0.5rem var(--pink);
-  }
-  
-  .box_2 :nth-child(2) {
-    transform: rotate(133deg);
-    width: 0.2rem;
-    height: 0.6rem;
-    left: 0.8rem;
-    top: 0rem;
-    box-shadow: 0.5rem -1.1rem var(--pink), -0.9rem -2rem var(--pink), 0.2rem -5.5rem var(--pink);
-  }
-  
-  .box_2:after {
-    content: '';
-    width: 1rem;
-    height: 0.2rem;
-    background: var(--pink);
-    position: absolute;
-    border-radius: 6rem;
-    top: 2.4rem;
-    left: 2.2rem;
-  }
-  
-  .box_2:before {
-    content: '';
-    width: 0.8rem;
-    height: 0.2rem;
-    background: var(--pink);
-    position: absolute;
-    border-radius: 6rem;
-    top: 1.1rem;
-    left: 2rem;
-    transform: rotate(-68deg);
-    box-shadow: -2.2rem 2.8rem var(--pink);
-  }
-  
-  .box_3 {
-    position: absolute;
-    width: 4.9rem;
-    height: 4.2rem;
-    left: 7.3rem;
-    top: 7.4rem;
-    background-color: var(--box-bg);
-    border-radius: 0.6rem;
-    box-shadow: 1px 3px 5px #00000052;
-    animation: float3 2.5s infinite;
-  }
-  
-  .box_3:after {
-    content: '';
-    position: absolute;
-    background: var(--pink);
-    width: 0.8rem;
-    height: .2rem;
-    transform: rotate(-64deg);
-    border-radius: 5rem;
-    top: 0.8rem;
-    left: 0.5rem;
-    box-shadow: 0.2rem 0.5rem var(--pink);
-  }
-  
-  .smoke {
-    width: 70px;
-    height: 100px;
-    background: none;
-    position: absolute;
-    left: 18rem;
-    margin-left: -40px;
-    z-index: 3;
-    top: 13.8rem;
-    animation: bk 11s infinite;
-  }
-  
-  .smoke:after {
-    content: '';
-    width: 100px;
-    height: 100px;
-    background: none;
-    position: absolute;
-    background-image: 
-      radial-gradient(circle at 42% 48%, rgba(255,255,255,0.2), transparent 25%),
-      radial-gradient(circle at 35% 70%, rgba(255,255,255,0.2), transparent 15%),
-      radial-gradient(circle at 42% 61%, rgba(255,255,255,0.2), transparent 10%);
-    animation: smoke 2s 1s infinite;
-    transform: rotate(18deg);
-  }
-  
-  @keyframes float {
-    0% { top: 6.7rem; }
-    50% { top: 7rem;}
-    100%{ top: 6.7rem }
-  }
-  
-  @keyframes float2 {
-    0% { top: 1.7rem; }
-    50% { top: 2rem;}
-    100%{ top: 1.7rem }
-  }
-  
-  @keyframes float3 {
-    0% { top: 7.4rem; }
-    50% { top: 7.7rem;}
-    100%{ top: 7.4rem }
-  }
-  
-  @keyframes smoke {
-    0%{ background-position:0 0; opacity:0; }
-    15%, 85% { opacity:1;}
-    100%{ background-position:-20px -25px, -5px -25px, 0px -25px, 0px -25px; opacity:0;}
-  }
-  
-  @keyframes bk {
-    0%{ transform: translateY(0px); }
-    50%{ transform: translateY(-20px); }
-    100%{ transform: translateY(0px); }
-  }
-  
-  /* Card Styles */
-  .card {
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    background-color: #011522;
-    border-radius: 8px;
-    z-index: 1;
-    overflow: hidden;
-  }
-  
-  .tools {
-    display: flex;
-    align-items: center;
-    padding: 9px;
-  }
-  
-  .circle {
-    padding: 0 4px;
-  }
-  
-  .box {
-    display: inline-block;
-    align-items: center;
-    width: 10px;
-    height: 10px;
-    padding: 1px;
-    border-radius: 50%;
-  }
-  
-  .red {
-    background-color: #ff605c;
-  }
-  
-  .yellow {
-    background-color: #ffbd44;
-  }
-  
-  .green {
-    background-color: #00ca4e;
-  }
-  
-  .card__content {
-    padding: 24px;
-    color: #ffffff;
-  }
-  
-  .card__content h2 {
-    margin-bottom: 12px;
-    color: #ffffff;
-    font-size: 1.875rem;
-  }
-  
-  .card__content p {
-    font-size: 1rem;
-    line-height: 1.6;
+  <div class="md:w-1/2">
+    <div class="card">
+      <div class="tools">
+        <div class="circle">
+          <span class="red box"></span>
+        </div>
+        <div class="circle">
+          <span class="yellow box"></span>
+        </div>
+        <div class="circle">
+          <span class="green box"></span>
+        </div>
+      </div>
+      <div class="card__content p-6">
+        <h2 class="text-3xl font-bold mb-4">Sobre Mí</h2>
+        <p class="text-base">
+          👨‍💻 <strong>Ingeniero en Sistemas y Programador Entuiasta</strong> con amplia experiencia en el desarrollo de soluciones tecnológicas innovadoras. A lo largo de mi carrera, he abordado una variedad de <strong>desafíos tecnológicos.</strong> 
+          <br><br>
+          💡 <strong>Tarea:</strong> Mi principal objetivo ha sido diseñar y desarrollar aplicaciones de software que resuelvan problemas complejos.
+          <br><br>
+          🎯 <strong>Acciones:</strong> He utilizado tecnologías como <strong>Java, Python y JavaScript</strong>, integrándolas con bases de datos como <strong>Oracle</strong> para crear aplicaciones robustas. Algunas de mis principales acciones incluyen:
+          <ul class="list-disc pl-6">
+            <li>Diseño de arquitecturas escalables.</li>
+            <li>Implementación de soluciones backend eficientes.</li>
+            <li>Desarrollo de interfaces de usuario intuitivas.</li>
+            <li>Optimización del rendimiento de bases de datos.</li>
+          </ul>
+          <br>
+          🏆 <strong>Resultados:</strong> Los proyectos en los que he participado han generado resultados significativos como:
+          <ul class="list-disc pl-6">
+            <li>Mejorar la productividad de los equipos en un <strong>25%</strong>.</li>
+            <li>Reducción de los costos operativos en un <strong>15%</strong>.</li>
+            <li>Más de <strong>1000 usuarios activos</strong> utilizando las soluciones desarrolladas.</li>
+          </ul>
+          <br>
+          🚀 Con una mentalidad orientada a resultados y un <strong>compromiso inquebrantable con la excelencia</strong>, estoy siempre en la búsqueda de nuevos retos para ofrecer soluciones <strong>tecnológicamente avanzadas</strong> y <strong>superar los desafíos más complejos</strong>.
+        </p>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+/* Variables Color */
+:root {
+  --background: #222;
+  --box-bg: rgba(99,102,115,0.709804);
+  --pink: #e67da4;
+  --pink-shadow: #f36b9d;
+  --grey-l: darkgrey;
+  --grey: #bfbfbf;
+  --table: #63321f;
+  --table-shadow: #582714;
+  --chair: #3c3c3c;
+  --chair-shadow: #424242;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 26rem;
+  height: 26rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Objects + Code Lines + Smoke */
+.objects_computer {
+  position: absolute;
+  width: 7rem;
+  height: 5.5rem;
+  background: var(--grey);
+  left: 3.8rem;
+  top: 14.8rem;
+  transform: skew(17deg, 0deg);
+  border-radius: 0.6rem 0.6rem 0 0;
+  box-shadow: inset -6px 1px var(--grey-l);
+}
+
+.objects_computer:after {
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 0.5rem;
+  background: var(--grey-l);
+  top: 5.1rem;
+  left: 7rem;
+  transform: skew(0deg, 2deg);
+}
+
+.objects_table {
+  position: absolute;
+  width: 22rem;
+  top: 20.4rem;
+  height: 1.4rem;
+  background: var(--table);
+  left: 2rem;
+  box-shadow: 0px -3px var(--table-shadow);
+}
+
+.objects_table:before {
+  content: '';
+  width: 19rem;
+  height: 1.2rem;
+  position: absolute;
+  background: var(--table-shadow);
+  border-radius: 0 1rem;
+  top: 1.4rem;
+  left: 3rem;
+  z-index: 1;
+}
+
+.objects_cup {
+  position: absolute;
+  width: 2.4rem;
+  top: 17.2rem;
+  background: var(--pink);
+  left: 16.8rem;
+  height: 3rem;
+  border-radius: 0.3rem 0.3rem 0 0;
+  z-index: 55;
+  box-shadow: -2px 0px var(--pink-shadow);
+}
+
+.objects_cup:after {
+  content: '';
+  width: 2rem;
+  height: 2rem;
+  background: var(--pink);
+  position: absolute;
+  top: 0.7rem;
+  left: 0.4rem;
+  border: none;
+  border-radius: 0;
+  z-index: 5;
+}
+
+.objects_cup:before {
+  content: '';
+  position: absolute;
+  width: 1rem;
+  height: 1.3rem;
+  border: 4px solid var(--pink-shadow);
+  left: 1.6rem;
+  top: 0.8rem;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.objects_chair {
+  height: 10.2rem;
+  position: absolute;
+  width: 9.1rem;
+  background: var(--chair);
+  left: 16.6rem;
+  top: 10rem;
+  border-radius: 2rem 2rem 0 0;
+  transform: skew(-9deg, 0deg);
+  box-shadow: inset -9px 5px var(--chair-shadow);
+}
+
+.box_1 {
+  position: absolute;
+  width: 5.4rem;
+  height: 6.8rem;
+  left: 1rem;
+  top: 6.7rem;
+  background-color: var(--box-bg);
+  border-radius: 0.6rem;
+  box-shadow: 1px 3px 5px #00000052;
+  animation: float 2s infinite;
+}
+
+.box_1 div {
+  background: var(--pink);
+  position: absolute;
+  border-radius: 1rem;
+}
+
+.box_1 :nth-child(1) {
+  width: 1.8rem;
+  height: 0.3rem;
+  top: 1.2rem;
+  left: 1.3rem;
+}
+
+.box_1 :nth-child(2) {
+  width: 1rem;
+  height: 0.3rem;
+  top: 1.2rem;
+  left: 3.3rem;
+}
+
+.box_1 :nth-child(3) {
+  width: 1.1rem;
+  height: 0.3rem;
+  top: 2rem;
+  left: 2.1rem;
+}
+
+.box_1 :nth-child(4) {
+  width: 1.4rem;
+  height: 0.3rem;
+  top: 2rem;
+  left: 3.3rem;
+}
+
+.box_1 :nth-child(5) {
+  width: 0.7rem;
+  height: 0.3rem;
+  top: 2.7rem;
+  left: 2.7rem;
+  box-shadow: 1rem 0px var(--pink), 1.8rem 0px var(--pink), -0.5rem 11px var(--pink);
+}
+
+.box_1 :nth-child(6) {
+  width: 1.8rem;
+  height: 0.3rem;
+  top: 4.1rem;
+  left: 1.2rem;
+  box-shadow: 1rem 22px var(--pink), 0rem 43px var(--pink);
+}
+
+.box_1 :nth-child(7) {
+  width: 0.8rem;
+  height: 0.3rem;
+  top: 4.8rem;
+  left: 1.7rem;
+  box-shadow: 0rem 22px var(--pink);
+}
+
+.box_2 {
+  position: absolute;
+  width: 6.4rem;
+  height: 4.4rem;
+  left: 7.3rem;
+  top: 1.7rem;
+  background-color: var(--box-bg);
+  border-radius: 0.6rem;
+  box-shadow: 1px 3px 5px #00000052;
+  animation: float2 2s 1s infinite;
+}
+
+.box_2 div {
+  position: absolute;
+  border-radius: 1rem;
+  background: var(--pink);
+}
+
+.box_2 :nth-child(1) {
+  transform: rotate(45deg);
+  width: 0.2rem;
+  height: 0.6rem;
+  left: 0.8rem;
+  top: -0.4rem;
+  box-shadow: 1.1rem 0.5rem var(--pink), 2.5rem -0.5rem var(--pink), 6rem 0.5rem var(--pink);
+}
+
+.box_2 :nth-child(2) {
+  transform: rotate(133deg);
+  width: 0.2rem;
+  height: 0.6rem;
+  left: 0.8rem;
+  top: 0rem;
+  box-shadow: 0.5rem -1.1rem var(--pink), -0.9rem -2rem var(--pink), 0.2rem -5.5rem var(--pink);
+}
+
+.box_2:after {
+  content: '';
+  width: 1rem;
+  height: 0.2rem;
+  background: var(--pink);
+  position: absolute;
+  border-radius: 6rem;
+  top: 2.4rem;
+  left: 2.2rem;
+}
+
+.box_2:before {
+  content: '';
+  width: 0.8rem;
+  height: 0.2rem;
+  background: var(--pink);
+  position: absolute;
+  border-radius: 6rem;
+  top: 1.1rem;
+  left: 2rem;
+  transform: rotate(-68deg);
+  box-shadow: -2.2rem 2.8rem var(--pink);
+}
+
+.box_3 {
+  position: absolute;
+  width: 4.9rem;
+  height: 4.2rem;
+  left: 7.3rem;
+  top: 7.4rem;
+  background-color: var(--box-bg);
+  border-radius: 0.6rem;
+  box-shadow: 1px 3px 5px #00000052;
+  animation: float3 2.5s infinite;
+}
+
+.box_3:after {
+  content: '';
+  position: absolute;
+  background: var(--pink);
+  width: 0.8rem;
+  height: .2rem;
+  transform: rotate(-64deg);
+  border-radius: 5rem;
+  top: 0.8rem;
+  left: 0.5rem;
+  box-shadow: 0.2rem 0.5rem var(--pink);
+}
+
+.smoke {
+  width: 70px;
+  height: 100px;
+  background: none;
+  position: absolute;
+  left: 18rem;
+  margin-left: -40px;
+  z-index: 3;
+  top: 13.8rem;
+  animation: bk 11s infinite;
+}
+
+.smoke:after {
+  content: '';
+  width: 100px;
+  height: 100px;
+  background: none;
+  position: absolute;
+  background-image: 
+    radial-gradient(circle at 42% 48%, rgba(255,255,255,0.2), transparent 25%),
+    radial-gradient(circle at 35% 70%, rgba(255,255,255,0.2), transparent 15%),
+    radial-gradient(circle at 42% 61%, rgba(255,255,255,0.2), transparent 10%);
+  animation: smoke 2s 1s infinite;
+  transform: rotate(18deg);
+}
+
+@keyframes float {
+  0% { top: 6.7rem; }
+  50% { top: 7rem;}
+  100%{ top: 6.7rem }
+}
+
+@keyframes float2 {
+  0% { top: 1.7rem; }
+  50% { top: 2rem;}
+  100%{ top: 1.7rem }
+}
+
+@keyframes float3 {
+  0% { top: 7.4rem; }
+  50% { top: 7.7rem;}
+  100%{ top: 7.4rem }
+}
+
+@keyframes smoke {
+  0%{ background-position:0 0; opacity:0; }
+  15%, 85% { opacity:1;}
+  100%{ background-position:-20px -25px, -5px -25px, 0px -25px, 0px -25px; opacity:0;}
+}
+
+@keyframes bk {
+  0%{ transform: translateY(0px); }
+  50%{ transform: translateY(-20px); }
+  100%{ transform: translateY(0px); }
+}
+
+/* Card Styles */
+.card {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background-color: #011522;
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  padding: 9px;
+}
+
+.circle {
+  padding: 0 4px;
+}
+
+.box {
+  display: inline-block;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  padding: 1px;
+  border-radius: 50%;
+}
+
+.red {
+  background-color: #ff605c;
+}
+
+.yellow {
+  background-color: #ffbd44;
+}
+
+.green {
+  background-color: #00ca4e;
+}
+
+.card__content {
+  padding: 24px;
+  color: #ffffff;
+}
+
+.card__content h2 {
+  margin-bottom: 12px;
+  color: #ffffff;
+  font-size: 1.875rem;
+}
+
+.card__content p {
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* Puedes ajustar estos estilos para personalizar aún más el texto */
