@@ -1,7 +1,15 @@
+---
+---
+
 <nav id="navbar" class="navbar fixed top-0 left-0 right-0 z-[9999] w-full bg-gray-800 transition-all duration-300">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href="#" class="text-white font-bold text-xl">&#123;daniel_banariba&#125;;</a>
+      <a href="#" class="logo" style="display: flex; align-items: center;">
+        <span class="logo-symbol">&#123;</span>
+        <span class="logo-text">daniel_banariba</span>
+        <span class="logo-symbol">&#125;</span>
+        <span class="logo-punto-coma">;</span>
+      </a>
       <div class="flex space-x-6">
         <a href="https://drive.google.com/file/d/17tCpS3ln64Bg_SmoToq_9e_8PByuizjB/view?usp=drive_link" target="_blank" class="nav-link" title="Mi CV">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
@@ -28,9 +36,38 @@
 </nav>
 
 <style>
+  @font-face {
+      font-family: 'DinaRemasterII';
+      src: url('/fonts/DinaRemasterII.ttc') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+  
+  .logo {
+      font-family: 'DinaRemasterII', sans-serif;
+      font-size: 36px; 
+      font-weight: 500;
+      color: #bbbbbb;
+      padding: 10px;
+      border-radius: 5px;
+  }
+  
+  .logo-text {
+      color: #c398f4;
+  }
+  
+  .logo-symbol {
+      color: #f1d700;
+  }
+
+  .logo-punto-coma {
+      color: #bbbbbb;
+  }
+
   .nav-link {
     @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center justify-center;
   }
+
   .navbar.blurred {
     @apply bg-opacity-80 backdrop-blur-md;
   }
