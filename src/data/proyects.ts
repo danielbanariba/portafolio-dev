@@ -1,4 +1,3 @@
-// TODO: Actualizar con los proyectos reales que vayas terminando
 export const projects = [
     {
       title: "Analyzepy",
@@ -22,7 +21,6 @@ export const projects = [
       description: "Es un programa que automatiza la edición de videos para un mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automatica.",
       technologies: ['Python', 'React'],
       githubUrl: "https://github.com/danielbanariba/click-auto-editor",
-      // TODO Modificar el componenete para que cuando no reciba la url del proyecto, no muestre el botón
     },
     {
       title: "Web Scraping",

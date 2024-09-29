@@ -1,5 +1,4 @@
 // TODO poner las experiencias reales de los trabajos
-
 export const experiences = [
   {
     title: "React.js Developer",

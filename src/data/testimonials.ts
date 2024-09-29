@@ -1,5 +1,3 @@
-// testimonials.ts
-
 export const testimonials = [
   {
     name: "Ing. Alex Moncada",
@@ -19,11 +17,11 @@ export const testimonials = [
   // Estoy indeciso si poner a Oscar Cruz = https://www.linkedin.com/in/oscar-cruz-26163875/
   // Andrea Matinez = https://www.linkedin.com/in/andrealmartinez/
   // Nestor Lopez Luque = https://www.linkedin.com/in/n%C3%A9stor-l%C3%B3pez-luque-7b436b86/
-  // {
-  //   name: "Ing. Carlos Rodríguez",
-  //   role: "Instructor de Programación Avanzada",
-  //   comment: "La habilidad de Daniel para aprender nuevas tecnologías rápidamente es impresionante. Su código es limpio, bien documentado y siempre sigue las mejores prácticas de la industria.",
-  //   linkedInUrl: "https://www.linkedin.com/in/carlosrodriguez/",
-  //   iconBg: "#3730A3",
-  // },
+  {
+    name: "Ing. Carlos Rodríguez",
+    role: "Instructor de Programación Avanzada",
+    comment: "La habilidad de Daniel para aprender nuevas tecnologías rápidamente es impresionante. Su código es limpio, bien documentado y siempre sigue las mejores prácticas de la industria.",
+    linkedInUrl: "https://www.linkedin.com/in/carlosrodriguez/",
+    iconBg: "#3730A3",
+  },
 ];
