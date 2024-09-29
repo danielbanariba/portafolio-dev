@@ -1,18 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Skills from '../components/Skills.astro';
+import InformationResume from '../components/InformationResume.astro';
+import Presentacion from '../components/Presentacion.astro';
+import Testimonial from '../components/Testimonial.astro';
 import Experience from '../components/Experiencie.astro'; 
-import ProfileImage from '../components/ProfileImage.astro';
-import Project from '../components/Project.astro';
-import DownloadButton from '../components/DownloadButton.astro';
 import Education from '../components/Education.astro';
 import BongoCat from '../components/BongoCat.astro';
-import Testimonial from '../components/Testimonial.astro';
-import Footer from '../components/Footer.astro';
 import Extra from '../components/Extra/Extra.astro';
+import Project from '../components/Project.astro';
 import AboutMe from '../components/AboutMe.astro';
-import InformationResume from '../components/InformationResume.astro';
+import Navbar from '../components/Navbar.astro';
+import Skills from '../components/Skills.astro';
+import Footer from '../components/Footer.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Portafolio Dev">
@@ -20,25 +19,8 @@ import InformationResume from '../components/InformationResume.astro';
   <!-- La clase Main ABARCA TODO EL COLOR DEL FONDO! -->
   <main class="bg-gray-900 min-h-screen text-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-5">
-      <div class="grid md:grid-cols-2 gap-12 items-center mb-1">
-        <div>
-          <div class="mb-6">
-            <span class="bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">¡Hola! Soy</span>
-          </div>
-          <h1 class="text-5xl font-bold mb-4">Daniel Banariba</h1>
-          <p class="text-2xl mb-8 text-purple-400">Ingeniero en Sistemas</p>
-          <p class="text-2xl mb-8 text-purple-400">Programador Entusiasta</p>
-          <div class="flex space-x-4">
-            <DownloadButton />
-            <a href="#projects" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-              Mi Trabajo
-            </a>
-          </div>
-        </div>
-        <div class="relative">
-          <ProfileImage />
-        </div>
-      </div>
+      
+      <Presentacion />
 
       <!-- TODO Ponerlo cuando este completamente seguro que se llegue a ver bien -->
       <!-- <InformationResume /> -->
