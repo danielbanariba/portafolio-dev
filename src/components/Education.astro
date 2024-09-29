@@ -6,9 +6,12 @@ import { educations } from '../data/education';
   <div class="max-w-6xl mx-auto px-4 sm:px-0 lg:px-0">
     <h2 class="text-3xl font-bold text-white mb-8">Formación</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {educations.map((education) => (
-        <div class="card bg-gradient-to-br from-[#00ff75] to-[#3700ff] p-[0px] rounded-[20px] transition-all duration-300 hover:shadow-[0px_0px_30px_1px_rgba(0,255,117,0.30)]">
-          <div class="card2 bg-gray-800 p-4 rounded-[18px] transition-all duration-200 hover:scale-[0.98] hover:rounded-[20px] flex items-start h-full">
+      {educations.map((education, index) => (
+        <div class="education-card relative inline-flex active:scale-[0.99] transition overflow-hidden rounded-lg p-[1px] focus:outline-none" key={index}>
+          <span
+            class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]"
+          ></span>
+          <div class="relative bg-gray-800 p-4 rounded-lg flex items-start w-full">
             <div class="flex-shrink-0 mr-4">
               <img
                 src={education.logoUrl}
@@ -45,10 +48,31 @@ import { educations } from '../data/education';
 </section>
 
 <style>
-  .card {
-    transition: all 0.3s;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
-  .card2 {
-    transition: all 0.2s;
+
+  .education-card {
+    transition: all 0.3s ease;
+  }
+
+  .education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.education-card span');
+    cards.forEach((card) => {
+      const delay = Math.random() * 2; // Genera un retraso aleatorio entre 0 y 2 segundos
+      card.style.animationDelay = `${delay}s`;
+    });
+  });
+</script>
