@@ -202,22 +202,28 @@
       padding: 20px;
     }
 
-    .small-monitor, .main-monitor {
+    .small-monitor {
+      display: none; /* Oculta el monitor pequeño en dispositivos móviles */
+    }
+
+    .main-monitor {
       position: relative;
       top: auto;
       left: auto;
       margin-bottom: 20px;
+      width: 80%; /* Ajusta el ancho para que sea más visible en móviles */
+      max-width: 300px; /* Limita el ancho máximo */
     }
 
     .profile-image {
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 300px; /* Aumentado de 200px a 300px */
+      height: 300px; /* Aumentado de 200px a 300px */
       top: auto;
       left: auto;
       transform: none;
       margin-bottom: 20px;
-      order: -1; /* Esto coloca la imagen de perfil al principio en móviles */
+      order: -1; /* Coloca la imagen de perfil al principio en móviles */
     }
   }
 </style>

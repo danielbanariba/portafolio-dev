@@ -7,16 +7,16 @@ import ProgramingAnimation from "./ProgramingAnimation.astro";
 
 <main class="container mx-auto px-4 py-8">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-    <div class="flex justify-center items-center">
-      <DeskAnimation >
+    <div class="flex justify-center items-center order-2 md:order-1 p-1 md:p-0">
+      <DeskAnimation />
     </div>
-    <div>
+    <div class="order-1 md:order-2">
       <Card />
     </div>
-    <div>
+    <div class="order-3">
       <Card2 />
     </div>
-    <div class="flex justify-center items-center -mt-40">
+    <div class="flex justify-center items-center order-4 md:-mt-40 pb-24 md:pb-0">
       <ProgramingAnimation />
     </div>
   </div>
