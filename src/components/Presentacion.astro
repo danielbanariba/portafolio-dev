@@ -12,14 +12,14 @@ import DownloadButton from "../components/DownloadButton.astro";
         <span class="profession">Programador Entusiasta</span>
       </p>
     </div>
-    <div class="flex justify-center items-center space-x-4 mt-8">
+    <div class="flex justify-center items-center space-x-4 mt-8 buttons-container">
       <DownloadButton />
       <a href="#projects" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300">
         Mi Trabajo
       </a>
     </div>
   </div>
-  <div class="relative">
+  <div class="relative profile-container">
     <ProfileImage />
   </div>
 </div>
@@ -75,6 +75,24 @@ import DownloadButton from "../components/DownloadButton.astro";
     height: 100%;
     z-index: 1;
     pointer-events: none;
+  }
+
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 853px) and (max-height: 1280px),
+         (max-width: 768px) and (max-height: 1024px),
+         (max-width: 820px) and (max-height: 1180px),
+         (max-width: 1024px) and (max-height: 1366px),
+         (max-width: 912px) and (max-height: 1368px) {
+    .buttons-container, .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   @media (max-width: 768px) {
