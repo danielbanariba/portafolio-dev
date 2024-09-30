@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface HoverEffectProps {
   title: string;
@@ -10,7 +10,14 @@ interface HoverEffectProps {
   projectUrl?: string;
 }
 
-const HoverEffect = ({ title, description, imageUrl, technologies, githubUrl, projectUrl }: HoverEffectProps) => {
+const HoverEffect = ({
+  title,
+  description,
+  imageUrl,
+  technologies,
+  githubUrl,
+  projectUrl,
+}: HoverEffectProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -38,19 +45,37 @@ const HoverEffect = ({ title, description, imageUrl, technologies, githubUrl, pr
       </AnimatePresence>
       <div className="rounded-2xl h-full w-full p-4 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-800/[0.2] border border-transparent group-hover:border-slate-700 relative z-50 flex flex-col">
         <div className="flex-grow">
-          <h4 className="text-zinc-100 font-bold tracking-wide mb-4">{title}</h4>
-          <img src={imageUrl} alt={title} className="w-full h-48 object-cover rounded-xl mb-4" />
+          <h4 className="text-zinc-100 font-bold tracking-wide mb-4">
+            {title}
+          </h4>
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-48 object-cover rounded-xl mb-4"
+          />
           <div className="mb-4">
-            <p className="text-zinc-400 tracking-wide leading-relaxed text-sm">{description}</p>
+            <p className="text-zinc-400 tracking-wide leading-relaxed text-sm">
+              {description}
+            </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {technologies.map((tech, index) => (
-                <span key={index} className="text-xs bg-slate-700 text-zinc-200 px-2 py-1 rounded">{tech}</span>
+                <span
+                  key={index}
+                  className="text-xs bg-slate-700 text-zinc-200 px-2 py-1 rounded"
+                >
+                  {tech}
+                </span>
               ))}
             </div>
           </div>
         </div>
         <div className="mt-auto flex justify-end items-center gap-6 pt-4">
-          <a href={githubUrl} target="_blank" rel="noopener noreferrer" className="group">
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group"
+          >
             <svg
               strokeLinejoin="round"
               strokeLinecap="round"
@@ -64,15 +89,20 @@ const HoverEffect = ({ title, description, imageUrl, technologies, githubUrl, pr
             </svg>
           </a>
           {projectUrl && (
-            <a href={projectUrl} target="_blank" rel="noopener noreferrer" className="group">
+            <a
+              href={projectUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
               <svg
                 className="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
                 strokeLinejoin="round"
                 strokeLinecap="round"
-                strokeWidth={1.5}
+                strokeWidth={2}
                 stroke="currentColor"
                 fill="none"
-                viewBox="0 -0.5 25 25"
+                viewBox="0 0 22 22"
               >
                 <path d="M15.17 11.053L11.18 15.315C10.8416 15.6932 10.3599 15.9119 9.85236 15.9178C9.34487 15.9237 8.85821 15.7162 8.51104 15.346C7.74412 14.5454 7.757 13.2788 8.54004 12.494L13.899 6.763C14.4902 6.10491 15.3315 5.72677 16.2161 5.72163C17.1006 5.71649 17.9463 6.08482 18.545 6.736C19.8222 8.14736 19.8131 10.2995 18.524 11.7L12.842 17.771C12.0334 18.5827 10.9265 19.0261 9.78113 18.9971C8.63575 18.9682 7.55268 18.4695 6.78604 17.618C5.0337 15.6414 5.07705 12.6549 6.88604 10.73L12.253 5" />
               </svg>
