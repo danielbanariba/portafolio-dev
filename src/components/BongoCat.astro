@@ -355,7 +355,7 @@
   const rotator = gsap.utils.random(-50, 50, 1, true);
   const dir = (amt) => `${gsap.utils.random(["-", "+"])}=${amt}`;
 
-  const animateNotes = (els) => {
+  const animateNotes = (els: HTMLElement[]) => {
     els.forEach((el) => {
       gsap.set(el, {
         stroke: colorizer(),
