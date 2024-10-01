@@ -18,14 +18,14 @@ export const projects = [
     {
       title: "Canal de YouTube Automatizado",
       imageUrl: "project/click-auto-editor.png",
-      description: "Es un programa que automatiza la edición de videos para un mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automatica.",
+      description: "Es un programa que automatiza la edición de videos para mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automática.",
       technologies: ['Python', 'React'],
       githubUrl: "https://github.com/danielbanariba/click-auto-editor",
     },
     {
       title: "Web Scraping",
       imageUrl: "project/web-scraping.jpg",
-      description: "Para que que mi canal de YouTube tenga contenido contantemente, he creado un programa que se encarga de buscar musica libre de derechos de autor en internet y descargarlas.",
+      description: "Para que que mi canal de YouTube tenga contenido constantemente, He creado un programa que se encarga de buscar música libre de derechos de autor en internet y descargarlas.",
       technologies: ['Python'],
       githubUrl: "https://github.com/danielbanariba/scrapper-deathgrind",
     },
@@ -40,7 +40,7 @@ export const projects = [
     {
       title: "SoundCloud Clone",
       imageUrl: "project/soundcloud.jpg",
-      description: "Analizar y clonar la funcionalidad de SoundCloud, creacion de la base de datos, backend y frontend.",
+      description: "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
       technologies: ['OracleSQL', 'Python', 'FastAPI', 'HTML', 'CSS'],
       githubUrl: "https://github.com/danielbanariba/soundclound",
     },

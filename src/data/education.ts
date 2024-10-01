@@ -55,7 +55,7 @@ export const educations: Education[] = [
         url: "https://academy.oracle.com/en/oa-web-overview.html"
     },
     {
-        title: "Pensamiendo Computacion con Python",
+        title: "Pensamiento Computacional con Python",
         institution: "Platzi",
         date: "2021 - 2021",
         logoUrl: "icon/education/platzi.svg",
