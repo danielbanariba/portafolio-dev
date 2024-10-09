@@ -21,6 +21,7 @@ export const projects = [
       description: "Es un programa que automatiza la edición de videos para mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automática.",
       technologies: ['Python', 'React'],
       githubUrl: "https://github.com/danielbanariba/click-auto-editor",
+      projectUrl: "https://www.youtube.com/@danielbanariba"
     },
     {
       title: "Web Scraping",
