@@ -1,5 +1,13 @@
 export const projects = [
     {
+      title: "Sistema Contable",
+      imageUrl: "project/azure-app-service.png",
+      description: "Infraestructura en Azure para un sistema contable seguro y escalable. Incluye red virtual, base de datos SQL, almacenamiento y aplicación web, todo configurado con medidas de seguridad avanzadas",
+      technologies: ['Azure', 'Terraform'],
+      documentacionUrl: "http://localhost:4321/sistema-contable",
+      githubUrl: "https://github.com/danielbanariba/sistema-contable",
+    },
+    {
       title: "Analyzepy",
       imageUrl: "project/analizador_lexico.png",
       description: "Es una herramienta que traduce código de Python a JavaScript, utilizando técnicas avanzadas de parsing y generación de código",
@@ -44,13 +52,5 @@ export const projects = [
       description: "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
       technologies: ['OracleSQL', 'Python', 'FastAPI', 'HTML', 'CSS'],
       githubUrl: "https://github.com/danielbanariba/soundclound",
-    },
-    {
-      title: "Sistema Contable",
-      imageUrl: "project/azure-app-service.png",
-      description: "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
-      technologies: ['Azure', 'Terraform'],
-      documentacionUrl: "http://localhost:4321/sistema-contable",
-      githubUrl: "https://github.com/danielbanariba/sistema-contable",
-    },
+    }
   ];
