@@ -6,11 +6,12 @@ interface Props {
   imageUrl: string;
   description: string;
   technologies: string[];
+  documentacion?: string;
   githubUrl: string;
   projectUrl?: string;
 }
 
-const { title, imageUrl, description, technologies, githubUrl, projectUrl } = Astro.props;
+const { title, imageUrl, description, technologies, documentacion,githubUrl, projectUrl } = Astro.props;
 ---
 
 <HoverEffect
@@ -19,6 +20,7 @@ const { title, imageUrl, description, technologies, githubUrl, projectUrl } = As
   imageUrl={imageUrl}
   description={description}
   technologies={technologies}
+  documentacionUrl={documentacion}
   githubUrl={githubUrl}
   projectUrl={projectUrl}
 />

@@ -45,4 +45,12 @@ export const projects = [
       technologies: ['OracleSQL', 'Python', 'FastAPI', 'HTML', 'CSS'],
       githubUrl: "https://github.com/danielbanariba/soundclound",
     },
+    {
+      title: "Sistema Contable",
+      imageUrl: "project/azure-app-service.png",
+      description: "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
+      technologies: ['Azure', 'Terraform'],
+      documentacionUrl: "http://localhost:4321/sistema-contable",
+      githubUrl: "https://github.com/danielbanariba/sistema-contable",
+    },
   ];

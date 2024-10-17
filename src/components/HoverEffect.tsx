@@ -6,6 +6,7 @@ interface HoverEffectProps {
   description: string;
   imageUrl: string;
   technologies: string[];
+  documentacionUrl?: string;
   githubUrl: string;
   projectUrl?: string;
 }
@@ -15,6 +16,7 @@ const HoverEffect = ({
   description,
   imageUrl,
   technologies,
+  documentacionUrl,
   githubUrl,
   projectUrl,
 }: HoverEffectProps) => {
@@ -88,6 +90,26 @@ const HoverEffect = ({
               <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
             </svg>
           </a>
+          {documentacionUrl && (
+            <a
+              href={documentacionUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
+            >
+              <svg
+                className="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth={2}
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </a>
+          )}
           {projectUrl && (
             <a
               href={projectUrl}

@@ -3,9 +3,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/proyects';
 ---
 
+<!-- TODO poner solo 3 proyectos nada mas, lo que me sienta mas orgullosos, y si quieren ver mas, un boton que al darle click se desplegue los otros proyectos -->
 <section id="projects">
   <div class="mt-20">
-    <h2 class="text-3xl font-bold mb-6">Mis Proyectos</h2>
+    <h2 class="text-3xl font-bold mb-6">Proyectos Destacados</h2>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-0">
       {projects.map((project) => (
         <ProjectCard
@@ -13,6 +14,7 @@ import { projects } from '../data/proyects';
           imageUrl={project.imageUrl}
           description={project.description}
           technologies={project.technologies}
+          documentacion={project.documentacionUrl}
           githubUrl={project.githubUrl}
           projectUrl={project.projectUrl}
         />

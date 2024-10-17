@@ -1,7 +1,7 @@
 export interface Skill {
     name: string;
     icon: string;
-    category: 'Backend' | 'Frontend' | 'Frameworks' | 'Gestores de Bases de Datos';
+    category: 'Backend' | 'Frontend' | 'Frameworks' | 'Gestores de Bases de Datos' | 'Infraestructura';
 }
 
 export const skills: Skill[] = [
@@ -28,4 +28,9 @@ export const skills: Skill[] = [
     { name: 'MySQL', icon: '/icon/mysql.svg', category: 'Gestores de Bases de Datos' },
     { name: 'PostgreSQL', icon: '/icon/postgresql.svg', category: 'Gestores de Bases de Datos' },
     { name: 'MongoDB', icon: '/icon/mongodb.svg', category: 'Gestores de Bases de Datos' },
+
+    //---------------------------------------------Infraestructura---------------------------------
+    { name: 'Azure', icon: '/icon/azure.svg', category: 'Infraestructura' },
+    { name: 'Terraform', icon: '/icon/terraform.svg', category: 'Infraestructura' },
+    { name: 'Docker', icon: '/icon/docker.svg', category: 'Infraestructura' },
 ];
