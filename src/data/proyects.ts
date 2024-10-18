@@ -4,7 +4,7 @@ export const projects = [
       imageUrl: "project/azure-app-service.png",
       description: "Infraestructura en Azure para un sistema contable seguro y escalable. Incluye red virtual, base de datos SQL, almacenamiento y aplicación web, todo configurado con medidas de seguridad avanzadas",
       technologies: ['Azure', 'Terraform'],
-      documentacionUrl: "http://localhost:4321/sistema-contable",
+      documentacionUrl: "/sistema-contable",
       githubUrl: "https://github.com/danielbanariba/sistema-contable",
     },
     {

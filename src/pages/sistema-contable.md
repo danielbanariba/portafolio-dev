@@ -297,7 +297,7 @@ Para desplegar esta infraestructura:
 1. Clona este repositorio
 2. Actualiza las variables en `variables.tf` según tus necesidades
 3. Ejecuta:
-   ```Shell
+   ```sh
    terraform init
    terraform plan
    terraform apply
@@ -315,3 +315,7 @@ Este proyecto implementa varias medidas de seguridad:
 - Uso de Private Endpoints para SQL y Storage
 - Network Security Group con reglas específicas
 - Segregación de redes mediante subnets
+
+## Video Explicativo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0oGockqFLQc" frameborder="0" allowfullscreen></iframe>
