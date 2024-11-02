@@ -1,25 +1,33 @@
 ---
 import { skills } from '../data/skills';
 import MovingBorder from './MovingBorder.astro';
-const categories = ['Backend', 'Frontend', 'Frameworks', 'Gestores de Bases de Datos', 'Infraestructura'];
+const categories = [
+  'Backend', 
+  'Frontend', 
+  'Frameworks', 
+  'Librerias',
+  'Gestores de Bases de Datos', 
+  'Infraestructura', 
+];
 ---
 
-<!-- TODO Tengo una idea! hacer basicamente un filtro, que cuando vaya aumentado mi numero de proyectos, que el usuario seleccione los lenguajes de programacion  -->
+<!-- TODO Hacer un filtro, que cuando vaya aumentado mi numero de proyectos, que el usuario seleccione los lenguajes de programacion  -->
 <!-- TODO y que se filtre los proyectos que he hecho con ese lenguaje de programacion -->
+<!-- TODO ya que en este tiempo voy a empezar a tener muchos conocimientos en diferentes ambitos, me gustaria crear un hover, que al cursos se desplegue las otras tecnologias que se dominar, que siempre sean en 4, ejemplo, si se manejar 5 tecnologias al momento de pasar el cursor se desplegue para abajo el quinto que hace falta, y asi consecutivamente, si se manera mas por ejemplo 7, se desplegue y forme como una especie de piramide -->
 
 <div class="w-full max-w-6xl space-y-8 bg-gray-900 rounded-lg">
   <h2 class="text-3xl font-bold mb-8 text-white">Mis Habilidades</h2>
   
   {categories.map((category) => (
-    <MovingBorder className="mb-8">
+    <MovingBorder className="mb-8 group">
       <h3 class="absolute right-4 top-0 -translate-y-1/2 rounded-full border border-gray-700 bg-gray-900 px-4 py-1 uppercase tracking-tight text-xs text-white mb-12">
         {category}
       </h3>
       <ul class="grid grid-cols-4 gap-8">
         {skills
           .filter((skill) => skill.category === category)
-          .map((skill) => (
-            <li class="flex justify-center group">
+          .map((skill, index) => (
+            <li class={`flex justify-center ${index >= 4 ? 'hidden group-hover:flex' : ''}`}>
               <div class="relative flex flex-col items-center">
                 <img src={skill.icon} alt={skill.name} class="w-16 h-16 mb-2 hover:scale-110 hover:-translate-y-2 transition-transform duration-300" />
                 <span class="absolute bottom-0 transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-4 transition-all duration-300 bg-gray-800 text-white text-xs rounded-md px-2 py-1">
