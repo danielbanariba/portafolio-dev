@@ -1,7 +1,7 @@
 export interface Skill {
     name: string;
     icon: string;
-    category: 'Backend' | 'Frontend' | 'Frameworks' | 'Librerias' | 'Gestores de Bases de Datos' | 'Infraestructura';
+    category: 'Backend' | 'Frontend' | 'Frameworks' | 'Librerias' | 'Gestores de Bases de Datos' | 'Infraestructura' | 'QA & Testing';
 }
 
 export const skills: Skill[] = [
@@ -40,4 +40,8 @@ export const skills: Skill[] = [
     { name: 'AWS', icon: '/icon/aws.svg', category: 'Infraestructura' },
     { name: 'Terraform', icon: '/icon/terraform.svg', category: 'Infraestructura' },
     { name: 'Docker', icon: '/icon/docker.svg', category: 'Infraestructura' },
+
+    //---------------------------------------------QA & Testing---------------------------------
+    { name: 'Jest', icon: '/icon/jest.svg', category: 'QA & Testing' },
+    { name: 'Selenium', icon: '/icon/selenium.svg', category: 'QA & Testing' },
 ];
