@@ -1,27 +1,43 @@
-// TODO poner las experiencias reales de los trabajos
-export const experiences = [
+// src/data/experiences.ts
+export interface Position {
+  role: string;
+  period?: string;
+  points: string[];
+}
+
+export interface Experience {
+  title: string;
+  company: string;
+  positions: Position[];
+  icon: string;
+  iconBg: string;
+  date: string;
+}
+
+export const experiences: Experience[] = [
   {
-    title: "React.js Developer",
-    companyName: "Chaldal",
-    icon: "/icon/empresas/claro.svg",
+    title: "Practicante Ingeniería de Sistemas",
+    company: "GuabaBIT",
+    positions: [
+      {
+        role: "Desarrollador Backend | LuQA",
+        period: "Octubre 2024 - Actualmente",
+        points: [
+          "Desarrollé APIs utilizando el framework NestJS y siguiendo las mejores prácticas de desarrollo",
+          "Gestioné la infraestructura en AWS",
+          "Administré bases de datos NoSQL utilizando Amazon DynamoDB, diseñando esquemas eficientes",
+        ],
+      },
+      {
+        role: "QA Tester | Choyc",
+        period: "Octubre 2024 - Actualmente",
+        points: [
+          "Implementé pruebas manuales de control de calidad para garantizar la funcionalidad y confiabilidad del software usando Jira",
+        ],
+      },
+    ],
+    icon: "/icon/empresas/guaba-bit.png",
     iconBg: "#383E56",
-    date: "March 2023 - Actualmente",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full Stack Developer",
-    companyName: "10 Minute School",
-    icon: "/icon/empresas/tigo.svg",
-    iconBg: "#E6DEDD",
-    date: "April 2021 - Sep 2022",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-    ],
+    date: "Octubre 2024 - Actualmente",
   },
 ];

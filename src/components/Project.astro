@@ -1,24 +1,142 @@
 ---
-import ProjectCard from '../components/ProjectCard.astro';
-import { projects } from '../data/proyects';
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/proyects";
+
+// Estado para controlar la visibilidad de proyectos adicionales
+const desktopInitialCount = 6;
+const mobileInitialCount = 3;
+const hasMoreProjects = projects.length > desktopInitialCount;
 ---
 
-<!-- TODO poner solo 3 proyectos nada mas, lo que me sienta mas orgullosos, y si quieren ver mas, un boton que al darle click se desplegue los otros proyectos -->
 <section id="projects">
   <div class="mt-20">
     <h2 class="text-3xl font-bold mb-6">Proyectos Destacados</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-0">
-      {projects.map((project) => (
-        <ProjectCard
-          title={project.title}
-          imageUrl={project.imageUrl}
-          description={project.description}
-          technologies={project.technologies}
-          documentacion={project.documentacionUrl}
-          githubUrl={project.githubUrl}
-          projectUrl={project.projectUrl}
-        />
-      ))}
+
+    {/* Proyectos iniciales para móvil */}
+    <div class="grid md:hidden gap-0">
+      {
+        projects
+          .slice(0, mobileInitialCount)
+          .map((project) => (
+            <ProjectCard
+              title={project.title}
+              imageUrl={project.imageUrl}
+              description={project.description}
+              technologies={project.technologies}
+              documentacion={project.documentacionUrl}
+              githubUrl={project.githubUrl}
+              projectUrl={project.projectUrl}
+            />
+          ))
+      }
     </div>
+
+    {/* Proyectos iniciales para desktop */}
+    <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-0">
+      {
+        projects
+          .slice(0, desktopInitialCount)
+          .map((project) => (
+            <ProjectCard
+              title={project.title}
+              imageUrl={project.imageUrl}
+              description={project.description}
+              technologies={project.technologies}
+              documentacion={project.documentacionUrl}
+              githubUrl={project.githubUrl}
+              projectUrl={project.projectUrl}
+            />
+          ))
+      }
+    </div>
+
+    {/* Proyectos ocultos - diferente para móvil y desktop */}
+    <div id="hiddenProjects" class="hidden">
+      <div class="md:hidden">
+        {
+          projects
+            .slice(mobileInitialCount)
+            .map((project) => (
+              <ProjectCard
+                title={project.title}
+                imageUrl={project.imageUrl}
+                description={project.description}
+                technologies={project.technologies}
+                documentacion={project.documentacionUrl}
+                githubUrl={project.githubUrl}
+                projectUrl={project.projectUrl}
+              />
+            ))
+        }
+      </div>
+
+      <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-0">
+        {
+          projects
+            .slice(desktopInitialCount)
+            .map((project) => (
+              <ProjectCard
+                title={project.title}
+                imageUrl={project.imageUrl}
+                description={project.description}
+                technologies={project.technologies}
+                documentacion={project.documentacionUrl}
+                githubUrl={project.githubUrl}
+                projectUrl={project.projectUrl}
+              />
+            ))
+        }
+      </div>
+    </div>
+
+    {/* Botón Ver Más */}
+    {
+      hasMoreProjects && (
+        <div class="flex justify-center mt-8">
+          <button
+            id="viewMoreBtn"
+            class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center justify-center"
+          >
+            Ver más proyectos
+          </button>
+        </div>
+      )
+    }
   </div>
 </section>
+
+<script>
+  function updateProjectsDisplay() {
+    const viewMoreBtn = document.getElementById("viewMoreBtn");
+    const hiddenProjects = document.getElementById("hiddenProjects");
+
+    if (viewMoreBtn && hiddenProjects) {
+      viewMoreBtn.addEventListener("click", () => {
+        // Mostrar proyectos ocultos
+        hiddenProjects.classList.remove("hidden");
+
+        // Animar la aparición
+        hiddenProjects.style.opacity = "0";
+        requestAnimationFrame(() => {
+          hiddenProjects.style.transition = "opacity 0.5s ease-in-out";
+          hiddenProjects.style.opacity = "1";
+        });
+
+        // Ocultar el botón con animación
+        viewMoreBtn.style.opacity = "1";
+        viewMoreBtn.style.transition = "opacity 0.3s ease-in-out";
+        viewMoreBtn.style.opacity = "0";
+
+        setTimeout(() => {
+          viewMoreBtn.style.display = "none";
+        }, 300);
+      });
+    }
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  document.addEventListener("DOMContentLoaded", updateProjectsDisplay);
+
+  // Opcional: actualizar cuando cambie el tamaño de la ventana
+  window.addEventListener("resize", updateProjectsDisplay);
+</script>

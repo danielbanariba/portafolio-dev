@@ -1,42 +1,57 @@
 ---
-import { experiences } from '../data/experiences';
-
-interface Experience {
-  title: string;
-  companyName: string;
-  icon: string;
-  iconBg: string;
-  date: string;
-  points: string[];
-}
+import type { Experience, Position } from "../data/experiences";
+import { experiences } from "../data/experiences";
 ---
 
 <section class="py-16 bg-gray-900">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-4xl font-bold text-white mb-12 text-center">Experiencia Laboral</h2>
+    <h2 class="text-4xl font-bold text-white mb-12 text-center">
+      Experiencia Laboral
+    </h2>
     <div class="relative">
-      <svg class="absolute left-1/2 transform -translate-x-1/2" width="2" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <line x1="1" y1="0" x2="1" y2="100%" stroke="#374151" stroke-width="2" />
-        <line class="vertical-line" x1="1" y1="0" x2="1" y2="100%" stroke="#3879E7" stroke-width="2" />
+      <!-- Línea vertical oculta en móvil -->
+      <svg class="absolute left-1/2 transform -translate-x-1/2 hidden md:block" width="2" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <line x1="1" y1="0" x2="1" y2="100%" stroke="#374151" stroke-width="2"></line>
+        <line class="vertical-line" x1="1" y1="0" x2="1" y2="100%" stroke="#3879E7" stroke-width="2"></line>
       </svg>
       
       {experiences.map((experience: Experience, index: number) => (
-        <div class={`relative flex items-center mb-8 ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-          <div class={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+        <div class={`relative flex items-center mb-8 ${index % 2 === 0 ? "justify-start md:justify-start" : "justify-start md:justify-end"}`}>
+          <div class={`w-full md:w-5/12 ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}>
             <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-bold text-white mb-2">{experience.title}</h3>
-              <p class="text-gray-400 mb-4">{experience.companyName}</p>
-              <ul class="list-disc list-inside text-gray-300">
-                {experience.points.map((point) => (
-                  <li class="mb-2">{point}</li>
-                ))}
-              </ul>
+              <h3 class="text-xl font-bold text-white mb-2">
+                {experience.title}
+              </h3>
+              {experience.positions.map((position) => (
+                <div class="mb-6">
+                  <div class="text-gray-400 mb-3">
+                    <span class="font-medium">{position.role}</span>
+                    {position.period && (
+                      <span class="text-sm text-gray-500">
+                        {" "}
+                        • {position.period}
+                      </span>
+                    )}
+                  </div>
+                  <ul class="list-disc list-inside text-gray-300">
+                    {position.points.map((point) => (
+                      <li class="mb-2">{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
-          <div class="absolute left-1/2 transform -translate-x-1/2 w-24 h-24 flex items-center justify-center z-10">
-            <img src={experience.icon} alt={experience.companyName} class="w-30 h-30" />
+          <!-- Logo oculto en móvil -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-24 h-24 hidden md:flex items-center justify-center z-10">
+            <img
+              src={experience.icon}
+              alt={experience.company}
+              class="w-30 h-30"
+            />
           </div>
-          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-1 px-2 rounded">
+          <!-- Fecha oculta en móvil -->
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-1 px-2 rounded hidden md:block">
             {experience.date}
           </div>
         </div>
