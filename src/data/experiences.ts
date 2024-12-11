@@ -23,16 +23,18 @@ export const experiences: Experience[] = [
         role: "Desarrollador Backend | LuQA",
         period: "Octubre 2024 - Actualmente",
         points: [
-          "Desarrollé APIs utilizando el framework NestJS y siguiendo las mejores prácticas de desarrollo",
+          "Desarrollé APIs utilizando el framework NestJS, siguiendo las mejores prácticas de desarrollo",
           "Gestioné la infraestructura en AWS",
-          "Administré bases de datos NoSQL utilizando Amazon DynamoDB, diseñando esquemas eficientes",
+          "Administré bases de datos NoSQL utilizando DynamoDB, diseñando esquemas eficientes",
+          "Documenté el código y las APIs utilizando Swagger",
         ],
       },
       {
         role: "QA Tester | Choyc",
         period: "Octubre 2024 - Actualmente",
         points: [
-          "Implementé pruebas manuales de control de calidad para garantizar la funcionalidad y confiabilidad del software usando Jira",
+          "Implementé test cases para garantizar la funcionalidad y confiabilidad del software usando Jira",
+          "Reporté bugs y mejoras en la plataforma",
         ],
       },
     ],
