@@ -50,9 +50,9 @@ export const skills: Skill[] = [
   { name: "Docker", icon: "/icon/docker.svg", category: "Infraestructura" },
 
   //---------------------------------------------QA & Testing---------------------------------
-  { name: "Jest", icon: "/icon/jest.svg", category: "QA & Testing" },
+  // { name: "Jest", icon: "/icon/jest.svg", category: "QA & Testing" },
   { name: "Selenium", icon: "/icon/selenium.svg", category: "QA & Testing" },
   { name: "Jira", icon: "/icon/jira.svg", category: "QA & Testing" },
   { name: "Postman", icon: "/icon/postman.svg", category: "QA & Testing" },
-  { name: "Cypress", icon: "/icon/cypress.svg", category: "QA & Testing" },
+  // { name: "Cypress", icon: "/icon/cypress.svg", category: "QA & Testing" },
 ];
