@@ -5,25 +5,40 @@ const email = "danielbanariba@protonmail.com";
 <footer class="bg-gray-800 text-white py-3 relative overflow-hidden">
   <div class="footer-background"></div>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-      <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+    <div
+      class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
+    >
+      <div
+        class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4"
+      >
         <a
           href={`mailto:${email}`}
           class="email-button w-full sm:w-auto text-center sm:text-left"
         >
           {email}
-          <span class="ml-2 w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          <span class="ml-2 w-2 h-2 rounded-full bg-green-400 animate-pulse"
+          ></span>
         </a>
-        <button id="copyButton" class="copy-button" aria-label="Copiar correo electrónico">
+        <button
+          id="copyButton"
+          class="copy-button"
+          aria-label="Copiar correo electrónico"
+        >
           <svg viewBox="0 0 512 512" class="svgIcon" height="1em" width="1em">
-            <path d="M288 448H64V224h64V160H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64zm-64-96H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64z"></path>
+            <path
+              d="M288 448H64V224h64V160H64c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64zm-64-96H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64z"
+            ></path>
           </svg>
           <p class="text">COPY</p>
           <span class="effect"></span>
         </button>
       </div>
       <div class="text-center sm:text-right mt-4 sm:mt-0">
-        <h2 class="text-sm sm:text-base md:text-lg lg:text-xl font-semibold gradient-text">Transformando Ideas en Código | Ingeniero de Software Full Stack</h2>
+        <h2
+          class="text-sm sm:text-base md:text-lg lg:text-xl font-semibold gradient-text"
+        >
+          Transformando Ideas en Código | Ingeniero de Software Full Stack
+        </h2>
       </div>
     </div>
   </div>
@@ -58,13 +73,17 @@ const email = "danielbanariba@protonmail.com";
     border-radius: 0.375rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 4px 6px rgba(50, 50, 93, 0.11),
+      0 1px 3px rgba(0, 0, 0, 0.08);
   }
 
   .email-button:hover {
     background-color: #4338ca;
     transform: translateY(-1px);
-    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 7px 14px rgba(50, 50, 93, 0.1),
+      0 3px 6px rgba(0, 0, 0, 0.08);
   }
 
   .copy-button {
@@ -81,7 +100,9 @@ const email = "danielbanariba@protonmail.com";
     position: relative;
     overflow: hidden;
     transition: all 0.5s ease;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 4px 6px rgba(50, 50, 93, 0.11),
+      0 1px 3px rgba(0, 0, 0, 0.08);
   }
 
   .copy-button .text {
@@ -126,7 +147,8 @@ const email = "danielbanariba@protonmail.com";
   }
 
   @media (max-width: 640px) {
-    .email-button, .copy-button {
+    .email-button,
+    .copy-button {
       width: 100%;
       max-width: none;
     }
@@ -134,24 +156,27 @@ const email = "danielbanariba@protonmail.com";
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const copyButton = document.getElementById('copyButton');
+  document.addEventListener("DOMContentLoaded", () => {
+    const copyButton = document.getElementById("copyButton");
     const email = "danielbanariba@protonmail.com";
 
     if (copyButton) {
-      copyButton.addEventListener('click', () => {
-        navigator.clipboard.writeText(email).then(() => {
-          const textElement = copyButton.querySelector('.text');
-          if (textElement) {
-            const originalText = textElement.textContent;
-            textElement.textContent = 'COPIED!';
-            setTimeout(() => {
-              textElement.textContent = originalText;
-            }, 2000);
-          }
-        }).catch(err => {
-          console.error('Failed to copy text: ', err);
-        });
+      copyButton.addEventListener("click", () => {
+        navigator.clipboard
+          .writeText(email)
+          .then(() => {
+            const textElement = copyButton.querySelector(".text");
+            if (textElement) {
+              const originalText = textElement.textContent;
+              textElement.textContent = "COPIED!";
+              setTimeout(() => {
+                textElement.textContent = originalText;
+              }, 2000);
+            }
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+          });
       });
     }
   });

@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <div class="container">
@@ -10,9 +11,11 @@
     </div>
     <div class="screen">
       <ul class="code">
-        {[...Array(17)].map((_, i) => (
-          <li class={i >= 7 && i <= 10 ? "inline-code" : ""}></li>
-        ))}
+        {
+          [...Array(17)].map((_, i) => (
+            <li class={i >= 7 && i <= 10 ? "inline-code" : ""} />
+          ))
+        }
       </ul>
     </div>
   </div>
@@ -24,9 +27,7 @@
     </div>
     <div class="screen">
       <ul>
-        {[...Array(30)].map(() => (
-          <li></li>
-        ))}
+        {[...Array(30)].map(() => <li />)}
       </ul>
     </div>
   </div>
@@ -44,9 +45,9 @@
     --windowFrame: #393d73;
     --windowMetal: #a6a9d3;
     --ideBackground: #301353;
-    --buttonRed: #FF4766;
-    --buttonYellow: #FFB023;
-    --buttonGreen: #4CAF50;
+    --buttonRed: #ff4766;
+    --buttonYellow: #ffb023;
+    --buttonGreen: #4caf50;
     --buttonOffset: 20px;
   }
 
@@ -57,7 +58,8 @@
     background: transparent;
   }
 
-  .small-monitor, .main-monitor {
+  .small-monitor,
+  .main-monitor {
     position: absolute;
     border-radius: 10px;
     background: var(--ideBackground);
@@ -99,7 +101,9 @@
     border-radius: 100%;
   }
 
-  #red { background: var(--buttonRed); }
+  #red {
+    background: var(--buttonRed);
+  }
   #yellow {
     left: var(--buttonOffset);
     background: var(--buttonYellow);
@@ -136,13 +140,13 @@
     background: var(--buttonGreen);
   }
 
-  .small-monitor .screen li:nth-child(n+5):nth-child(-n+7) {
+  .small-monitor .screen li:nth-child(n + 5):nth-child(-n + 7) {
     background: var(--buttonRed);
     width: 60px;
     left: 8px;
   }
 
-  .small-monitor .screen li:nth-child(n+8) {
+  .small-monitor .screen li:nth-child(n + 8) {
     background: var(--buttonYellow);
     width: 40px;
   }
@@ -158,12 +162,12 @@
     width: 60px;
   }
 
-  .main-monitor .screen li:nth-child(3n+1) {
+  .main-monitor .screen li:nth-child(3n + 1) {
     background: var(--buttonGreen);
     width: 90px;
   }
 
-  .main-monitor .screen li:nth-child(3n+2) {
+  .main-monitor .screen li:nth-child(3n + 2) {
     background: var(--buttonYellow);
     width: 65px;
   }
@@ -178,7 +182,7 @@
     z-index: 10;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid #8B5CF6;
+    border: 4px solid #8b5cf6;
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
   }
 
@@ -189,7 +193,9 @@
   }
 
   @keyframes codeMove {
-    100% { top: -60%; }
+    100% {
+      top: -60%;
+    }
   }
 
   @media (max-width: 768px) {

@@ -21,13 +21,13 @@ export const projects = [
       description: "Aplicación web para resolver sistemas de ecuaciones lineales, aplicando métodos algebraicos y ofreciendo una interfaz amigable para los usuarios.",
       technologies: ['Python', 'Reflex'],
       githubUrl: "https://github.com/danielbanariba/sistemas-de-ecuaciones",
-      projectUrl: "https://resuelvesistema.reflex.run/"
+      projectUrl: "https://resuelvesistema-cyan-wood.reflex.run/"
     },
     {
       title: "Canal de YouTube Automatizado",
       imageUrl: "project/click-auto-editor.png",
       description: "Es un programa que automatiza la edición de videos para mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automática.",
-      technologies: ['Python', 'React'],
+      technologies: ['Python', 'Pyautogui', 'Moviepy'],
       githubUrl: "https://github.com/danielbanariba/click-auto-editor",
       projectUrl: "https://www.youtube.com/@danielbanariba"
     },
@@ -35,7 +35,7 @@ export const projects = [
       title: "Web Scraping",
       imageUrl: "project/web-scraping.jpg",
       description: "Para que que mi canal de YouTube tenga contenido constantemente, He creado un programa que se encarga de buscar música libre de derechos de autor en internet y descargarlas.",
-      technologies: ['Python'],
+      technologies: ['Python', 'BeautifulSoup', 'Requests',  'Selenium'],
       githubUrl: "https://github.com/danielbanariba/scrapper-deathgrind",
     },
     {

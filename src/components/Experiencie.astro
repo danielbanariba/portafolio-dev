@@ -42,13 +42,17 @@ import { experiences } from "../data/experiences";
               ))}
             </div>
           </div>
-          <!-- Logo oculto en móvil -->
-          <div class="absolute left-1/2 transform -translate-x-1/2 w-24 h-24 hidden md:flex items-center justify-center z-10">
-            <img
-              src={experience.icon}
-              alt={experience.company}
-              class="w-30 h-30"
-            />
+          <!-- Logo con círculo -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
+            <div class="logo-circle">
+              <div class="logo-container">
+                <img
+                  src={experience.icon}
+                  alt={experience.company}
+                  class="w-12 h-12"
+                />
+              </div>
+            </div>
           </div>
           <!-- Fecha oculta en móvil -->
           <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-1 px-2 rounded hidden md:block">
@@ -66,6 +70,45 @@ import { experiences } from "../data/experiences";
     stroke-dashoffset: 1000;
     transition: stroke-dashoffset 0.5s ease;
   }
+
+  .logo-circle {
+    width: 96px;
+    height: 96px;
+    background: #374151;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo-circle::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #3879E7;
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  .logo-container {
+    width: 72px;
+    height: 72px;
+    background: #1F2937;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .logo-container img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
 </style>
 
-<script src="../../src/js/scrollLineAnimation.js"></script>
+<!-- <script src="../../src/js/scrollLineAnimation.js"></script> -->
