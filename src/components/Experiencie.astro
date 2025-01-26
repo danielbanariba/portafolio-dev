@@ -42,21 +42,24 @@ import { experiences } from "../data/experiences";
               ))}
             </div>
           </div>
-          <!-- Logo con círculo -->
+          
+          <!-- Logo con círculo y fecha -->
           <div class="absolute left-1/2 transform -translate-x-1/2 hidden md:block">
-            <div class="logo-circle">
-              <div class="logo-container">
-                <img
-                  src={experience.icon}
-                  alt={experience.company}
-                  class="w-12 h-12"
-                />
+            <div class="flex items-center" style="margin-left: 240px;">
+              <div class="logo-circle">
+                <div class="logo-container">
+                  <img
+                    src={experience.icon}
+                    alt={experience.company}
+                    class="w-12 h-12"
+                  />
+                </div>
               </div>
+              <span class="text-white text-lg whitespace-nowrap ml-4">
+                {experience.date}
+              </span>
             </div>
-          </div>
-          <!-- Fecha oculta en móvil -->
-          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white py-1 px-2 rounded hidden md:block">
-            {experience.date}
+            
           </div>
         </div>
       ))}
