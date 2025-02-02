@@ -34,8 +34,8 @@ export const projects = [
   {
     title: "Web Scraping",
     imageUrl: "project/web-scraping.jpg",
-    description: "Para que que mi canal de YouTube tenga contenido constantemente, He creado un programa que se encarga de buscar música libre de derechos de autor en internet y descargarlas.",
-    technologies: ['Python', 'BeautifulSoup', 'Requests',  'Selenium'],
+    description: "Para que mi canal de YouTube tenga contenido constantemente, he creado un programa que se encarga de buscar música libre de derechos de autor en internet.",
+    technologies: ['Python', 'BeautifulSoup', 'Requests',  'Selenium', 'Playwright'],
     githubUrl: "https://github.com/danielbanariba/scrapper-deathgrind",
   },
   {
