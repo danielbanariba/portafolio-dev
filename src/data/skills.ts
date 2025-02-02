@@ -37,7 +37,7 @@ export const skills: Skill[] = [
 
   //---------------------------------------------Gestores de Bases de Datos---------------------------
   { name: 'Oracle', icon: '/icon/oracle.svg', category: 'Gestores de Bases de Datos' },
-  { name: 'MySQL', icon: '/icon/mysql.svg', category: 'Gestores de Bases de Datos' },
+  // { name: 'MySQL', icon: '/icon/mysql.svg', category: 'Gestores de Bases de Datos' },
   { name: 'PostgreSQL', icon: '/icon/postgresql.svg', category: 'Gestores de Bases de Datos' },
   { name: 'MongoDB', icon: '/icon/mongodb.svg', category: 'Gestores de Bases de Datos' },
   // { name: 'SQLite', icon: '/icon/sqlite.svg', category: 'Gestores de Bases de Datos' },
