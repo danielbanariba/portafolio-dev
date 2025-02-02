@@ -492,7 +492,7 @@
         repeatDelay: 0.19,
         yoyo: true,
         repeat: -1,
-      }
+      },
     );
 
   const tl = gsap.timeline();
@@ -512,7 +512,7 @@
       stagger: 0.1,
       repeat: -1,
       yoyo: true,
-    }
+    },
   );
 
   const noteElFn = gsap.utils.pipe(gsap.utils.toArray, gsap.utils.shuffle);
@@ -525,7 +525,7 @@
 
   const colorizer = gsap.utils.random(
     [green, pink, blue, orange, cyan, "#a3a4ec", "#67b5c0", "#fd7c6e"],
-    true
+    true,
   );
   const rotator = gsap.utils.random(-50, 50, 1, true);
   const dir = (amt: number): string =>
@@ -562,7 +562,7 @@
         onComplete: (): void => {
           animateNotes(els);
         },
-      }
+      },
     );
   };
 

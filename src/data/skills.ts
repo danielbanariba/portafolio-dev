@@ -19,8 +19,8 @@ export const skills: Skill[] = [
   { name: "Typescript", icon: "/icon/typescript.svg", category: "Backend" },
 
   //---------------------------------------------Frontend---------------------------------------------
-  { name: "HTML", icon: "/icon/html5.svg", category: "Frontend" },
-  { name: "CSS", icon: "/icon/css.svg", category: "Frontend" },
+  // { name: "HTML", icon: "/icon/html5.svg", category: "Frontend" },
+  // { name: "CSS", icon: "/icon/css.svg", category: "Frontend" },
   { name: "JavaScript", icon: "/icon/javascript.svg", category: "Frontend" },
   { name: "TailwindCSS", icon: "/icon/tailwindcss.svg", category: "Frontend" },
 
@@ -28,7 +28,7 @@ export const skills: Skill[] = [
   { name: "Astro", icon: "/icon/astro.svg", category: "Frameworks" },
   { name: "Reflex", icon: "/icon/reflex.svg", category: "Frameworks" },
   { name: "FastAPI", icon: "/icon/fastapi.svg", category: "Frameworks" },
-  { name: "Spring", icon: "/icon/spring.svg", category: "Frameworks" },
+  // { name: "Spring", icon: "/icon/spring.svg", category: "Frameworks" },
   { name: "NestJS", icon: "/icon/nestjs.svg", category: "Frameworks" },
 
   //---------------------------------------------Librerias---------------------------
@@ -40,7 +40,7 @@ export const skills: Skill[] = [
   { name: 'MySQL', icon: '/icon/mysql.svg', category: 'Gestores de Bases de Datos' },
   { name: 'PostgreSQL', icon: '/icon/postgresql.svg', category: 'Gestores de Bases de Datos' },
   { name: 'MongoDB', icon: '/icon/mongodb.svg', category: 'Gestores de Bases de Datos' },
-  { name: 'SQLite', icon: '/icon/sqlite.svg', category: 'Gestores de Bases de Datos' },
+  // { name: 'SQLite', icon: '/icon/sqlite.svg', category: 'Gestores de Bases de Datos' },
   { name: 'DynamoDB', icon: '/icon/aws-dynamodb.svg', category: 'Gestores de Bases de Datos' },
 
   //---------------------------------------------Infraestructura---------------------------------
@@ -54,5 +54,5 @@ export const skills: Skill[] = [
   { name: "Selenium", icon: "/icon/selenium.svg", category: "QA & Testing" },
   { name: "Jira", icon: "/icon/jira.svg", category: "QA & Testing" },
   { name: "Postman", icon: "/icon/postman.svg", category: "QA & Testing" },
-  // { name: "Cypress", icon: "/icon/cypress.svg", category: "QA & Testing" },
+  { name: "Playwright", icon: "/icon/playwright.svg", category: "QA & Testing" },
 ];

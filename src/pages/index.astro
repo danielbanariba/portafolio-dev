@@ -1,7 +1,7 @@
 ---
-// import InformationResume from '../components/InformationResume.astro';
+import InformationResume from "../components/InformationResume.astro";
 import Presentacion from "../components/Presentacion.astro";
-// import Testimonial from '../components/Testimonial.astro';
+// import Testimonial from "../components/Testimonial.astro";
 import Experience from "../components/Experiencie.astro";
 import Education from "../components/Education.astro";
 import BongoCat from "../components/BongoCat.astro";
@@ -15,42 +15,34 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Portafolio Dev">
-  <Navbar />
-  {/* La clase Main ABARCA TODO EL COLOR DEL FONDO!  */}
-  <main class="bg-gray-900 min-h-screen text-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-5">
-      <Presentacion />
+      <Navbar />
+      {/* La clase Main ABARCA TODO EL COLOR DEL FONDO!  */}
+      <main class="bg-gray-900 min-h-screen text-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-5">
+                  <Presentacion />
 
-      {
-        /* TODO Ponerlo cuando este completamente seguro que se llegue a ver bien  */
-      }
-      {/* <InformationResume />  */}
+                  {
+                        /* TODO Ponerlo cuando este completamente seguro que se llegue a ver bien  */
+                  }
+                  <InformationResume />
 
-      <AboutMe />
+                  <AboutMe />
 
-      {/* Habilidades o conocimientos que poseo  */}
-      <Skills />
+                  <Skills />
 
-      {/* TODO Descomentar cuando consiga mis primeros annos trabajando  */}
-      {/* Experiencia Laboral  */}
-      <Experience />
+                  <Experience />
 
-      {/* Proyectos Personales */}
-      <Project />
+                  <Project />
 
-      {
-        /* TODO conseguir los testimonios correspondientes para ir poniendolos  */
-      }
-      {/* <Testimonial /> */}
+                  <!-- <Testimonial /> -->
 
-      <Education />
+                  <Education />
 
-      {/* Extra  */}
-      {/* <Extra />  */}
+                  {/* <Extra />  */}
 
-      <BongoCat />
-    </div>
-  </main>
+                  <BongoCat />
+            </div>
+      </main>
 
-  <Footer />
+      <Footer />
 </Layout>

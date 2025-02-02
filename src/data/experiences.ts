@@ -1,4 +1,3 @@
-// src/data/experiences.ts
 export interface Position {
   role: string;
   period?: string;
@@ -27,6 +26,7 @@ export const experiences: Experience[] = [
           "Gestioné la infraestructura en AWS",
           "Administré bases de datos NoSQL utilizando DynamoDB, diseñando esquemas eficientes",
           "Documenté el código y las APIs utilizando Swagger",
+          "Realicé pruebas de API utilizando Postman para asegurar la funcionalidad y rendimiento, creando colecciones y scripts de pruebas automatizadas."
         ],
       },
       {
@@ -35,6 +35,7 @@ export const experiences: Experience[] = [
         points: [
           "Implementé test cases para garantizar la funcionalidad y confiabilidad del software usando Jira",
           "Reporté bugs y mejoras en la plataforma",
+          "Cree historias de usuario para mejorar la experiencia del usuario",
         ],
       },
     ],
