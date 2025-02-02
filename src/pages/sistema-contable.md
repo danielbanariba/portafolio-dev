@@ -50,13 +50,15 @@ En este archivo, configuramos el proveedor de Azure y creamos el grupo de recurs
 ### 2. Red Virtual y Subnets (network.tf)
 
 #### Vnet
+
 ![Vnet Diagram](/project/sistema-contable/Vnet.drawio.svg)
 
 #### Subnets
+
 ![Diagrama de Subnet](/project/sistema-contable/Subnet.drawio.svg)
 
-
 Creamos una red virtual con tres subnets:
+
 - Web: Para la capa de presentación
 - App: Para la lógica de negocio
 - Data: Para almacenar datos de forma segura
@@ -138,6 +140,7 @@ resource "azurerm_network_security_rule" "allow_sql" {
 ```
 
 Definimos reglas de seguridad en nuestro Network Security Group, incluyendo:
+
 - Permitir tráfico HTTPS
 - Permitir acceso SQL desde la subnet de aplicaciones
 
@@ -282,6 +285,7 @@ variable "subscription_id" {
 ```
 
 Definimos variables para hacer nuestro código más flexible y fácil de personalizar, incluyendo:
+
 - Nombre del proyecto
 - Entorno (dev, staging, prod)
 - Región de Azure
@@ -297,6 +301,7 @@ Para desplegar esta infraestructura:
 1. Clona este repositorio
 2. Actualiza las variables en `variables.tf` según tus necesidades
 3. Ejecuta:
+
    ```sh
    terraform init
    terraform plan
@@ -312,6 +317,7 @@ Este diagrama muestra cómo todos los componentes se conectan entre sí, proporc
 ## Seguridad
 
 Este proyecto implementa varias medidas de seguridad:
+
 - Uso de Private Endpoints para SQL y Storage
 - Network Security Group con reglas específicas
 - Segregación de redes mediante subnets
