@@ -19,14 +19,15 @@ export const experiences: Experience[] = [
     company: "GuabaBIT",
     positions: [
       {
-        role: "Desarrollador Backend | LuQA",
+        role: "QA Tester & Backend Developer | LUQA",
         period: "Octubre 2024 - Actualmente",
         points: [
-          "Desarrollé APIs utilizando el framework NestJS, siguiendo las mejores prácticas de desarrollo",
-          "Gestioné la infraestructura en AWS",
-          "Administré bases de datos NoSQL utilizando DynamoDB, diseñando esquemas eficientes",
-          "Documenté el código y las APIs utilizando Swagger",
-          "Realicé pruebas de API utilizando Postman para asegurar la funcionalidad y rendimiento, creando colecciones y scripts de pruebas automatizadas."
+          "Realicé pruebas de API utilizando Postman para asegurar la funcionalidad y rendimiento, creando colecciones y scripts de pruebas automatizadas.",
+          "Desarrollé end-to-end un módulo de anuncios para la plataforma, incluyendo el desarrollo de la API REST en NestJS y DynamoDB",
+          "Diseñé e implementé una suite completa de pruebas de API utilizando Postman, cubriendo escenarios positivos y negativos para cada endpoint",
+          "Realicé pruebas exhaustivas de integración para módulos críticos como autenticación, gestión de inquilinos y reservas de áreas",
+          "Implementé pruebas automatizadas detalladas para validar la lógica de negocio, manejo de errores y casos límite en cada funcionalidad",
+          "Documenté APIs utilizando Swagger y creé documentación detallada de las pruebas para facilitar el mantenimiento y escalabilidad"
         ],
       },
       {
@@ -36,6 +37,10 @@ export const experiences: Experience[] = [
           "Implementé test cases para garantizar la funcionalidad y confiabilidad del software usando Jira",
           "Reporté bugs y mejoras en la plataforma",
           "Cree historias de usuario para mejorar la experiencia del usuario",
+          "Desarrollé e implementé pruebas automatizadas end-to-end utilizando Playwright para funcionalidades críticas como login, gestión de cotizaciones y flujos de handshake",
+          "Diseñé y ejecuté casos de prueba para validar la interfaz de usuario, flujos de navegación y manejo de estados",
+          "Desarrollé pruebas automatizadas para formularios, modales y tablas asegurando la integridad de los datos y la experiencia del usuario",
+          "Implementé mejores prácticas de testing incluyendo page objects, fixtures y utils para mantener un código de pruebas limpio y mantenible"
         ],
       },
     ],
