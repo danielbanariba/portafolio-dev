@@ -3,7 +3,6 @@ export interface Skill {
   icon: string;
   category:
     | "Backend"
-    | "Frontend"
     | "Frameworks"
     // | "Librerias"
     | "Gestores de Bases de Datos"
@@ -17,12 +16,6 @@ export const skills: Skill[] = [
   { name: "Java", icon: "/icon/java.svg", category: "Backend" },
   { name: "C++", icon: "/icon/cpp.svg", category: "Backend" },
   { name: "Typescript", icon: "/icon/typescript.svg", category: "Backend" },
-
-  //---------------------------------------------Frontend---------------------------------------------
-  // { name: "HTML", icon: "/icon/html5.svg", category: "Frontend" },
-  // { name: "CSS", icon: "/icon/css.svg", category: "Frontend" },
-  { name: "JavaScript", icon: "/icon/javascript.svg", category: "Frontend" },
-  { name: "TailwindCSS", icon: "/icon/tailwindcss.svg", category: "Frontend" },
 
   //---------------------------------------------Frameworks-------------------------------------------
   { name: "Astro", icon: "/icon/astro.svg", category: "Frameworks" },
@@ -53,6 +46,7 @@ export const skills: Skill[] = [
   // { name: "Jest", icon: "/icon/jest.svg", category: "QA & Testing" },
   { name: "Selenium", icon: "/icon/selenium.svg", category: "QA & Testing" },
   { name: "Jira", icon: "/icon/jira.svg", category: "QA & Testing" },
-  { name: "Postman", icon: "/icon/postman.svg", category: "QA & Testing" },
+  // { name: "Postman", icon: "/icon/postman.svg", category: "QA & Testing" },
+  { name: "ApiDog", icon: "/icon/apidog.svg", category: "QA & Testing" },
   { name: "Playwright", icon: "/icon/playwright.svg", category: "QA & Testing" },
 ];
