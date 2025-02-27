@@ -47,10 +47,6 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
         <h2 class="text-3xl font-bold mb-4 text-white">
             Mis Herramientas de Desarrollo
         </h2>
-        <!-- <p class="text-1xl font-bold mb-8 text-white">
-            Las herramientas más cercanas al centro son las que más utilizo en
-            mi día a día
-        </p> -->
 
         <div class="orbit-container flex justify-center items-center">
             <div class="orbit">
@@ -73,6 +69,12 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
                             </svg>
                         </div>
                     </li>
+
+                    <!-- Línea de Radar -->
+                    <div class="radar-line"></div>
+
+                    <!-- Línea Horizontal del Radar -->
+                    <div class="radar-bottom-line"></div>
 
                     <!-- Anillo 0 (Más interno) - Herramientas más usadas -->
                     {
@@ -277,9 +279,51 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
         transform: translate(-50%, -50%);
     }
 
+    /* Línea de radar que gira */
+    .radar-line {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 17.5em;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(56, 189, 248, 0.8)
+        );
+        transform-origin: left;
+        z-index: 100;
+        animation: radar-scan 10s linear infinite;
+    }
+
+    /* Línea inferior */
+    .radar-bottom-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(71, 85, 105, 0.7),
+            transparent
+        );
+        z-index: 40;
+    }
+
+    @keyframes radar-scan {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     .orbit-wrap > li:hover ul {
         border-width: 2px;
-        border-color: #fff;
+        border-color: rgba(56, 189, 248, 0.8);
     }
 
     .orbit-wrap > li:hover ~ li ul {
@@ -339,12 +383,14 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
     }
 
     ul[class^="ring"] {
-        border: solid 1px rgba(33, 150, 243, 0.8);
+        border: solid 1px rgba(56, 189, 248, 0.3);
         position: relative;
         padding: 0;
         border-radius: 50%;
         list-style: none;
         box-sizing: content-box;
+        background: rgba(10, 20, 30, 0.1);
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.1) inset;
     }
 
     ul[class^="ring"] li {
@@ -370,7 +416,7 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
         justify-content: center;
         align-items: center;
         color: white;
-        box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
     }
 
     .orbit-center__icon {
