@@ -6,7 +6,7 @@ import {
   motion,
 } from "framer-motion";
 import Beam from "./Beam"; 
-import { techMapping } from "../data/experiences";
+// Ya no necesitamos importar techMapping
 
 // Función de utilidad para combinar clases
 const cn = (...classes) => {
@@ -36,29 +36,13 @@ export const ClientTimeline = ({ experiences }) => {
   const ref = useRef(null);
   const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
-  const [expandedPosition, setExpandedPosition] = useState(null);
-  
-  // Extrae tecnologías relevantes para cada posición basadas en el texto
-  const getTechnologies = (points, specificTechnologies = []) => {
-    const technologies = new Set(specificTechnologies);
     
-    points.forEach(point => {
-      Object.keys(techMapping).forEach(key => {
-        if (point.includes(key)) {
-          technologies.add(techMapping[key]);
-        }
-      });
-    });
-    
-    return Array.from(technologies);
-  };
-  
   // Extraer métricas de los puntos (números, porcentajes)
   const getMetrics = (point) => {
     // Resalta números con porcentajes o valores numéricos
     return point.replace(
-      /(\d+(?:\.\d+)?%|\d+)/g, 
-      '<span class="text-blue-400 font-semibold">$1</span>'
+      // /(\d+(?:\.\d+)?%|\d+)/g, 
+      // '<span class="text-blue-400 font-semibold">$1</span>'
     );
   };
   
@@ -106,7 +90,7 @@ export const ClientTimeline = ({ experiences }) => {
             
             {/* Mostrar tecnologías como etiquetas */}
             <div className="mb-4">
-              {getTechnologies(position.points, experience.technologies).map((tech, i) => (
+              {position.technologies && position.technologies.map((tech, i) => (
                 <TechTag key={i} tech={tech} />
               ))}
             </div>
