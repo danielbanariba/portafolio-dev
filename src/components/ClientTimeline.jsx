@@ -5,60 +5,120 @@ import {
   useTransform,
   motion,
 } from "framer-motion";
-import Beam from "./Beam";
+import Beam from "./Beam"; 
+import { techMapping } from "../data/experiences";
 
-// Función de utilidad para combinar clases (equivalente a cn)
+// Función de utilidad para combinar clases
 const cn = (...classes) => {
   return classes.filter(Boolean).join(' ');
 };
+
+// Componente para mostrar una etiqueta de tecnología
+const TechTag = ({ tech }) => (
+  <span className="inline-block bg-blue-900/50 text-blue-300 text-xs px-2 py-1 rounded-md mr-2 mb-2 border border-blue-700/30">
+    {tech}
+  </span>
+);
+
+// Componente para mostrar un logro destacado
+const Achievement = ({ text }) => (
+  <div className="mb-3 flex items-start">
+    <div className="text-green-400 mr-2 mt-1">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+      </svg>
+    </div>
+    <p className="text-gray-300">{text}</p>
+  </div>
+);
 
 export const ClientTimeline = ({ experiences }) => {
   const ref = useRef(null);
   const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
+  const [expandedPosition, setExpandedPosition] = useState(null);
+  
+  // Extrae tecnologías relevantes para cada posición basadas en el texto
+  const getTechnologies = (points, specificTechnologies = []) => {
+    const technologies = new Set(specificTechnologies);
+    
+    points.forEach(point => {
+      Object.keys(techMapping).forEach(key => {
+        if (point.includes(key)) {
+          technologies.add(techMapping[key]);
+        }
+      });
+    });
+    
+    return Array.from(technologies);
+  };
+  
+  // Extraer métricas de los puntos (números, porcentajes)
+  const getMetrics = (point) => {
+    // Resalta números con porcentajes o valores numéricos
+    return point.replace(
+      /(\d+(?:\.\d+)?%|\d+)/g, 
+      '<span class="text-blue-400 font-semibold">$1</span>'
+    );
+  };
   
   // Transformar los datos de experiencia al formato que espera el Timeline
   const timelineData = experiences.map((experience) => ({
     title: experience.date,
     content: (
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-10 relative overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0.9, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="bg-gray-800 p-6 rounded-lg shadow-lg mb-10 relative overflow-hidden border border-gray-700/50 backdrop-blur-sm"
+      >
         {/* Agregar dos componentes Beam en la parte superior */}
         <Beam className="top-0" />
         <Beam className="top-0" />
-        <Beam className="top-0" />
         
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden p-2 border border-gray-600">
             <img
               src={experience.icon}
               alt={experience.company}
-              className="w-10 h-10 object-contain"
+              className="w-12 h-12 object-contain"
             />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white">
+            <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition duration-300">
               {experience.title}
             </h3>
-            <p className="text-blue-400">{experience.company}</p>
+            <p className="text-blue-400 font-medium text-lg">{experience.company}</p>
           </div>
         </div>
         
         {experience.positions.map((position, idx) => (
-          <div key={idx} className="mb-6">
-            <div className="text-gray-400 mb-3">
-              <span className="font-medium">{position.role}</span>
+          <div key={idx} className="mb-8">
+            <div className="text-gray-200 mb-3 flex flex-col md:flex-row md:items-center md:justify-between">
+              <span className="font-bold text-xl text-white">{position.role}</span>
               {position.period && (
-                <span className="text-sm text-gray-500">
-                  {" "}
-                  • {position.period}
+                <span className="text-sm bg-gray-700/50 px-3 py-1 rounded-full text-blue-300 mt-2 md:mt-0 inline-block">
+                  {position.period}
                 </span>
               )}
             </div>
-            <ul className="list-disc list-inside text-gray-300">
-              {position.points.map((point, pointIdx) => (
-                <li key={pointIdx} className="mb-2">{point}</li>
+            
+            {/* Mostrar tecnologías como etiquetas */}
+            <div className="mb-4">
+              {getTechnologies(position.points, experience.technologies).map((tech, i) => (
+                <TechTag key={i} tech={tech} />
               ))}
-            </ul>
+            </div>
+            
+            <div className="border-l-2 border-blue-600/30 pl-4 py-1 mt-6">
+              {position.points.map((point, pointIdx) => (
+                <Achievement 
+                  key={pointIdx} 
+                  text={<span dangerouslySetInnerHTML={{ __html: getMetrics(point) }} />} 
+                />
+              ))}
+            </div>
           </div>
         ))}
         
@@ -69,7 +129,7 @@ export const ClientTimeline = ({ experiences }) => {
             <div className="-ml-[100%] w-full flex-none blur-[1px] [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
           </div>
         </div>
-      </div>
+      </motion.div>
     ),
   }));
 
@@ -100,10 +160,10 @@ export const ClientTimeline = ({ experiences }) => {
             className="flex justify-start pt-10 md:pt-10 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-gray-800 flex items-center justify-center">
+              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-gray-800 flex items-center justify-center shadow-lg border border-blue-600/30">
                 <div className="h-4 w-4 rounded-full bg-blue-500 border border-blue-700 p-2" />
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-2xl font-bold text-gray-400">
+              <h3 className="hidden md:block text-xl md:pl-20 md:text-2xl font-bold text-gray-300">
                 {item.title}
               </h3>
             </div>

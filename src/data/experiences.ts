@@ -1,3 +1,26 @@
+// Interfaz para el mapeo de tecnologías
+export interface TechMapping {
+  [key: string]: string;
+}
+
+// Mapeo global de palabras clave a nombres de tecnologías
+export const techMapping: TechMapping = {
+  "RESTful": "API RESTful",
+  "NoSQL": "DynamoDB",
+  "AWS": "AWS",
+  "S3": "Amazon S3",
+  "SNS": "Amazon SNS",
+  "Postman": "Postman",
+  "Swagger": "Swagger",
+  "Apidog": "Apidog",
+  "Playwright": "Playwright",
+  "Jira": "Jira",
+  "end-to-end": "E2E Testing",
+  "DynamoDB": "DynamoDB",
+  "backend": "Backend",
+  "API": "API Design"
+};
+
 export interface Position {
   role: string;
   period?: string;
@@ -11,6 +34,8 @@ export interface Experience {
   icon: string;
   iconBg: string;
   date: string;
+  // Se pueden agregar tecnologías específicas para esta experiencia (opcional)
+  technologies?: string[];
 }
 
 export const experiences: Experience[] = [
@@ -24,7 +49,7 @@ export const experiences: Experience[] = [
         points: [
           "Diseñé e implementé la arquitectura completa de un sistema de pagos comunitarios con servicios RESTful, implementando bases de datos NoSQL (DynamoDB) y servicios de AWS (S3, SNS)",
           "Desarrollé la funcionalidad 'Announcement' para notificaciones en tiempo real y gestión de anuncios, incluyendo la creación de endpoints, modelos y servicios de backend. Lo que permitió a los usuarios recibir alertas instantáneas sobre actualizaciones relevantes en la comunidad.",
-          "Elaboré un documento tecnico exhaustivo donde incluye diagramas de arquitectura, modelos de datos, definiciones de API RESTful y flujos de trabajo, para facilitar la comprensión y mantenimiento del sistema",
+          "Elaboré un documento técnico exhaustivo donde incluye diagramas de arquitectura, modelos de datos, definiciones de API RESTful y flujos de trabajo, para facilitar la comprensión y mantenimiento del sistema",
           "Realicé pruebas de API utilizando Postman y Apidog para asegurar la funcionalidad, creando colecciones y scripts de pruebas automatizadas.",
           "Reporté bugs detallados en los endpoints que consideraban críticos, creando reproducciones precisas en Postman y ApiDog.",
           "Documenté APIs utilizando Swagger y creé documentación detallada de las pruebas en Apidog para facilitar el mantenimiento y escalabilidad",
@@ -43,6 +68,8 @@ export const experiences: Experience[] = [
     icon: "/icon/empresas/guaba-bit.png",
     iconBg: "#383E56",
     date: "Octubre 2024 - Marzo 2025",
+    // También puedes agregar tecnologías específicas que no se detecten automáticamente
+    technologies: ["Node.js", "TypeScript"]
   },
-  // { Agregar el proximo trabajo }
+  // Aquí puedes agregar más experiencias en el futuro
 ];
