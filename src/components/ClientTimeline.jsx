@@ -5,6 +5,7 @@ import {
   useTransform,
   motion,
 } from "framer-motion";
+import Beam from "./Beam";
 
 // Función de utilidad para combinar clases (equivalente a cn)
 const cn = (...classes) => {
@@ -20,7 +21,12 @@ export const ClientTimeline = ({ experiences }) => {
   const timelineData = experiences.map((experience) => ({
     title: experience.date,
     content: (
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-10">
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg mb-10 relative overflow-hidden">
+        {/* Agregar dos componentes Beam en la parte superior */}
+        <Beam className="top-0" />
+        <Beam className="top-0" />
+        <Beam className="top-0" />
+        
         <div className="flex items-center gap-4 mb-4">
           <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
             <img
@@ -55,6 +61,14 @@ export const ClientTimeline = ({ experiences }) => {
             </ul>
           </div>
         ))}
+        
+        {/* Agregar el gradiente en la parte inferior */}
+        <div className="absolute bottom-0 left-0 right-0 mt-[2px] flex h-8 items-end overflow-hidden z-0">
+          <div className="flex -mb-px h-[2px] w-full -scale-x-100">
+            <div className="w-full flex-none blur-sm [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
+            <div className="-ml-[100%] w-full flex-none blur-[1px] [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
+          </div>
+        </div>
       </div>
     ),
   }));

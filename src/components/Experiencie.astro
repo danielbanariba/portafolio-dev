@@ -1,5 +1,4 @@
 ---
-import type { Experience, Position } from "../data/experiences";
 import { experiences } from "../data/experiences";
 import ClientTimeline from "../components/ClientTimeline";
 ---
@@ -12,7 +11,3 @@ import ClientTimeline from "../components/ClientTimeline";
     <ClientTimeline client:load experiences={experiences} />
   </div>
 </section>
-
-<style>
-  /* Estilos específicos de Astro si son necesarios */
-</style>
