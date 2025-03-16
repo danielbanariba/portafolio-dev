@@ -20,66 +20,29 @@ export const experiences: Experience[] = [
     positions: [
       {
         role: "QA Tester & Backend Developer | LUQA",
-        period: "Octubre 2024 - Actualmente",
+        period: "Octubre 2024 - Marzo 2025",
         points: [
-          "Realicé pruebas de API utilizando Postman para asegurar la funcionalidad y rendimiento, creando colecciones y scripts de pruebas automatizadas.",
-          "Desarrollé end-to-end un módulo de anuncios para la plataforma, incluyendo el desarrollo de la API REST en NestJS y DynamoDB",
-          "Diseñé e implementé una suite completa de pruebas de API utilizando Postman, cubriendo escenarios positivos y negativos para cada endpoint",
-          "Realicé pruebas exhaustivas de integración para módulos críticos como autenticación, gestión de inquilinos y reservas de áreas",
-          "Implementé pruebas automatizadas detalladas para validar la lógica de negocio, manejo de errores y casos límite en cada funcionalidad",
-          "Documenté APIs utilizando Swagger y creé documentación detallada de las pruebas para facilitar el mantenimiento y escalabilidad"
+          "Diseñé e implementé la arquitectura completa de un sistema de pagos comunitarios con servicios RESTful, implementando bases de datos NoSQL (DynamoDB) y servicios de AWS (S3, SNS)",
+          "Desarrollé la funcionalidad 'Announcement' para notificaciones en tiempo real y gestión de anuncios, incluyendo la creación de endpoints, modelos y servicios de backend. Lo que permitió a los usuarios recibir alertas instantáneas sobre actualizaciones relevantes en la comunidad.",
+          "Elaboré un documento tecnico exhaustivo donde incluye diagramas de arquitectura, modelos de datos, definiciones de API RESTful y flujos de trabajo, para facilitar la comprensión y mantenimiento del sistema",
+          "Realicé pruebas de API utilizando Postman y Apidog para asegurar la funcionalidad, creando colecciones y scripts de pruebas automatizadas.",
+          "Reporté bugs detallados en los endpoints que consideraban críticos, creando reproducciones precisas en Postman y ApiDog.",
+          "Documenté APIs utilizando Swagger y creé documentación detallada de las pruebas en Apidog para facilitar el mantenimiento y escalabilidad",
         ],
       },
       {
         role: "QA Tester | Choyc",
-        period: "Octubre 2024 - Actualmente",
+        period: "Octubre 2024 - Marzo 2025",
         points: [
-          "Implementé test cases para garantizar la funcionalidad y confiabilidad del software usando Jira",
-          "Reporté bugs y mejoras en la plataforma",
-          "Cree historias de usuario para mejorar la experiencia del usuario",
-          "Desarrollé e implementé pruebas automatizadas end-to-end utilizando Playwright para funcionalidades críticas como login, gestión de cotizaciones y flujos de handshake",
-          "Diseñé y ejecuté casos de prueba para validar la interfaz de usuario, flujos de navegación y manejo de estados",
-          "Desarrollé pruebas automatizadas para formularios, modales y tablas asegurando la integridad de los datos y la experiencia del usuario",
-          "Implementé mejores prácticas de testing incluyendo page objects, fixtures y utils para mantener un código de pruebas limpio y mantenible"
+          "Implementé pruebas automatizadas end-to-end con Playwright para flujos críticos (login, formularios, gestión de cotizaciones, handshake), aumentando la cobertura de pruebas en un 85% y reduciendo el tiempo de detección de errores",
+          "Creé y ejecuté test cases manuales en Jira para verificar la integridad del sistema, reportando y documentando bugs críticos.",
+          "Gestioné historias de usuario (user stories) en Jira, poniendo criterios de aceptacion y una descripcion detalladas, lo que contribuyó a entregas incrementales exitosas en cada sprint",
         ],
       },
     ],
     icon: "/icon/empresas/guaba-bit.png",
     iconBg: "#383E56",
-    date: "Octubre 2024 - Actualmente",
+    date: "Octubre 2024 - Marzo 2025",
   },
-  {
-    title: "Practicante Ingeniería de Sistemas",
-    company: "Tigo",
-    positions: [
-      {
-        role: "QA Tester & Backend Developer | LUQA",
-        period: "Octubre 2024 - Actualmente",
-        points: [
-          "Realicé pruebas de API utilizando Postman para asegurar la funcionalidad y rendimiento, creando colecciones y scripts de pruebas automatizadas.",
-          "Desarrollé end-to-end un módulo de anuncios para la plataforma, incluyendo el desarrollo de la API REST en NestJS y DynamoDB",
-          "Diseñé e implementé una suite completa de pruebas de API utilizando Postman, cubriendo escenarios positivos y negativos para cada endpoint",
-          "Realicé pruebas exhaustivas de integración para módulos críticos como autenticación, gestión de inquilinos y reservas de áreas",
-          "Implementé pruebas automatizadas detalladas para validar la lógica de negocio, manejo de errores y casos límite en cada funcionalidad",
-          "Documenté APIs utilizando Swagger y creé documentación detallada de las pruebas para facilitar el mantenimiento y escalabilidad"
-        ],
-      },
-      {
-        role: "QA Tester | Choyc",
-        period: "Octubre 2024 - Actualmente",
-        points: [
-          "Implementé test cases para garantizar la funcionalidad y confiabilidad del software usando Jira",
-          "Reporté bugs y mejoras en la plataforma",
-          "Cree historias de usuario para mejorar la experiencia del usuario",
-          "Desarrollé e implementé pruebas automatizadas end-to-end utilizando Playwright para funcionalidades críticas como login, gestión de cotizaciones y flujos de handshake",
-          "Diseñé y ejecuté casos de prueba para validar la interfaz de usuario, flujos de navegación y manejo de estados",
-          "Desarrollé pruebas automatizadas para formularios, modales y tablas asegurando la integridad de los datos y la experiencia del usuario",
-          "Implementé mejores prácticas de testing incluyendo page objects, fixtures y utils para mantener un código de pruebas limpio y mantenible"
-        ],
-      },
-    ],
-    icon: "/icon/empresas/guaba-bit.png",
-    iconBg: "#383E56",
-    date: "Octubre 2024 - Actualmente",
-  },
+  // { Agregar el proximo trabajo }
 ];
