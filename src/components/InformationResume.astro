@@ -1,22 +1,164 @@
 ---
-//TODO Poner iconos bien bonitos para cada uno de los items
+// Calculate years of experience based on starting year
+const startYear = 2022; // Set this to when you started your career
+const currentYear = new Date().getFullYear();
+const yearsOfExperience = currentYear - startYear;
 ---
 
 <div class="grid grid-cols-4 gap-8 mb-8">
+  <!-- Años de Experiencia -->
   <div class="text-center">
-    <h3 class="text-4xl font-bold text-purple-400">+3</h3>
+    <div class="icon-container mx-auto mb-4">
+      <svg
+        width="60"
+        height="60"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="mx-auto"
+      >
+        <path
+          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M12 7V12L15 15"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-dasharray="1 3"></path>
+      </svg>
+    </div>
+    <h3 class="text-4xl font-bold text-purple-400">+{yearsOfExperience}</h3>
     <p class="text-gray-400">Años de Experiencia</p>
   </div>
+
+  <!-- Proyectos Personales -->
   <div class="text-center">
-    <h3 class="text-4xl font-bold text-purple-400">+30</h3>
+    <div class="icon-container mx-auto mb-4">
+      <svg
+        width="60"
+        height="60"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="mx-auto"
+      >
+        <path
+          d="M21 9.5V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18H19C20.1046 18 21 17.1046 21 16V14.5"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"></path>
+        <path
+          d="M12 10.5V13.5"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"></path>
+        <path
+          d="M9 13.5V10.5"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"></path>
+        <path
+          d="M15 13.5V10.5"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"></path>
+      </svg>
+    </div>
+    <h3 class="text-4xl font-bold text-purple-400">+20</h3>
     <p class="text-gray-400">Proyectos Personales</p>
   </div>
+
+  <!-- Tecnologías Aprendidas -->
   <div class="text-center">
+    <div class="icon-container mx-auto mb-4">
+      <svg
+        width="60"
+        height="60"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="mx-auto"
+      >
+        <path
+          d="M7 8L3 12L7 16"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M17 8L21 12L17 16"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M14 4L10 20"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </div>
     <h3 class="text-4xl font-bold text-purple-400">+20</h3>
     <p class="text-gray-400">Tecnologías Aprendidas</p>
   </div>
+
+  <!-- Proyectos Terminados -->
   <div class="text-center">
+    <div class="icon-container mx-auto mb-4">
+      <svg
+        width="60"
+        height="60"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="mx-auto"
+      >
+        <path
+          d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+        <path
+          d="M7.5 12L10.5 15L16.5 9"
+          stroke="#9333EA"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </div>
     <h3 class="text-4xl font-bold text-purple-400">7</h3>
     <p class="text-gray-400">Proyectos Terminados</p>
   </div>
 </div>
+
+<style>
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(147, 51, 234, 0.05);
+    border-radius: 50%;
+    border: 1px solid rgba(147, 51, 234, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .icon-container:hover {
+    background: rgba(147, 51, 234, 0.1);
+    transform: translateY(-3px);
+  }
+</style>

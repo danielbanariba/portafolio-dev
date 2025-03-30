@@ -17,6 +17,30 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    title: "Desarrollador de software", // orientado a probador y automatizacion de sistemas
+    company: "Analiza",
+    positions: [
+      {
+        role: "Backend Developer", //  | El nombre del proyecto
+        period: "Marzo 2025 - Actualidad",
+        points: [
+          "Hice un diagrama de flujo de las estiquetas del codigo de barras para entender el proceso y la logica de negocio del sistema.",
+          "Desarrollé un endpoint para automatizar el reabastecimiento de inventario entre sucursales, implementando lógica de negocio para optimizar solicitudes basadas en puntos de reorden y disponibilidad real.",
+        ],
+        technologies: [
+          "Node.js",
+          "TypeScript",
+          "Express",
+          "PostgreSQL",
+          "Postman",
+        ],
+      },
+    ],
+    icon: "/icon/empresas/analiza.png",
+    iconBg: "#383E56",
+    date: "Marzo 2025 - Actualidad",
+  },
+  {
     title: "Practicante Ingeniería de Sistemas",
     company: "GuabaBIT",
     positions: [
@@ -31,19 +55,19 @@ export const experiences: Experience[] = [
           "Documenté APIs utilizando Swagger y creé documentación detallada de las pruebas en Apidog para facilitar el mantenimiento y escalabilidad",
         ],
         technologies: [
-          "Node.js", 
-          "TypeScript", 
-          "Nest.js", 
-          "DynamoDB", 
-          "AWS", 
-          "Amazon S3", 
-          "Amazon SNS", 
-          "Postman", 
+          "Node.js",
+          "TypeScript",
+          "Nest.js",
+          "DynamoDB",
+          "AWS",
+          "Amazon S3",
+          "Amazon SNS",
+          "Postman",
           "Apidog",
-          "Swagger", 
+          "Swagger",
           "API Testing",
           "API Documentation",
-        ]
+        ],
       },
       {
         role: "QA Tester | Choyc",
@@ -53,13 +77,7 @@ export const experiences: Experience[] = [
           "Creé y ejecuté test cases manuales en Jira para verificar la integridad del sistema, reportando y documentando bugs críticos.",
           "Gestioné historias de usuario (user stories) en Jira, poniendo criterios de aceptacion y una descripcion detalladas, lo que contribuyó a entregas incrementales exitosas en cada sprint",
         ],
-        technologies: [
-          "Node.js",
-          "TypeScript",
-          "Jest",
-          "Playwright", 
-          "Jira", 
-        ]
+        technologies: ["Node.js", "TypeScript", "Jest", "Playwright", "Jira"],
       },
     ],
     icon: "/icon/empresas/guaba-bit.png",
