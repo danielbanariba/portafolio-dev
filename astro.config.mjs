@@ -8,9 +8,9 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   markdown: {
     shikiConfig: {
-      theme: 'dracula',
-      wrap: true
-    }
+      theme: "dracula",
+      wrap: true,
+    },
   },
   vite: {
     ssr: {
