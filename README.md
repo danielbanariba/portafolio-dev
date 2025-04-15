@@ -6,6 +6,12 @@
 
 Inside of your Astro project, you'll see the following folders and files:
 
+## ⚙️ Requisitos previos
+
+- Node.js v23.x
+
+
+## 📂 Estructura de carpetas
 ```text
 /
 ├── 📁src
