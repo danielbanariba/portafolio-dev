@@ -24,15 +24,20 @@ export const experiences: Experience[] = [
         role: "Backend Developer", //  | El nombre del proyecto
         period: "Marzo 2025 - Actualidad",
         points: [
-          "Refactoricé controladores existentes aplicando principios de código limpio y abstracción para mejorar la mantenibilidad",
-          "Hice un diagrama de flujo de las estiquetas del codigo de barras para entender el proceso y la logica de negocio del sistema.",
+          "Implementé un sistema de comisiones para médicos referentes que automatiza el cálculo y registro del 10% sobre servicios de laboratorio referidos, mejorando la fidelización de profesionales externos.",
+          "Desarrollé validaciones robustas para prevenir comisiones duplicadas y garantizar la integridad de datos en transacciones financieras.",
+          "Optimicé la estructura de datos mediante SQL directo para actualizar correctamente totales de facturación, mejorando la precisión de reportes financieros.",
+          "Refactoricé controladores existentes aplicando principios de código limpio y abstracción para mejorar la mantenibilidad.",
+          "Hice un diagrama de flujo de las etiquetas del código de barras para entender el proceso y la lógica de negocio del sistema.",
           "Desarrollé un endpoint para automatizar el reabastecimiento de inventario entre sucursales, implementando lógica de negocio para optimizar solicitudes basadas en puntos de reorden y disponibilidad real.",
         ],
         technologies: [
           "Node.js",
           "TypeScript",
           "Express",
+          "Sequelize ORM",
           "PostgreSQL",
+          "Transacciones SQL",
           "Postman",
         ],
       },
