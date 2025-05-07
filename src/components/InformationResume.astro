@@ -7,7 +7,7 @@ const yearsOfExperience = currentYear - startYear;
 <div class="grid grid-cols-4 gap-8 mb-8">
   <!-- Años de Experiencia -->
   <div class="text-center">
-    <div class="icon-container mx-auto mb-4">
+    <div class="icon-container mx-auto mb-4 floating">
       <svg
         width="60"
         height="60"
@@ -43,7 +43,10 @@ const yearsOfExperience = currentYear - startYear;
 
   <!-- Proyectos Personales -->
   <div class="text-center">
-    <div class="icon-container mx-auto mb-4">
+    <div
+      class="icon-container mx-auto mb-4 floating"
+      style="animation-delay: 0.5s;"
+    >
       <svg
         width="60"
         height="60"
@@ -80,7 +83,10 @@ const yearsOfExperience = currentYear - startYear;
 
   <!-- Tecnologías Aprendidas -->
   <div class="text-center">
-    <div class="icon-container mx-auto mb-4">
+    <div
+      class="icon-container mx-auto mb-4 floating"
+      style="animation-delay: 1s;"
+    >
       <svg
         width="60"
         height="60"
@@ -115,7 +121,10 @@ const yearsOfExperience = currentYear - startYear;
 
   <!-- Proyectos Terminados -->
   <div class="text-center">
-    <div class="icon-container mx-auto mb-4">
+    <div
+      class="icon-container mx-auto mb-4 floating"
+      style="animation-delay: 1.5s;"
+    >
       <svg
         width="60"
         height="60"
@@ -159,5 +168,22 @@ const yearsOfExperience = currentYear - startYear;
   .icon-container:hover {
     background: rgba(147, 51, 234, 0.1);
     transform: translateY(-3px);
+  }
+
+  /* Animación de flotación */
+  @keyframes floating {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .floating {
+    animation: floating 4s ease-in-out infinite;
   }
 </style>
