@@ -13,7 +13,7 @@ export const projects = [
     description: "Es una herramienta que traduce código de Python a JavaScript, utilizando técnicas avanzadas de parsing y generación de código",
     technologies: ['Python', 'Reflex'],
     githubUrl: "https://github.com/danielbanariba/analizador-lexico",
-    projectUrl: "https://analyzepy.reflex.run/"
+    projectUrl: "https://analyzepy-navy-orca.reflex.run/"
   },
   {
     title: "Resuelve Sistemas de Ecuaciones",
