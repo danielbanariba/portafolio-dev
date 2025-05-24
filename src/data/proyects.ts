@@ -38,14 +38,14 @@ export const projects = [
     technologies: ['Python', 'BeautifulSoup', 'Requests',  'Selenium', 'Playwright'],
     githubUrl: "https://github.com/danielbanariba/scrapper-deathgrind",
   },
-  {
-    title: "Arsenal de Odio Website",
-    imageUrl: "project/arsenal-de-odio.png",
-    description: "Arsenal De Odio es una banda de Thrash Metal de Honduras, quise plasmar su espíritu como banda en la pagina web. Aquí se puede encontrar todo relacionado con la banda, sus integrantes, discografía, mercadería, etc.",
-    technologies: ['Python', 'Reflex', 'Javascript'],
-    githubUrl: "https://github.com/danielbanariba/arsenal-de-odio-web",
-    projectUrl: "https://arsenaldeodio.reflex.run/"
-  },
+  // {
+  //   title: "Arsenal de Odio Website",
+  //   imageUrl: "project/arsenal-de-odio.png",
+  //   description: "Arsenal De Odio es una banda de Thrash Metal de Honduras, quise plasmar su espíritu como banda en la pagina web. Aquí se puede encontrar todo relacionado con la banda, sus integrantes, discografía, mercadería, etc.",
+  //   technologies: ['Python', 'Reflex', 'Javascript'],
+  //   githubUrl: "https://github.com/danielbanariba/arsenal-de-odio-web",
+  //   projectUrl: "https://arsenaldeodio.reflex.run/"
+  // },
   {
     title: "SoundCloud Clone",
     imageUrl: "project/soundcloud.jpg",
