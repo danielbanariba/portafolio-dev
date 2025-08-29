@@ -46,7 +46,7 @@ export const skills: Skill[] = [
   // { name: "Jest", icon: "/icon/skills/jest.svg", category: "QA & Testing" },
   { name: "Selenium", icon: "/icon/skills/selenium.svg", category: "QA & Testing" },
   { name: "Jira", icon: "/icon/skills/jira.svg", category: "QA & Testing" },
-  // { name: "Postman", icon: "/icon/skills/postman.svg", category: "QA & Testing" },
-  { name: "ApiDog", icon: "/icon/skills/apidog.svg", category: "QA & Testing" },
+  { name: "Postman", icon: "/icon/skills/postman.svg", category: "QA & Testing" },
+  // { name: "ApiDog", icon: "/icon/skills/apidog.svg", category: "QA & Testing" },
   { name: "Playwright", icon: "/icon/skills/playwright.svg", category: "QA & Testing" },
 ];

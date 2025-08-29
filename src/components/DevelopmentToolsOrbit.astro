@@ -55,19 +55,28 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
           <!-- Centro -->
           <li class="orbit-center">
             <div class="orbit-center__icon">
+              <!-- Ícono de código/desarrollo -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
+                width="28"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+                class="code-icon"
               >
-                <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
               </svg>
+              <!-- Puntos de decoración -->
+              <div class="center-dots">
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+              </div>
             </div>
           </li>
 
@@ -83,12 +92,11 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
               <li>
                 <ul class="ring-0">
                   {ring0Icons.map((tool, index) => {
-                    // Calcular ángulo solo en la mitad superior (360 grados)
-                    const angle = index * (360 / ring0Icons.length);
+                    // Calcular ángulo para semicírculo inferior (180 a 360 grados)
+                    const angle = 180 + (index * (180 / ring0Icons.length));
                     return (
                       <li
                         style={`transform: rotate(${angle}deg) translate(12.5em) rotate(-${angle}deg)`}
-                        class={angle > 360 ? "hidden" : ""}
                       >
                         <div class="orbit-icon-wrapper" title={tool.name}>
                           <img
@@ -112,12 +120,11 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
               <li>
                 <ul class="ring-1">
                   {ring1Icons.map((tool, index) => {
-                    // Calcular ángulo solo en la mitad superior (360 grados)
-                    const angle = index * (360 / ring1Icons.length);
+                    // Calcular ángulo para semicírculo inferior (180 a 360 grados)
+                    const angle = 180 + (index * (180 / ring1Icons.length));
                     return (
                       <li
                         style={`transform: rotate(${angle}deg) translate(10em) rotate(-${angle}deg)`}
-                        class={angle > 360 ? "hidden" : ""}
                       >
                         <div class="orbit-icon-wrapper" title={tool.name}>
                           <img
@@ -141,12 +148,11 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
               <li>
                 <ul class="ring-2">
                   {ring2Icons.map((tool, index) => {
-                    // Calcular ángulo solo en la mitad superior (360 grados)
-                    const angle = index * (360 / ring2Icons.length);
+                    // Calcular ángulo para semicírculo inferior (180 a 360 grados)
+                    const angle = 180 + (index * (180 / ring2Icons.length));
                     return (
                       <li
                         style={`transform: rotate(${angle}deg) translate(7.5em) rotate(-${angle}deg)`}
-                        class={angle > 360 ? "hidden" : ""}
                       >
                         <div class="orbit-icon-wrapper" title={tool.name}>
                           <img
@@ -170,12 +176,11 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
               <li>
                 <ul class="ring-3">
                   {ring3Icons.map((tool, index) => {
-                    // Calcular ángulo solo en la mitad superior (360 grados)
-                    const angle = index * (360 / ring3Icons.length);
+                    // Calcular ángulo para semicírculo inferior (180 a 360 grados)
+                    const angle = 180 + (index * (180 / ring3Icons.length));
                     return (
                       <li
                         style={`transform: rotate(${angle}deg) translate(5em) rotate(-${angle}deg)`}
-                        class={angle > 360 ? "hidden" : ""}
                       >
                         <div class="orbit-icon-wrapper" title={tool.name}>
                           <img
@@ -217,7 +222,7 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Alineación inferior para mostrar el semicírculo superior */
+    align-items: flex-start; /* Alineación superior para mostrar el semicírculo inferior */
   }
 
   .orbit-icon-wrapper {
@@ -278,14 +283,14 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
   .orbit-wrap > li {
     position: absolute;
     left: 50%;
-    top: 100%; /* Posición en la base del semicírculo */
+    top: 0%; /* Posición en la parte superior para semicírculo inferior */
     transform: translate(-50%, -50%);
   }
 
   /* Línea de radar que gira */
   .radar-line {
     position: absolute;
-    top: 100%; /* Posición en la base */
+    top: 0%; /* Posición en la parte superior para semicírculo inferior */
     left: 50%;
     width: 17.5em;
     height: 1px;
@@ -295,10 +300,10 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
     animation: radar-scan 10s linear infinite;
   }
 
-  /* Línea inferior */
+  /* Línea superior (base del semicírculo inferior) */
   .radar-bottom-line {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 1px;
@@ -416,17 +421,94 @@ const ring3Icons = getIconsFromFolder("/anillo-3/");
     height: 2em;
     line-height: 2em;
     text-align: center;
-    background: #4338ca;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 2px solid rgba(56, 189, 248, 0.4);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.7);
+    box-shadow: 
+      0 0 20px rgba(56, 189, 248, 0.5),
+      0 0 40px rgba(56, 189, 248, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: visible;
+    /* Posicionar el centro en la base superior del semicírculo inferior */
+    transform: translateY(30%);
   }
 
   .orbit-center__icon {
-    transition: all 300ms ease-in-out;
+    position: relative;
+    transition: all 400ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .orbit-center:hover .orbit-center__icon {
+    transform: scale(1.1);
+  }
+
+  .code-icon {
+    animation: pulse 2s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  .center-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(56, 189, 248, 0.8);
+    border-radius: 50%;
+    animation: orbit-dots 3s linear infinite;
+  }
+
+  .dot-1 {
+    top: 10%;
+    right: 20%;
+    animation-delay: 0s;
+  }
+
+  .dot-2 {
+    bottom: 15%;
+    left: 15%;
+    animation-delay: 1s;
+  }
+
+  .dot-3 {
+    top: 50%;
+    left: 5%;
+    animation-delay: 2s;
+  }
+
+  @keyframes orbit-dots {
+    0%, 50% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    25% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
   }
 
   @keyframes clockwiseRotate {
