@@ -1,7 +1,7 @@
 {
   "name": "portafolio-dev",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/react": "^4.3.0",
+    "@astrojs/react": "^4.4.0",
     "@astrojs/tailwind": "^6.0.2",
     "@tabler/icons-react": "^3.31.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "astro": "^5.13.5",
+    "astro": "^5.14.1",
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
     "framer-motion": "^12.7.3",
