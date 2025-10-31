@@ -1,41 +1,66 @@
 export const projects = [
+  // {
+  //   title: "Inventario Personal",
+  //   imageUrl: "project/inventario-personal.png", // TODO: Necesitarás agregar un screenshot
+  //   description:
+  //     "Aplicación móvil para gestionar inventario doméstico y lista de compras. Incluye sincronización familiar y estadisticas con una planificacion finaciera para llevar los gatos.",
+  //   technologies: [
+  //     "Flutter",
+  //     "Dart",
+  //     "SQLite",
+  //     "Firebase",
+  //   ],
+  //   documentacionUrl: "/inventario-personal",
+  //   // TODO: projectUrl: "link-to-play-store" // Cuando la publiques
+  // },
   {
     title: "Sistema Contable",
     imageUrl: "project/azure-app-service.png",
-    description: "Infraestructura en Azure para un sistema contable seguro y escalable. Incluye red virtual, base de datos SQL, almacenamiento y aplicación web, todo configurado con medidas de seguridad avanzadas",
-    technologies: ['Azure', 'Terraform'],
+    description:
+      "Infraestructura en Azure para un sistema contable. Incluye red virtual, base de datos SQL, almacenamiento y aplicación web.",
+    technologies: ["Azure", "Terraform"],
     documentacionUrl: "/sistema-contable",
     githubUrl: "https://github.com/danielbanariba/sistema-contable",
   },
   {
     title: "Analyzepy",
     imageUrl: "project/analizador_lexico.png",
-    description: "Es una herramienta que traduce código de Python a JavaScript, utilizando técnicas avanzadas de parsing y generación de código",
-    technologies: ['Python', 'Reflex'],
+    description:
+      "Es una herramienta que traduce código de Python a JavaScript, utilizando técnicas avanzadas de parsing y generación de código",
+    technologies: ["Python", "Reflex"],
     githubUrl: "https://github.com/danielbanariba/analizador-lexico",
-    projectUrl: "https://analyzepy-navy-orca.reflex.run/"
+    projectUrl: "https://analyzepy-navy-orca.reflex.run/",
   },
   {
     title: "Resuelve Sistemas de Ecuaciones",
     imageUrl: "project/sistemas_de_ecuaciones.png",
-    description: "Aplicación web para resolver sistemas de ecuaciones lineales, aplicando métodos algebraicos y ofreciendo una interfaz amigable para los usuarios.",
-    technologies: ['Python', 'Reflex'],
+    description:
+      "Aplicación web para resolver sistemas de ecuaciones lineales, aplicando métodos algebraicos y ofreciendo una interfaz amigable para los usuarios.",
+    technologies: ["Python", "Reflex"],
     githubUrl: "https://github.com/danielbanariba/sistemas-de-ecuaciones",
-    projectUrl: "https://resuelvesistema-cyan-wood.reflex.run/"
+    projectUrl: "https://resuelvesistema-cyan-wood.reflex.run/",
   },
   {
     title: "Canal de YouTube Automatizado",
     imageUrl: "project/click-auto-editor.png",
-    description: "Es un programa que automatiza la edición de videos para mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automática.",
-    technologies: ['Python', 'Pyautogui', 'Moviepy'],
+    description:
+      "Es un programa que automatiza la edición de videos para mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automática.",
+    technologies: ["Python", "Pyautogui", "Moviepy"],
     githubUrl: "https://github.com/danielbanariba/click-auto-editor",
-    projectUrl: "https://www.youtube.com/@danielbanariba"
+    projectUrl: "https://www.youtube.com/@danielbanariba",
   },
   {
     title: "Web Scraping",
     imageUrl: "project/web-scraping.jpg",
-    description: "Para que mi canal de YouTube tenga contenido constantemente, he creado un programa que se encarga de buscar música libre de derechos de autor en internet.",
-    technologies: ['Python', 'BeautifulSoup', 'Requests',  'Selenium', 'Playwright'],
+    description:
+      "Para que mi canal de YouTube tenga contenido constantemente, he creado un programa que se encarga de buscar música libre de derechos de autor en internet.",
+    technologies: [
+      "Python",
+      "BeautifulSoup",
+      "Requests",
+      "Selenium",
+      "Playwright",
+    ],
     githubUrl: "https://github.com/danielbanariba/scrapper-deathgrind",
   },
   // {
@@ -49,8 +74,9 @@ export const projects = [
   {
     title: "SoundCloud Clone",
     imageUrl: "project/soundcloud.jpg",
-    description: "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
-    technologies: ['OracleSQL', 'Python', 'FastAPI', 'HTML', 'CSS'],
+    description:
+      "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
+    technologies: ["OracleSQL", "Python", "FastAPI", "HTML", "CSS"],
     githubUrl: "https://github.com/danielbanariba/soundclound",
-  }
+  },
 ];

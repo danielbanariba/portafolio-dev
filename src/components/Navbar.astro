@@ -7,14 +7,14 @@
   class="navbar fixed top-0 left-0 right-0 z-[9999] w-full bg-gray-800 transition-all duration-300"
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-center md:justify-between h-16">
       <a href="#" class="logo" style="display: flex; align-items: center;">
         <span class="logo-symbol">&#123;</span>
         <span class="logo-text">daniel_banariba</span>
         <span class="logo-symbol">&#125;</span>
         <span class="logo-punto-coma">;</span>
       </a>
-      <div class="flex space-x-6">
+      <div class="hidden md:flex space-x-6">
         <a
           href="https://www.danielbanariba.dev/document/cv_daniel_banariba.pdf"
           target="_blank"
@@ -98,11 +98,29 @@
 
   .logo {
     font-family: "DinaRemasterII", sans-serif;
-    font-size: 36px;
+    font-size:  36px;
     font-weight: 500;
     color: #bbbbbb;
     padding: 10px;
     border-radius: 5px;
+  }
+
+  @media (min-width: 480px) {
+    .logo {
+      font-size: 24px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .logo {
+      font-size: 28px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .logo {
+      font-size: 36px;
+    }
   }
 
   .logo-text {
