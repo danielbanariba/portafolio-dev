@@ -39,11 +39,12 @@ export const experiences: Experience[] = [
         role: "Full Stack Developer | Migración CRM Doctores",
         period: "15 de Octubre - 31 de Octubre",
         points: [
-          "Participé en proyecto de migración del sistema CRM1 al CRM2, enfocándome en el módulo de gestión de doctores.",
-          "Configuré entorno de desarrollo con Flask (Python 3.10), Angular 11, PostgreSQL y VPN corporativa en Ubuntu.",
-          "Resolví conflictos de dependencias en Flask-RESTPlus para compatibilidad con Python 3.10+ (modificación en collections.abc).",
-          "Diseñé estructura de modal CRUD para gestión de doctores incluyendo validaciones de campos requeridos (número de colegio, teléfono, correo).",
-          "Investigué arquitectura legacy del sistema para poder integrar componente doctor_backoffice con crm2_base siguiendo convenciones existentes.",
+          "Desarrollé módulo completo de gestión de doctores implementando 8 endpoints REST con validaciones de datos únicos (email, número de colegiación) y manejo transaccional, integrando automáticamente sistema de epockets (billeteras electrónicas) al registrar nuevos doctores.",
+          "Implementé sistema de encriptación para protección de datos bancarios sensibles (números de cuenta) utilizando Fernet, garantizando cumplimiento de estándares de seguridad en información financiera del personal médico.",
+          "Creé funcionalidad de búsqueda y filtrado avanzado con múltiples criterios (especialidad médica, clínica, estado) y exportación a Excel, optimizando flujo de trabajo del personal administrativo.",
+          "Corregí bug crítico en modelo de base de datos que impedía creación de doctores, identificando campos inexistentes que generaban errores en producción.",
+          "Actualicé dependencias del proyecto de 12 a 150+ paquetes versionados (SQLAlchemy, Flask-RESTPlus, Firebase, Cryptography) para compatibilidad con Python 3.10+, resolviendo conflictos de módulos legacy.",
+          "Configuré entorno de desarrollo full-stack con Flask, Angular 11, PostgreSQL y VPN corporativa en Ubuntu, investigando arquitectura legacy para integrar correctamente componentes existentes.",
         ],
         technologies: [
           "Python",
@@ -51,8 +52,10 @@ export const experiences: Experience[] = [
           "TypeScript",
           "Angular 11",
           "PostgreSQL",
+          "SQLAlchemy",
+          "REST API",
+          "Cryptography",
           "Linux/Ubuntu",
-          "OpenVPN",
         ],
       },
       {
@@ -147,7 +150,7 @@ export const experiences: Experience[] = [
       },
     ],
     icon: "/icon/empresas/analiza.png",
-    iconBg: "#383E56",
+    iconBg: "#FFFFFF",
     date: "2025 Marzo - 2025 Octubre",
   },
   {

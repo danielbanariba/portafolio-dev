@@ -71,7 +71,10 @@ export const ClientTimeline = ({ experiences }) => {
         <Beam className="top-0" />
 
         <div className="flex items-center gap-4 mb-6">
-          <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden border border-gray-600 flex-shrink-0 p-2">
+          <div
+            className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden border border-gray-600 flex-shrink-0 p-2"
+            style={{ backgroundColor: experience.iconBg }}
+          >
             <img
               src={experience.icon}
               alt={experience.company}
