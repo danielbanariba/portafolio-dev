@@ -17,6 +17,21 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   // {
+  //   title: "Programador Frontend",
+  //   company: "OnCorp",
+  //   positions: [
+  //     {
+  //       role: "",
+  //       period: "",
+  //       points: [],
+  //       technologies: [],
+  //     },
+  //   ],
+  //   icon: "/icon/empresas/oncorp.svg",
+  //   iconBg: "#5d4ea6",
+  //   date: "2025 Noviembre - Actualidad",
+  // },
+  // {
   //   title: "Ingeniero de Software",
   //   company: "Spicy Rocket",
   //   positions: [
