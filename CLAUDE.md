@@ -35,8 +35,10 @@ This is a personal portfolio website built with Astro, featuring a hybrid archit
 #### Data Architecture
 Content is defined in TypeScript files in `src/data/` with strongly typed interfaces:
 - `experiences.ts` - Professional work history with detailed positions and technologies
-- `skills.ts` - Technical skills categorization
-- `projects.ts` - Portfolio projects
+  - Uses nested `Position` interface for multiple roles within same company
+  - Technologies tracked at both position and experience levels
+- `skills.ts` - Technical skills categorization (Backend, Frameworks, Database, Infrastructure, QA & Testing)
+- `proyects.ts` - Portfolio projects (note: filename has typo, actual file is `proyects.ts`)
 - `testimonials.ts` - Professional testimonials
 - `education.ts` - Educational background
 
@@ -58,8 +60,12 @@ Content is defined in TypeScript files in `src/data/` with strongly typed interf
 #### Component Architecture
 - Use .astro files for static/server-rendered content
 - Use .jsx/.tsx files for interactive client-side components
+  - React components require `client:*` directives in Astro for hydration
+  - Example: `ClientTimeline.jsx` uses Framer Motion for scroll-based animations
 - Animation components utilize GSAP and Framer Motion
 - Responsive design with mobile-first Tailwind approach
+- Utility functions in `src/lib/utils.js`:
+  - `cn()` - Combines clsx and tailwind-merge for className merging
 
 #### Content Management
 - All dynamic content lives in typed data files
@@ -68,10 +74,13 @@ Content is defined in TypeScript files in `src/data/` with strongly typed interf
 - Static assets are organized by category in public/ directory
 
 ### Asset Organization
-- Icons organized by category (education, skills, tools, companies)
-- Multi-ring tool organization system for skill visualization
-- Professional documents (CV) and project screenshots included
-- Custom fonts and branding assets
+Assets are located in `public/` and referenced with absolute paths (e.g., `/icon/skills/python.svg`):
+- `public/icon/education/` - Educational institution logos and certificate icons
+- `public/icon/empresas/` - Company logos (analiza.png, guaba-bit.png, grupo-farinter.png, etc.)
+- `public/icon/skills/` - Technology and skill icons referenced in `skills.ts`
+- `public/icon/tools/` - Tool icons organized by ring level for orbit visualization:
+  - `anillo-0/` through `anillo-4/` - Five concentric rings for DevelopmentToolsOrbit component
+- Professional documents (CV) and project screenshots in `public/project/`
 
 ## Requirements
 - Node.js v23.x (as specified in README)
@@ -79,3 +88,24 @@ Content is defined in TypeScript files in `src/data/` with strongly typed interf
 
 ## Build Process
 The build command includes dependency installation, type checking via `astro check`, and production build generation.
+
+## Common Editing Tasks
+
+### Adding New Professional Experience
+Edit `src/data/experiences.ts`:
+- Add new entry to `experiences` array
+- Include company icon in `public/icon/empresas/`
+- Use nested `Position` objects for multiple roles at same company
+- Specify technologies at position and/or experience level
+
+### Adding New Skills
+Edit `src/data/skills.ts`:
+- Add skill with name, icon path, and category
+- Categories: "Backend", "Frameworks", "Gestores de Bases de Datos", "Infraestructura", "QA & Testing"
+- Add corresponding icon to `public/icon/skills/`
+
+### Adding New Projects
+Edit `src/data/proyects.ts` (note: typo in filename):
+- Include title, imageUrl, description, technologies array
+- Optional: documentacionUrl (markdown page), githubUrl, projectUrl
+- Add project screenshots to `public/project/`

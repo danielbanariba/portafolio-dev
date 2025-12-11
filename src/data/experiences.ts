@@ -17,27 +17,12 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   // {
-  //   title: "Programador Frontend",
-  //   company: "OnCorp",
-  //   positions: [
-  //     {
-  //       role: "",
-  //       period: "",
-  //       points: [],
-  //       technologies: [],
-  //     },
-  //   ],
-  //   icon: "/icon/empresas/oncorp.svg",
-  //   iconBg: "#5d4ea6",
-  //   date: "2025 Noviembre - Actualidad",
-  // },
-  // {
   //   title: "Ingeniero de Software",
   //   company: "Spicy Rocket",
   //   positions: [
   //     {
   //       role: "Backend Developer | Proyecto para Vargroup (España)",
-  //       period: "1 de Noviembre - Actualidad",
+  //       period: "17 de Noviembre - Actualidad",
   //       points: [],
   //       technologies: ["FastAPI", "Python"],
   //     },
@@ -46,6 +31,31 @@ export const experiences: Experience[] = [
   //   iconBg: "#383E56",
   //   date: "2025 Noviembre - Actualidad",
   // },
+  {
+    title: "Programador RPA",
+    company: "Grupo Farinter",
+    positions: [
+      {
+        role: "Desarrollador RPA",
+        period: "15 de Noviembre 2025 - Actualidad",
+        points: [
+          "Desarrollé scripts de automatización con Python para procesos de recopilación de datos",
+          // "Implementé sistemas de orquestación de tareas usando Dagster para ejecución programada de procesos",
+          "Trabajé con APIs REST y procesamiento de datos en formato CSV",
+          // "Configuré entornos de desarrollo en Linux y gestión de dependencias Python",
+          // "Colaboré en evaluación técnica de herramientas de desarrollo (GitHub Copilot, Claude Code)",
+          // "Realicé auditoría de seguridad en plataformas web corporativas, identificando y documentando vulnerabilidades en APIs públicas para mejorar la postura de seguridad de la empresa",
+          // "Desarrollé sistema automatizado de web scraping con Python que extrajo y estructuró 945+ registros de productos mediante scroll dinámico, selectores CSS y regex parsing, implementando checkpoints cada 50 registros para garantizar integridad de datos",
+          // "Automaticé procesos de recopilación de datos de mercado usando Python para análisis competitivo, integrando resultados con Dagster para ejecución programada",
+          "Documenté hallazgos de seguridad con reportes técnicos detallados, incluyendo nivel de riesgo, reproducción de vulnerabilidades y recomendaciones de mitigación para el equipo de desarrollo",
+        ],
+        technologies: ["Python", "Dagster", "REST APIs", "Linux"],
+      },
+    ],
+    icon: "/icon/empresas/grupo-farinter.png",
+    iconBg: "#FFFFFF",
+    date: "2025 Noviembre - Actualidad",
+  },
   {
     title: "Desarrollador de software",
     company: "Analiza Laboratorios Clínicos",
