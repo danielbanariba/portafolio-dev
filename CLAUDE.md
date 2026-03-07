@@ -23,9 +23,12 @@ Personal portfolio website for Daniel Banariba, built with Astro. Hybrid archite
 
 ### Single-Page Layout
 `src/pages/index.astro` renders sections in this order:
-Navbar → Presentacion → InformationResume → AboutMe → Skills → Experience → Project → Education → BongoCat → Footer
+Navbar → Presentacion → InformationResume → AboutMe → Skills → Experience → Project → (DevelopmentToolsOrbit) → (Testimonial) → Education → BongoCat → Footer
 
-DevelopmentToolsOrbit and Testimonial components exist but are currently commented out.
+Components in parentheses are currently commented out in the template.
+
+### Markdown Documentation Pages
+Project detail pages live as `.md` files in `src/pages/` (e.g., `sistema-contable.md`, `inventario-personal.md`). They use `MarkdownLayout.astro` (set via frontmatter `layout`) which wraps content with Navbar, Footer, and styled prose. These are linked from project cards via the `documentacionUrl` field in `proyects.ts`.
 
 ### Component Patterns
 - `.astro` files for static/server-rendered content
@@ -38,7 +41,7 @@ DevelopmentToolsOrbit and Testimonial components exist but are currently comment
 All content lives in typed TypeScript files in `src/data/`:
 - `experiences.ts` - Work history. Uses nested `Position` interface for multiple roles within one company. Technologies tracked at both position and experience levels.
 - `skills.ts` - Technical skills with `Skill` interface (name, icon path, category)
-- `proyects.ts` - Portfolio projects (note: intentional Spanish spelling in filename)
+- `proyects.ts` - Portfolio projects (note: intentional Spanish spelling in filename). Untyped — uses plain object array, not an exported interface.
 - `testimonials.ts` - Professional testimonials
 - `education.ts` - Educational background
 
@@ -69,3 +72,4 @@ Assets in `public/` referenced with absolute paths (e.g., `/icon/skills/python.s
 1. Edit `src/data/proyects.ts`
 2. Add screenshot to `public/project/`
 3. Optional fields: `documentacionUrl` (markdown page route), `githubUrl`, `projectUrl`
+4. For documentation pages, create a `.md` file in `src/pages/` with `layout: '/src/layouts/MarkdownLayout.astro'` in frontmatter
