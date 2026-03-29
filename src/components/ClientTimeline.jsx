@@ -64,7 +64,7 @@ export const ClientTimeline = ({ experiences }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="bg-gray-800 p-6 rounded-lg shadow-lg mb-10 relative overflow-hidden border border-gray-700/50 backdrop-blur-sm"
+        className="bg-gray-800 p-6 rounded-lg shadow-lg mb-10 relative overflow-hidden border border-gray-700/50 backdrop-blur-xs"
       >
         {/* Agregar dos componentes Beam en la parte superior */}
         <Beam className="top-0" />
@@ -72,7 +72,7 @@ export const ClientTimeline = ({ experiences }) => {
 
         <div className="flex items-center gap-4 mb-6">
           <div
-            className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden border border-gray-600 flex-shrink-0 p-2"
+            className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden border border-gray-600 shrink-0 p-2"
             style={{ backgroundColor: experience.iconBg }}
           >
             <img
@@ -130,7 +130,7 @@ export const ClientTimeline = ({ experiences }) => {
         {/* Agregar el gradiente en la parte inferior */}
         <div className="absolute bottom-0 left-0 right-0 mt-[2px] flex h-8 items-end overflow-hidden z-0">
           <div className="flex -mb-px h-[2px] w-full -scale-x-100">
-            <div className="w-full flex-none blur-sm [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
+            <div className="w-full flex-none blur-xs [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
             <div className="-ml-[100%] w-full flex-none blur-[1px] [background-image:linear-gradient(90deg,rgba(56,189,248,0)_0%,#0EA5E9_32.29%,rgba(236,72,153,0.3)_67.19%,rgba(236,72,153,0)_100%)]"></div>
           </div>
         </div>
