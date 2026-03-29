@@ -1,18 +1,23 @@
 export const projects = [
   // {
   //   title: "Inventario Personal",
-  //   imageUrl: "project/inventario-personal.png", // TODO: Necesitarás agregar un screenshot
+  //   imageUrl: "project/inventario-personal.png",
   //   description:
-  //     "Aplicación móvil para gestionar inventario doméstico y lista de compras. Incluye sincronización familiar y estadisticas con una planificacion finaciera para llevar los gatos.",
-  //   technologies: [
-  //     "Flutter",
-  //     "Dart",
-  //     "SQLite",
-  //     "Firebase",
-  //   ],
+  //     "App móvil para gestionar inventario doméstico con sincronización familiar, comparación de precios, comandos de voz y gestión de presupuesto.",
+  //   technologies: ["Flutter", "Dart", "SQLite", "Firebase", "FCM"],
   //   documentacionUrl: "/inventario-personal",
-  //   // TODO: projectUrl: "link-to-play-store" // Cuando la publiques
+  //   githubUrl: "https://github.com/danielbanariba/inventario_personal",
   // },
+  {
+    title: "Metal Archive",
+    imageUrl: "project/metal-archive.png",
+    description:
+      "Catálogo de álbumes de los videoas del canal con sincronización automática desde YouTube, filtrado por género/país/año y descubrimiento aleatorio.",
+    technologies: ["Python", "Reflex", "SQLite", "YouTube API"],
+    documentacionUrl: "/metal-archive",
+    githubUrl: "https://github.com/danielbanariba/links-bio",
+    projectUrl: "https://links-bio-silver-wood.reflex.run/metal-archive",
+  },
   {
     title: "Sistema Contable",
     imageUrl: "project/azure-app-service.png",
@@ -44,32 +49,27 @@ export const projects = [
     title: "Canal de YouTube Automatizado",
     imageUrl: "project/click-auto-editor.png",
     description:
-      "Es un programa que automatiza la edición de videos para mi canal de YouTube, aplicando efectos, transiciones y subiendo el video a la plataforma de forma automática.",
-    technologies: ["Python", "Pyautogui", "Moviepy"],
-    githubUrl: "https://github.com/danielbanariba/click-auto-editor",
-    projectUrl: "https://www.youtube.com/@danielbanariba",
-  },
-  {
-    title: "Web Scraping",
-    imageUrl: "project/web-scraping.jpg",
-    description:
-      "Para que mi canal de YouTube tenga contenido constantemente, he creado un programa que se encarga de buscar música libre de derechos de autor en internet.",
+      "Pipeline que automatiza un canal de YouTube: scraping de música underground, renderizado 4K con efectos VHS y subida programada con gestión de playlists y copyright.",
     technologies: [
       "Python",
-      "BeautifulSoup",
-      "Requests",
-      "Selenium",
+      "C++",
+      "CUDA",
+      "FFmpeg",
       "Playwright",
+      "YouTube API",
     ],
-    githubUrl: "https://github.com/danielbanariba/scrapper-deathgrind",
+    documentacionUrl: "/canal-youtube-automatizado",
+    githubUrl: "https://github.com/danielbanariba/click-auto-editor",
+    projectUrl: "https://www.youtube.com/@danielbanariba",
   },
   // {
   //   title: "Arsenal de Odio Website",
   //   imageUrl: "project/arsenal-de-odio.png",
-  //   description: "Arsenal De Odio es una banda de Thrash Metal de Honduras, quise plasmar su espíritu como banda en la pagina web. Aquí se puede encontrar todo relacionado con la banda, sus integrantes, discografía, mercadería, etc.",
-  //   technologies: ['Python', 'Reflex', 'Javascript'],
+  //   description:
+  //     "Arsenal De Odio es una banda de Thrash Metal de Honduras, quise plasmar su espíritu como banda en la pagina web. Aquí se puede encontrar todo relacionado con la banda, sus integrantes, discografía, mercadería, etc.",
+  //   technologies: ["Python", "Reflex", "Javascript"],
   //   githubUrl: "https://github.com/danielbanariba/arsenal-de-odio-web",
-  //   projectUrl: "https://arsenaldeodio.reflex.run/"
+  //   projectUrl: "https://arsenaldeodio.reflex.run/",
   // },
   {
     title: "SoundCloud Clone",
