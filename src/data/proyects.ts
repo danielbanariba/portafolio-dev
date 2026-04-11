@@ -1,10 +1,23 @@
 export const projects = [
   // {
+  //   title: "Dagster Watchdog",
+  //   imageUrl: "project/dagster-watchdog.png",
+  //   description:
+  //     "Sistema autónomo de monitoreo para pipelines Dagster en producción. Detecta runs pegados comparando contra baselines aprendidos, cancela y re-lanza automáticamente, y envía alertas a Telegram. Corre como servicio systemd 24/7.",
+  //   technologies: [
+  //     "Python",
+  //     "Dagster GraphQL",
+  //     "Telegram Bot",
+  //     "systemd",
+  //     "OpenClaw",
+  //   ],
+  // },
+  // {
   //   title: "Inventario Personal",
   //   imageUrl: "project/inventario-personal.png",
   //   description:
-  //     "App móvil para gestionar inventario doméstico con sincronización familiar, comparación de precios, comandos de voz y gestión de presupuesto.",
-  //   technologies: ["Flutter", "Dart", "SQLite", "Firebase", "FCM"],
+  //     "App móvil para gestionar inventario doméstico con sincronización familiar en tiempo real, estadísticas de compras con insights accionables, presupuesto inteligente, escaneo de códigos de barras y comandos de voz.",
+  //   technologies: ["Flutter", "Dart", "SQLite", "Firebase", "fl_chart"],
   //   documentacionUrl: "/inventario-personal",
   //   githubUrl: "https://github.com/danielbanariba/inventario_personal",
   // },

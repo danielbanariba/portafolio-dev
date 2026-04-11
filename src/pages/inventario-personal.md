@@ -30,7 +30,7 @@ Funciona 100% offline con SQLite y opcionalmente sincroniza en tiempo real entre
 │  │  DOMAIN (Logica de Negocio Pura)                     │       │
 │  │                                                      │       │
 │  │  Entities: Product, Expense, Income, SavingsGoal,    │       │
-│  │  Achievement, FamilyGroup, PriceHistory              │       │
+│  │  PurchaseStatistics, FamilyGroup, PriceHistory       │       │
 │  │                                                      │       │
 │  │  UseCases: ManageInventory (CRUD + toggle + precio)  │       │
 │  └────────────────────┬─────────────────────────────────┘       │
@@ -46,36 +46,35 @@ Funciona 100% offline con SQLite y opcionalmente sincroniza en tiempo real entre
 │  │  │  Cache imgs │  │  Open Food Facts API         │   │       │
 │  │  │             │  │  Google Custom Search API    │   │       │
 │  │  │             │  │  UPCItemDB API               │   │       │
-│  │  │             │  │  Scrapers supermercados      │   │       │
 │  │  └─────────────┘  └──────────────────────────────┘   │       │
 │  └──────────────────────────────────────────────────────┘       │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-**Patron**: Clean Architecture + MVVM + Provider. Los ViewModels se sincronizan entre si: `InventoryVM` y `ShoppingListVM` son bidireccionales, y `FamilySyncVM` empuja cambios a ambos.
+**Patron**: Clean Architecture + MVVM + Provider. Los ViewModels se sincronizan entre si: `InventoryVM` y `ShoppingListVM` son bidireccionales (con guards anti-loop), y `FamilySyncVM` empuja cambios a ambos.
 
 ---
 
-## Sistema de Dos Listas
+## Sistema de Dos Listas con Swipe Intuitivo
 
-El nucleo de la app es un unico booleano `isAtHome` en cada producto que determina en cual lista aparece:
+El nucleo de la app es un unico booleano `isAtHome` en cada producto. La interaccion principal es deslizar:
 
 ```
 ┌─────────────────────┐                    ┌─────────────────────┐
-│  "TENGO EN CASA"    │                    │  "TENGO QUE COMPRAR"│
+│  "EN CASA"          │                    │  "COMPRAR"          │
 │  (isAtHome = true)  │                    │  (isAtHome = false) │
 │                     │                    │                     │
-│  ┌───────────────┐  │   Se acabo ──►     │  ┌───────────────┐  │
+│  ┌───────────────┐  │   Deslizar ──►     │  ┌───────────────┐  │
 │  │ Arroz 5 lbs   │──┼──────────────────►─┼──│ Arroz         │  │
-│  └───────────────┘  │                    │  └───────────────┘  │
-│                     │     ◄── Comprado   │                     │
-│  ┌───────────────┐  │◄───────────────────┼──┌───────────────┐  │
-│  │ Leche 1 gal   │──┼─                   │  │ Leche         │  │
-│  └───────────────┘  │                    │  └───────────────┘  │
+│  └───────────────┘  │   a la derecha     │  └───────────────┘  │
 │                     │                    │                     │
-│  Checkbox toggle    │                    │  Checkbox toggle    │
-│  con animacion      │                    │  con animacion      │
+│  ┌───────────────┐  │   ◄── Deslizar     │  ┌───────────────┐  │
+│  │ Leche 1 gal   │──┼◄───────────────────┼──│ Leche         │  │
+│  └───────────────┘  │   a la izquierda   │  └───────────────┘  │
+│                     │                    │                     │
+│  Deslizar ◄ izq:    │                    │  Deslizar ► der:    │
+│  Editar / Eliminar  │                    │  Editar / Eliminar  │
 └─────────────────────┘                    └─────────────────────┘
                     │                          │
                     └────────────┬─────────────┘
@@ -83,14 +82,116 @@ El nucleo de la app es un unico booleano `isAtHome` en cada producto que determi
                                  ▼
                         Historial de precios
                         registrado en cada compra
-                        (graficas con fl_chart)
 ```
+
+La direccion del swipe coincide con la posicion del tab destino: en "En Casa" (tab izquierdo) deslizar a la derecha mueve a "Comprar" (tab derecho) y viceversa. El producto sale volando en la direccion del swipe con animacion. El swipe opuesto revela "Editar" y "Eliminar". Tocar un producto abre el editor directamente.
+
+<!-- TODO: Captura del swipe en accion -->
 
 ![Pantalla Principal](/project/inventario-personal/screenshot-home.png)
 
+<!-- TODO: Captura del inventario "En Casa" -->
+
 ![Inventario del Hogar](/project/inventario-personal/screenshot-inventory.png)
 
+<!-- TODO: Captura de la lista de compras con la barra de presupuesto -->
+
 ![Lista de Compras](/project/inventario-personal/screenshot-shopping-list.png)
+
+---
+
+## Presupuesto de Compras en Tiempo Real
+
+La lista de compras incluye una barra de presupuesto interactiva que se descuenta automaticamente:
+
+```
+┌──────────────────────────────────────────────────────┐
+│  Presupuesto de Compras                              │
+│                                                      │
+│  1. Tocar la barra → definir monto (ej: L. 5,000)   │
+│  2. Deslizar producto a "Casa" → se descuenta        │
+│  3. La barra se actualiza en tiempo real              │
+│                                                      │
+│  ┌────────────────────────────────────────────────┐   │
+│  │  L. 3,200 disponible              36% ████░░  │   │
+│  └────────────────────────────────────────────────┘   │
+│                                                      │
+│  Colores segun uso:                                  │
+│  🟢 < 80%  →  Azul (dentro del presupuesto)         │
+│  🟠 80-99% →  Naranja (acercandose al limite)        │
+│  🔴 > 100% →  Rojo (excedido, muestra por cuanto)   │
+│                                                      │
+│  Persiste entre sesiones (SharedPreferences)         │
+│  Boton para reiniciar el gasto acumulado             │
+└──────────────────────────────────────────────────────┘
+```
+
+<!-- TODO: Captura de la barra de presupuesto con porcentaje -->
+
+---
+
+## Estadisticas de Compras Avanzadas
+
+Modulo de analitica que transforma el historial de compras en insights accionables:
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  ESTADISTICAS DE COMPRAS                                 │
+│                                                          │
+│  Selector: [Semana] [Mes] [Año]                          │
+│                                                          │
+│  ┌─ Comparacion vs Periodo Anterior ──────────────────┐  │
+│  │  ↓ L. 1,200 (-15%) vs periodo anterior             │  │
+│  │  Proyeccion fin de mes: L. 8,500                   │  │
+│  └────────────────────────────────────────────────────┘  │
+│                                                          │
+│  ┌─ Resumen ─────────────────────────────────────────┐   │
+│  │  💰 Gastado: L. 4,800   💵 Ahorro: L. 1,200      │   │
+│  └────────────────────────────────────────────────────┘  │
+│                                                          │
+│  ┌─ Grafico de Periodo (dinamico) ────────────────────┐  │
+│  │  █ █ █ █ █ █ █    (7 barras semana)               │  │
+│  │  ████████████████  (30 barras mes)                │  │
+│  │  █ █ █ █ █ █ █ █ █ █ █ █  (12 barras año)        │  │
+│  └────────────────────────────────────────────────────┘  │
+│                                                          │
+│  ┌─ Heatmap de Frecuencia ────────────────────────────┐  │
+│  │  Lun  Mar  Mie  Jue  Vie  Sab  Dom               │  │
+│  │  ░░░  ░░░  ███  ░░░  ░░░  ███  ░░░               │  │
+│  │       (intensidad = frecuencia de compras)         │  │
+│  └────────────────────────────────────────────────────┘  │
+│                                                          │
+│  ┌─ Top Productos (tappable) ─────────────────────────┐  │
+│  │  1. Leche (8 veces)    → tap: ver evolucion precio │  │
+│  │  2. Arroz (6 veces)    → LineChart con fl_chart    │  │
+│  │  3. Huevos (5 veces)                               │  │
+│  └────────────────────────────────────────────────────┘  │
+│                                                          │
+│  ┌─ Insights Accionables ─────────────────────────────┐  │
+│  │  ⚠️ Leche subio 15%: L.35 → L.40                  │  │
+│  │  🛒 Compraste Arroz 6 veces. ¿Agregarlo a lista?  │  │
+│  │  📅 Los sabados son tu dia mas caro (L. 850)       │  │
+│  └────────────────────────────────────────────────────┘  │
+│                                                          │
+│  + Pie chart de categorias                              │
+│  + Barras de gasto por supermercado                     │
+└──────────────────────────────────────────────────────────┘
+```
+
+**Metricas calculadas**:
+
+- Comparacion mes vs mes anterior (delta en monto y porcentaje)
+- Prediccion de gasto a fin de mes (basada en ritmo actual, solo con ≥5 puntos de datos)
+- Promedio de precio por producto con tendencia (subio/bajo/estable, umbral 5%)
+- Dia de la semana mas caro para comprar
+- Productos comprados ≥3 veces (sugerencia de agregar a lista)
+- Evolucion de precio por producto (tap → LineChart historico)
+
+<!-- TODO: Captura de la pantalla de estadisticas con el grafico y los insights -->
+
+![Estadisticas de Compras](/project/inventario-personal/screenshot-statistics.png)
+
+<!-- TODO: Captura de la evolucion de precio de un producto -->
 
 ---
 
@@ -125,6 +226,8 @@ Multiples miembros de una familia comparten el mismo inventario y lista de compr
 **Flujo**: Mama marca que se acabo el cafe → Firestore se actualiza → Papa y Hijo reciben push notification → Papa esta cerca del super → ve la lista → compra → marca como comprado → todos lo ven actualizado.
 
 **Offline-first**: La app funciona completamente sin internet usando SQLite. Firebase es opcional y solo se activa cuando el usuario crea o se une a un grupo familiar.
+
+<!-- TODO: Captura de la sincronizacion familiar -->
 
 ![Sincronizacion Familiar](/project/inventario-personal/screenshot-family-sync.png)
 
@@ -219,43 +322,6 @@ Soporta numeros en palabras ("dos", "tres"), fracciones ("y media"), y multiples
 
 ---
 
-## Comparacion de Precios de Supermercados
-
-Web scrapers para 3 cadenas de supermercados hondureños:
-
-```
-Busqueda de producto
-        │
-        ▼
-┌───────────────────────────────────────────────┐
-│  SupermarketAggregatorService                 │
-│                                               │
-│  ┌──────────────────┐                         │
-│  │ Walmart Honduras  │◄── VTEX GraphQL API    │
-│  │ (walmart_scraper) │                        │
-│  ├──────────────────┤                         │
-│  │ La Colonia        │◄── HTML scraping       │
-│  │ (la_colonia)      │                        │
-│  ├──────────────────┤                         │
-│  │ PriceSmart        │◄── HTML scraping       │
-│  │ (pricesmart)      │                        │
-│  └──────────────────┘                         │
-│                                               │
-│  + Supermercados/pulperias personalizado      │
-│    (agregados por el usuario)                 │
-│                                               │
-│  Cache: SharedPreferences                     │
-└───────────────────────────────────────────────┘
-        │
-        ▼
-  Tabla comparativa de precios
-  por supermercado
-```
-
-El usuario tambien puede agregar sus propias pulperias o mercados locales y registrar precios manualmente para comparar.
-
----
-
 ## Notificaciones de Vencimiento
 
 Sistema inteligente que estima fechas de vencimiento automaticamente segun la categoria del producto:
@@ -285,12 +351,12 @@ Producto agregado
 │  (flutter_local_notifications)                 │
 │  Zona horaria: America/Tegucigalpa             │
 │                                                │
-│  ● 3 dias antes ──► Alerta temprana            │
-│  ● 1 dia antes  ──► Recordatorio urgente       │
-│  ● Dia del venc. ──► Alerta final              │
+│  ● 3 dias antes  → Alerta temprana             │
+│  ● 1 dia antes   → Recordatorio urgente        │
+│  ● Dia del venc. → Alerta final                │
 │                                                │
-│  Indicadores visuales:                         │
-│  🟢 Fresco  🟡 <7 dias  🟠 <3 dias  🔴 Vencido │
+│  Indicadores visuales en las tarjetas:         │
+│  Verde (fresco) → Amarillo → Naranja → Rojo   │
 └────────────────────────────────────────────────┘
 ```
 
@@ -335,6 +401,8 @@ Modulo completo de finanzas personales integrado con el inventario:
 
 Los gastos de tipo `productPurchase` se vinculan automaticamente cuando compras algo de la lista, conectando el inventario con las finanzas.
 
+<!-- TODO: Captura del dashboard de presupuesto -->
+
 ---
 
 ## Modulo de Colecciones
@@ -344,12 +412,9 @@ Para catalogar items no consumibles (videojuegos, libros, figuras, electronica):
 - **Condicion**: Escala de 7 niveles (Perfecto → Pobre) con codigo de colores
 - **Seguimiento de valor**: Precio de compra vs valor actual con calculo de apreciacion/depreciacion en porcentaje
 - **Metadata**: Año, ubicacion, numero de serie, notas
+- **Enriquecimiento automatico**: Busqueda de imagenes y datos via Google Custom Search y Pexels
 
----
-
-## Gamificacion
-
-Sistema de logros con 4 tipos: ahorro, actividad, hito y racha. Progreso automatico con desbloqueo al cumplir requisitos.
+<!-- TODO: Captura de la vista de colecciones -->
 
 ---
 
@@ -357,12 +422,12 @@ Sistema de logros con 4 tipos: ahorro, actividad, hito y racha. Progreso automat
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  SQLite - 10 tablas principales                             │
+│  SQLite - 9 tablas principales                              │
 │                                                             │
 │  products ──────────┐                                       │
 │  (30+ campos)       │ FK                                    │
 │  id, name, brand,   ├──► price_history                      │
-│  is_at_home,        │    (precio, fecha)                    │
+│  is_at_home,        │    (precio, fecha, supermercado)       │
 │  category,          │                                       │
 │  storage_condition, ├──► product_tags ──► tags              │
 │  product_type,      │    (many-to-many)                     │
@@ -380,8 +445,6 @@ Sistema de logros con 4 tipos: ahorro, actividad, hito y racha. Progreso automat
 │  income             │    savings_goals                      │
 │  (is_primary,       │    (target, current, deadline)        │
 │   frequency)        │                                       │
-│                     │                                       │
-│  cached_prices      │    (cache de scrapers)                │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -393,30 +456,30 @@ Migraciones incrementales via `_onUpgrade()`. La app funciona en desktop usando 
 
 | Categoria    | Tecnologias                                                               |
 | ------------ | ------------------------------------------------------------------------- |
-| Framework    | Flutter (Dart ^3.8.1)                                                     |
+| Framework    | Flutter 3.41.6 (Dart 3.11.4)                                              |
 | Estado       | Provider (MultiProvider + ChangeNotifier)                                 |
 | DB Local     | SQLite (sqflite), SharedPreferences                                       |
-| Backend      | Firebase Firestore, Firebase Cloud Messaging                              |
-| APIs         | Open Food Facts, UPCItemDB, Google Custom Search                          |
-| Scrapers     | Walmart Honduras (VTEX GraphQL), La Colonia, PriceSmart                   |
+| Backend      | Firebase Firestore, Firebase Auth, Firebase Cloud Messaging               |
+| APIs         | Open Food Facts, UPCItemDB, Google Custom Search, Pexels                  |
 | Dispositivo  | mobile_scanner, speech_to_text, image_picker, flutter_local_notifications |
 | UI           | fl_chart (graficas), cached_network_image, qr_flutter                     |
 | IA/ML        | google_mlkit_text_recognition (OCR)                                       |
-| Testing      | flutter_test, mockito, fake_cloud_firestore                               |
-| Arquitectura | Clean Architecture + MVVM + TDD                                           |
+| Testing      | flutter_test, mockito, fake_cloud_firestore (1553+ tests)                 |
+| Arquitectura | Clean Architecture + MVVM + TDD estricto                                  |
 
 ---
 
-## Donde poner las capturas
+## Donde Poner las Capturas
 
 Las imagenes referenciadas en esta pagina deben colocarse en:
 
 ```
 public/project/inventario-personal/
-├── screenshot-home.png              # Pantalla principal con las dos tabs
-├── screenshot-inventory.png         # Vista de inventario "Tengo en casa"
-├── screenshot-shopping-list.png     # Vista de lista de compras
+├── screenshot-home.png              # Pantalla principal con los action buttons
+├── screenshot-inventory.png         # Vista "En Casa" con productos y swipe
+├── screenshot-shopping-list.png     # Vista "Comprar" con barra de presupuesto
 ├── screenshot-family-sync.png       # Pantalla de sincronizacion familiar
+├── screenshot-statistics.png        # Estadisticas con graficos e insights
 ```
 
 La imagen principal del proyecto (para la card en el portafolio) va en:
@@ -424,3 +487,14 @@ La imagen principal del proyecto (para la card en el portafolio) va en:
 ```
 public/project/inventario-personal.png   # Screenshot principal para la card
 ```
+
+**Capturas pendientes** (busca los `<!-- TODO -->` en este archivo):
+
+1. Pantalla principal con los botones de accion
+2. Inventario "En Casa" mostrando el swipe
+3. Lista de compras con la barra de presupuesto visible
+4. Sincronizacion familiar
+5. Estadisticas con el grafico dinamico y los insights
+6. Evolucion de precio de un producto (LineChart)
+7. Dashboard de presupuesto
+8. Vista de colecciones

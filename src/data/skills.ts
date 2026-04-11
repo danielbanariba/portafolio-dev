@@ -13,14 +13,14 @@ export interface Skill {
 
 export const skills: Skill[] = [
   //---------------------------------------------Backend---------------------------------------------
-  { name: "Python", icon: "/icon/skills/python.svg", category: "Backend" },
-  { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
-  { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
-  {
-    name: "Typescript",
-    icon: "/icon/skills/typescript.svg",
-    category: "Backend",
-  },
+  // { name: "Python", icon: "/icon/skills/python.svg", category: "Backend" },
+  // { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
+  // { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
+  // {
+  //   name: "Typescript",
+  //   icon: "/icon/skills/typescript.svg",
+  //   category: "Backend",
+  // },
 
   //---------------------------------------------Frameworks-------------------------------------------
   { name: "Astro", icon: "/icon/skills/astro.svg", category: "Frameworks" },
@@ -112,8 +112,18 @@ export const skills: Skill[] = [
     category: "Datos/Analytics",
   },
   {
+    name: "Polars",
+    icon: "/icon/skills/polars.svg",
+    category: "Datos/Analytics",
+  },
+  {
     name: "Power BI",
     icon: "/icon/skills/power-bi.svg",
+    category: "Datos/Analytics",
+  },
+  {
+    name: "MCP",
+    icon: "/icon/skills/mcp.svg",
     category: "Datos/Analytics",
   },
 ];
