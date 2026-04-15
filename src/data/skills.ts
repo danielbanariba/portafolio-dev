@@ -14,20 +14,22 @@ export interface Skill {
 export const skills: Skill[] = [
   //---------------------------------------------Backend---------------------------------------------
   // { name: "Python", icon: "/icon/skills/python.svg", category: "Backend" },
+  // { name: "Typescript", icon: "/icon/skills/typescript.svg", category: "Backend" },
   // { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
   // { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
-  // {
-  //   name: "Typescript",
-  //   icon: "/icon/skills/typescript.svg",
-  //   category: "Backend",
-  // },
 
   //---------------------------------------------Frameworks-------------------------------------------
   { name: "Astro", icon: "/icon/skills/astro.svg", category: "Frameworks" },
-  { name: "Reflex", icon: "/icon/skills/reflex.svg", category: "Frameworks" },
+  // { name: "Reflex", icon: "/icon/skills/reflex.svg", category: "Frameworks" },
   { name: "FastAPI", icon: "/icon/skills/fastapi.svg", category: "Frameworks" },
-  // { name: "Spring", icon: "/icon/skills/spring.svg", category: "Frameworks" },
   { name: "NestJS", icon: "/icon/skills/nestjs.svg", category: "Frameworks" },
+  // {
+  //   name: "Discord.py",
+  //   icon: "/icon/skills/discord.svg",
+  //   category: "Frameworks",
+  // },
+  { name: "GraphQL", icon: "/icon/skills/graphql.svg", category: "Frameworks" },
+  // { name: "Spring", icon: "/icon/skills/spring.svg", category: "Frameworks" },
 
   //---------------------------------------------Librerias---------------------------
   // { name: 'React', icon: '/icon/skills/react.svg', category: 'Librerias' },
@@ -75,9 +77,14 @@ export const skills: Skill[] = [
     icon: "/icon/skills/terraform.svg",
     category: "Infraestructura",
   },
+  // {
+  //   name: "Docker",
+  //   icon: "/icon/skills/docker.svg",
+  //   category: "Infraestructura",
+  // },
   {
-    name: "Docker",
-    icon: "/icon/skills/docker.svg",
+    name: "GitHub Actions",
+    icon: "/icon/skills/github-actions.svg",
     category: "Infraestructura",
   },
 
@@ -88,7 +95,7 @@ export const skills: Skill[] = [
     icon: "/icon/skills/selenium.svg",
     category: "QA & Testing",
   },
-  { name: "Jira", icon: "/icon/skills/jira.svg", category: "QA & Testing" },
+  // { name: "Jira", icon: "/icon/skills/jira.svg", category: "QA & Testing" },
   // {
   //   name: "Postman",
   //   icon: "/icon/skills/postman.svg",
@@ -102,6 +109,11 @@ export const skills: Skill[] = [
   {
     name: "Playwright",
     icon: "/icon/skills/playwright.svg",
+    category: "QA & Testing",
+  },
+  {
+    name: "Pytest",
+    icon: "/icon/skills/pytest.svg",
     category: "QA & Testing",
   },
 
