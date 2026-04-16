@@ -1,0 +1,724 @@
+---
+import {
+  conferences,
+  type Conference,
+  type ConferenceRole,
+} from "../data/conferences";
+
+type RoleStyle = {
+  gradient: string;
+  badge: string;
+  dotColor: string;
+  glowColor: string;
+};
+
+const roleStyles: Record<ConferenceRole, RoleStyle> = {
+  Ponente: {
+    gradient: "bg-gradient-to-br from-purple-600 via-purple-800 to-slate-900",
+    badge: "bg-purple-600 ring-1 ring-purple-400/40 shadow-lg shadow-purple-900/50",
+    dotColor: "rgba(216, 180, 254, 0.28)",
+    glowColor: "rgba(168, 85, 247, 0.35)",
+  },
+  "Ponente / Tallerista": {
+    gradient: "bg-gradient-to-br from-purple-600 via-indigo-700 to-slate-900",
+    badge: "bg-purple-600 ring-1 ring-purple-400/40 shadow-lg shadow-purple-900/50",
+    dotColor: "rgba(196, 181, 253, 0.28)",
+    glowColor: "rgba(139, 92, 246, 0.35)",
+  },
+  Tallerista: {
+    gradient: "bg-gradient-to-br from-blue-600 via-blue-800 to-slate-900",
+    badge: "bg-blue-600 ring-1 ring-blue-400/40 shadow-lg shadow-blue-900/50",
+    dotColor: "rgba(147, 197, 253, 0.28)",
+    glowColor: "rgba(59, 130, 246, 0.35)",
+  },
+  Panelista: {
+    gradient: "bg-gradient-to-br from-amber-500 via-orange-700 to-slate-900",
+    badge: "bg-amber-600 ring-1 ring-amber-400/40 shadow-lg shadow-amber-900/50",
+    dotColor: "rgba(253, 230, 138, 0.28)",
+    glowColor: "rgba(245, 158, 11, 0.35)",
+  },
+  Mentor: {
+    gradient: "bg-gradient-to-br from-emerald-500 via-emerald-700 to-slate-900",
+    badge: "bg-emerald-600 ring-1 ring-emerald-400/40 shadow-lg shadow-emerald-900/50",
+    dotColor: "rgba(110, 231, 183, 0.28)",
+    glowColor: "rgba(16, 185, 129, 0.35)",
+  },
+  Keynote: {
+    gradient: "bg-gradient-to-br from-pink-600 via-fuchsia-800 to-slate-900",
+    badge: "bg-pink-600 ring-1 ring-pink-400/40 shadow-lg shadow-pink-900/50",
+    dotColor: "rgba(249, 168, 212, 0.28)",
+    glowColor: "rgba(236, 72, 153, 0.35)",
+  },
+};
+
+const getYear = (date: string) => {
+  const match = date.match(/\b(\d{4})\b/);
+  return match ? match[1] : "";
+};
+
+const dotPattern = (color: string) =>
+  `background-image: radial-gradient(circle, ${color} 1px, transparent 1px); background-size: 18px 18px;`;
+
+const circuitPattern = (color: string) => {
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><g fill='none' stroke='${color}' stroke-width='1.2' stroke-linecap='round'><path d='M0 22h28v28h32'/><path d='M60 50V18h30'/><path d='M16 66v24'/><path d='M48 0v28'/><path d='M68 72h22'/><path d='M0 80h18'/><path d='M78 10v18'/></g><g fill='${color}'><circle cx='28' cy='22' r='2.2'/><circle cx='28' cy='50' r='2.2'/><circle cx='60' cy='50' r='2.2'/><circle cx='60' cy='18' r='2.2'/><circle cx='48' cy='28' r='2.2'/><circle cx='68' cy='72' r='2.2'/><circle cx='16' cy='66' r='2.2'/><circle cx='78' cy='28' r='2.2'/></g></svg>`;
+  return `background-image: url("data:image/svg+xml;utf8,${encodeURIComponent(svg)}"); background-size: 90px 90px;`;
+};
+
+type CardTheme = {
+  bgClass: string;
+  bgStyle: string;
+  patternStyle: string;
+  glowStyle: string;
+  badgeClass: string;
+};
+
+const getCardTheme = (c: Conference): CardTheme => {
+  const role = roleStyles[c.role];
+  if (c.eventTheme) {
+    const t = c.eventTheme;
+    const pattern =
+      t.patternType === "circuits"
+        ? circuitPattern(t.accentColor)
+        : t.patternType === "dots"
+          ? dotPattern(t.accentColor)
+          : "";
+    return {
+      bgClass: "",
+      bgStyle: `background: ${t.background};`,
+      patternStyle: pattern,
+      glowStyle: `background: ${t.glowColor};`,
+      badgeClass: role.badge,
+    };
+  }
+  return {
+    bgClass: role.gradient,
+    bgStyle: "",
+    patternStyle: dotPattern(role.dotColor),
+    glowStyle: `background: ${role.glowColor};`,
+    badgeClass: role.badge,
+  };
+};
+
+const [featured, ...rest] = conferences;
+const featuredTheme = featured ? getCardTheme(featured) : null;
+const initialVisible = 4;
+const visibleCompact = rest.slice(0, initialVisible);
+const hiddenCompact = rest.slice(initialVisible);
+const hasMore = hiddenCompact.length > 0;
+---
+
+<section id="conferences" class="pt-16 bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 sm:px-0 lg:px-0">
+    <h2 class="text-3xl font-bold text-white mb-8">Conferencias y Ponencias</h2>
+
+    {
+      featured && (
+        <article class="conference-card relative bg-gray-800 rounded-lg overflow-hidden z-[1] mb-6">
+          <div class="flex flex-col md:flex-row">
+            <div
+              class={`${featuredTheme?.bgClass ?? ""} md:w-2/5 shrink-0 relative h-56 md:h-auto md:min-h-[260px] flex items-center justify-center overflow-hidden`}
+              style={featuredTheme?.bgStyle}
+            >
+              <div
+                class="absolute inset-0 opacity-80"
+                style={featuredTheme?.patternStyle}
+              />
+              <div
+                class="absolute -top-20 -right-20 w-64 h-64 rounded-full blur-3xl"
+                style={featuredTheme?.glowStyle}
+              />
+
+              {featured.logoUrl ? (
+                <div class="relative flex flex-col items-center justify-center px-6 py-4">
+                  <img
+                    src={featured.logoUrl}
+                    alt={`Logo ${featured.event}`}
+                    class="h-32 md:h-40 w-auto max-w-[80%] object-contain drop-shadow-2xl"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div class="relative text-center px-6">
+                  <p class="text-white font-black text-5xl md:text-6xl tracking-tight drop-shadow-lg leading-none">
+                    {featured.eventAbbreviation}
+                  </p>
+                  <p class="text-white/70 font-semibold text-xl mt-2 tracking-wide">
+                    {getYear(featured.date)}
+                  </p>
+                </div>
+              )}
+
+              <span
+                class={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${featuredTheme?.badgeClass ?? ""} text-white text-xs font-semibold px-3 py-1.5 rounded-full`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                  <line x1="12" y1="19" x2="12" y2="22" />
+                </svg>
+                {featured.role}
+              </span>
+            </div>
+
+            <div class="flex-1 p-6 flex flex-col">
+              <div class="flex-grow">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-400/30 px-2 py-0.5 rounded">
+                    {featured.modality}
+                  </span>
+                  <span class="text-xs text-gray-500">{featured.date}</span>
+                </div>
+
+                <h3 class="text-xl font-bold text-white leading-snug mb-3">
+                  {featured.talkTitle}
+                </h3>
+
+                {featured.abstract && (
+                  <p class="text-sm text-gray-400 leading-relaxed mb-4">
+                    {featured.abstract}
+                  </p>
+                )}
+
+                <div class="space-y-1 mb-4">
+                  <p class="text-sm text-gray-300 font-medium">
+                    {featured.event}
+                  </p>
+                  <p class="text-xs text-gray-500 flex items-center gap-1.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {featured.location}
+                  </p>
+                </div>
+
+                {featured.tags && featured.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {featured.tags.map((tag) => (
+                      <span class="text-xs bg-slate-700 text-zinc-200 px-2 py-1 rounded">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div class="flex items-center gap-2 pt-4 border-t border-gray-700/50 mt-auto flex-wrap">
+                {featured.certificateUrl && (
+                  <a
+                    href={featured.certificateUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-gray-300 hover:text-blue-400 bg-gray-700/50 hover:bg-gray-700 px-3 py-1.5 rounded transition-all duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle cx="15" cy="15" r="3" />
+                      <path d="M13.4 10.5a5 5 0 0 0-5.9 5.9" />
+                      <path d="M10 19H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5" />
+                      <path d="m13 17 2 2 4-4" />
+                    </svg>
+                    Ver certificado
+                  </a>
+                )}
+                {featured.slidesUrl && (
+                  <a
+                    href={featured.slidesUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-gray-300 hover:text-blue-400 bg-gray-700/50 hover:bg-gray-700 px-3 py-1.5 rounded transition-all duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="2" y="3" width="20" height="14" rx="2" />
+                      <line x1="8" y1="21" x2="16" y2="21" />
+                      <line x1="12" y1="17" x2="12" y2="21" />
+                    </svg>
+                    Slides
+                  </a>
+                )}
+                {featured.videoUrl && (
+                  <a
+                    href={featured.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-gray-300 hover:text-blue-400 bg-gray-700/50 hover:bg-gray-700 px-3 py-1.5 rounded transition-all duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polygon points="23 7 16 12 23 17 23 7" />
+                      <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                    </svg>
+                    Grabación
+                  </a>
+                )}
+                {featured.eventUrl && (
+                  <a
+                    href={featured.eventUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="ml-auto inline-flex items-center gap-1.5 text-xs font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                  >
+                    <span>Sitio del evento</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      )
+    }
+
+    {
+      visibleCompact.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {visibleCompact.map((c) => {
+            const theme = getCardTheme(c);
+            return (
+              <article class="conference-card relative bg-gray-800 rounded-lg overflow-hidden z-[1] flex flex-col">
+                <div
+                  class={`${theme.bgClass} relative h-40 flex items-center justify-center overflow-hidden`}
+                  style={theme.bgStyle}
+                >
+                  <div
+                    class="absolute inset-0 opacity-80"
+                    style={theme.patternStyle}
+                  />
+                  <div
+                    class="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl"
+                    style={theme.glowStyle}
+                  />
+
+                  {c.logoUrl ? (
+                    <img
+                      src={c.logoUrl}
+                      alt={`Logo ${c.event}`}
+                      class="relative h-24 md:h-28 w-auto max-w-[75%] object-contain drop-shadow-xl"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="relative text-center px-4">
+                      <p class="text-white font-black text-3xl md:text-4xl tracking-tight drop-shadow-lg leading-none">
+                        {c.eventAbbreviation}
+                      </p>
+                      <p class="text-white/70 font-semibold text-sm mt-1.5 tracking-wide">
+                        {getYear(c.date)}
+                      </p>
+                    </div>
+                  )}
+
+                  <span
+                    class={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${theme.badgeClass} text-white text-xs font-semibold px-2.5 py-1 rounded-full`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="22" />
+                    </svg>
+                    {c.role}
+                  </span>
+                </div>
+
+                <div class="p-5 flex flex-col flex-grow">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-400/30 px-2 py-0.5 rounded">
+                      {c.modality}
+                    </span>
+                    <span class="text-xs text-gray-500">{c.date}</span>
+                  </div>
+
+                  <h3 class="text-base font-bold text-white leading-snug mb-2 line-clamp-2">
+                    {c.talkTitle}
+                  </h3>
+
+                  <p class="text-sm text-gray-400 mb-1 line-clamp-1">
+                    {c.event}
+                  </p>
+                  <p class="text-xs text-gray-500 flex items-center gap-1.5 mb-3 line-clamp-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="shrink-0"
+                    >
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <span class="truncate">{c.location}</span>
+                  </p>
+
+                  {c.tags && c.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                      {c.tags.slice(0, 3).map((tag) => (
+                        <span class="text-xs bg-slate-700 text-zinc-200 px-2 py-0.5 rounded">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div class="flex items-center gap-2 pt-3 border-t border-gray-700/50 mt-auto flex-wrap">
+                    {c.certificateUrl && (
+                      <a
+                        href={c.certificateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-300 hover:text-blue-400 bg-gray-700/50 hover:bg-gray-700 px-2 py-1 rounded transition-all duration-200"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <circle cx="15" cy="15" r="3" />
+                          <path d="M13.4 10.5a5 5 0 0 0-5.9 5.9" />
+                          <path d="M10 19H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5" />
+                          <path d="m13 17 2 2 4-4" />
+                        </svg>
+                        Certificado
+                      </a>
+                    )}
+                    {c.eventUrl && (
+                      <a
+                        href={c.eventUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                      >
+                        <span>Evento</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                          <polyline points="15 3 21 3 21 9" />
+                          <line x1="10" y1="14" x2="21" y2="3" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      )
+    }
+
+    {
+      hasMore && (
+        <div id="hiddenConferences" class="hidden mt-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {hiddenCompact.map((c) => {
+              const theme = getCardTheme(c);
+              return (
+                <article class="conference-card relative bg-gray-800 rounded-lg overflow-hidden z-[1] flex flex-col">
+                  <div
+                    class={`${theme.bgClass} relative h-40 flex items-center justify-center overflow-hidden`}
+                    style={theme.bgStyle}
+                  >
+                    <div
+                      class="absolute inset-0 opacity-80"
+                      style={theme.patternStyle}
+                    />
+                    <div
+                      class="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl"
+                      style={theme.glowStyle}
+                    />
+
+                    <div class="relative text-center px-4">
+                      <p class="text-white font-black text-3xl md:text-4xl tracking-tight drop-shadow-lg leading-none">
+                        {c.eventAbbreviation}
+                      </p>
+                      <p class="text-white/70 font-semibold text-sm mt-1.5 tracking-wide">
+                        {getYear(c.date)}
+                      </p>
+                    </div>
+
+                    <span
+                      class={`absolute top-3 left-3 inline-flex items-center gap-1.5 ${theme.badgeClass} text-white text-xs font-semibold px-2.5 py-1 rounded-full`}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                        <line x1="12" y1="19" x2="12" y2="22" />
+                      </svg>
+                      {c.role}
+                    </span>
+                  </div>
+
+                  <div class="p-5 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-400/30 px-2 py-0.5 rounded">
+                        {c.modality}
+                      </span>
+                      <span class="text-xs text-gray-500">{c.date}</span>
+                    </div>
+
+                    <h3 class="text-base font-bold text-white leading-snug mb-2 line-clamp-2">
+                      {c.talkTitle}
+                    </h3>
+
+                    <p class="text-sm text-gray-400 mb-1 line-clamp-1">
+                      {c.event}
+                    </p>
+                    <p class="text-xs text-gray-500 flex items-center gap-1.5 mb-3 line-clamp-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="shrink-0"
+                      >
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      <span class="truncate">{c.location}</span>
+                    </p>
+
+                    {c.tags && c.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-1.5 mb-4">
+                        {c.tags.slice(0, 3).map((tag) => (
+                          <span class="text-xs bg-slate-700 text-zinc-200 px-2 py-0.5 rounded">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div class="flex items-center gap-2 pt-3 border-t border-gray-700/50 mt-auto flex-wrap">
+                      {c.certificateUrl && (
+                        <a
+                          href={c.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1 text-[11px] font-medium text-gray-300 hover:text-blue-400 bg-gray-700/50 hover:bg-gray-700 px-2 py-1 rounded transition-all duration-200"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <circle cx="15" cy="15" r="3" />
+                            <path d="M13.4 10.5a5 5 0 0 0-5.9 5.9" />
+                            <path d="M10 19H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5" />
+                            <path d="m13 17 2 2 4-4" />
+                          </svg>
+                          Certificado
+                        </a>
+                      )}
+                      {c.eventUrl && (
+                        <a
+                          href={c.eventUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                        >
+                          <span>Evento</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      hasMore && (
+        <div class="flex justify-center mt-8">
+          <button
+            id="viewMoreConferencesBtn"
+            class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center justify-center"
+          >
+            Ver más conferencias
+          </button>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .conference-card {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .conference-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa, transparent);
+    transition: width 0.3s ease-in-out;
+    box-shadow: 0 0 50px 0 rgba(59, 130, 246, 0.4);
+    border-radius: 50%;
+  }
+
+  .conference-card:hover::after {
+    width: 200%;
+  }
+
+  .conference-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.1);
+  }
+</style>
+
+<script>
+  function setupViewMoreConferences() {
+    const btn = document.getElementById("viewMoreConferencesBtn");
+    const hidden = document.getElementById("hiddenConferences");
+
+    if (btn && hidden) {
+      btn.addEventListener("click", () => {
+        hidden.classList.remove("hidden");
+        (hidden as HTMLElement).style.opacity = "0";
+        requestAnimationFrame(() => {
+          (hidden as HTMLElement).style.transition = "opacity 0.5s ease-in-out";
+          (hidden as HTMLElement).style.opacity = "1";
+        });
+
+        (btn as HTMLElement).style.transition = "opacity 0.3s ease-in-out";
+        (btn as HTMLElement).style.opacity = "0";
+        setTimeout(() => {
+          (btn as HTMLElement).style.display = "none";
+        }, 300);
+      });
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", setupViewMoreConferences);
+</script>
