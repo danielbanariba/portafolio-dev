@@ -1,15 +1,31 @@
 export const projects = [
   // {
-  //   title: "Dagster Watchdog",
-  //   imageUrl: "project/dagster-watchdog.png",
+  //   title: "MCP Servers Suite",
+  //   imageUrl: "project/metal-archive.png",
   //   description:
-  //     "Sistema autónomo de monitoreo para pipelines Dagster en producción. Detecta runs pegados comparando contra baselines aprendidos, cancela y re-lanza automáticamente, y envía alertas a Telegram. Corre como servicio systemd 24/7.",
+  //     "Suite de servidores MCP (Model Context Protocol) que habilitan operación completa desde Claude Code: (1) mcp-dagster — materialización de assets y consulta de runs/logs/errores en 3 entornos vía GraphQL, (2) mcp-db — allowlist de queries parametrizadas con Jinja sobre SQL Server y PostgreSQL, (3) mcp-api-check — verificación de health endpoints, (4) outlook-todoist-mcp — sincronización Outlook → Todoist vía Microsoft Graph. Permite un flujo end-to-end de CI/observabilidad operado desde IA.",
+  //   technologies: [
+  //     "Python",
+  //     "MCP Protocol",
+  //     "Dagster GraphQL",
+  //     "SQL Server",
+  //     "PostgreSQL",
+  //     "Jinja2",
+  //     "Microsoft Graph",
+  //     "Claude Code",
+  //   ],
+  // },
+  // {
+  //   title: "Dagster Watchdog",
+  //   imageUrl: "project/metal-archive.png",
+  //   description:
+  //     "Sistema autónomo de monitoreo para pipelines Dagster en producción. Consulta la API GraphQL cada 5 minutos, detecta runs pegados comparando contra baselines aprendidos de 100+ ejecuciones históricas por tipo de sensor, cancela y re-lanza automáticamente con tags de retry, y notifica vía Telegram. Desplegado como servicio systemd 24/7.",
   //   technologies: [
   //     "Python",
   //     "Dagster GraphQL",
   //     "Telegram Bot",
   //     "systemd",
-  //     "OpenClaw",
+  //     "asyncio",
   //   ],
   // },
   // {
@@ -21,15 +37,31 @@ export const projects = [
   //   documentacionUrl: "/inventario-personal",
   //   githubUrl: "https://github.com/danielbanariba/inventario_personal",
   // },
+  // {
+  //   title: "Portfolio Self-Hosted + CI/CD",
+  //   imageUrl: "project/metal-archive.png",
+  //   description:
+  //     "Portfolio full-stack desplegado en hardware propio con Cloudflare Tunnel (sin IP estática ni puertos abiertos), servicios systemd para auto-arranque, y webhook con validación HMAC que ejecuta git pull + restart automático en cada push a main.",
+  //   technologies: [
+  //     "Python",
+  //     "Reflex",
+  //     "Cloudflare Tunnel",
+  //     "systemd",
+  //     "GitHub Webhooks",
+  //     "Linux",
+  //   ],
+  //   githubUrl: "https://github.com/danielbanariba/links-bio",
+  //   projectUrl: "https://danielbanariba.com",
+  // },
   {
     title: "Metal Archive",
     imageUrl: "project/metal-archive.png",
     description:
-      "Catálogo de álbumes de los videoas del canal con sincronización automática desde YouTube, filtrado por género/país/año y descubrimiento aleatorio.",
+      "Catálogo de álbumes del canal con sincronización automática desde YouTube, filtrado por género/país/año y descubrimiento aleatorio. Backend con estado reactivo en tiempo real vía WebSocket.",
     technologies: ["Python", "Reflex", "SQLite", "YouTube API"],
     documentacionUrl: "/metal-archive",
     githubUrl: "https://github.com/danielbanariba/links-bio",
-    projectUrl: "https://links-bio-silver-wood.reflex.run/metal-archive",
+    projectUrl: "https://danielbanariba.com/metal-archive",
   },
   {
     title: "Sistema Contable",

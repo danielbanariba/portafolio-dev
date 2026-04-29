@@ -3,6 +3,7 @@ export interface Skill {
   icon: string;
   category:
     | "Backend"
+    | "IA & Automatización con IA"
     | "Frameworks"
     // | "Librerias"
     | "Gestores de Bases de Datos"
@@ -17,6 +18,48 @@ export const skills: Skill[] = [
   // { name: "Typescript", icon: "/icon/skills/typescript.svg", category: "Backend" },
   // { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
   // { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
+
+  //---------------------------------------------IA & Automatización con IA-------------------------
+  // {
+  //   name: "Claude Code",
+  //   icon: "/icon/skills/claude.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "Codex CLI",
+  //   icon: "/icon/skills/claude.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "OpenCode",
+  //   icon: "/icon/skills/claude.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "Cursor",
+  //   icon: "/icon/skills/cursor.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "MCP",
+  //   icon: "/icon/skills/mcp.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "Agent Skills",
+  //   icon: "/icon/skills/claude.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "Agentic AI",
+  //   icon: "/icon/skills/claude.svg",
+  //   category: "IA & Automatización con IA",
+  // },
+  // {
+  //   name: "Prompt Engineering",
+  //   icon: "/icon/skills/claude.svg",
+  //   category: "IA & Automatización con IA",
+  // },
 
   //---------------------------------------------Frameworks-------------------------------------------
   { name: "Astro", icon: "/icon/skills/astro.svg", category: "Frameworks" },
