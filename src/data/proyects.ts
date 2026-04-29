@@ -54,6 +54,23 @@ export const projects = [
   //   projectUrl: "https://danielbanariba.com",
   // },
   {
+    title: "Navidrome — Open Source",
+    imageUrl: "project/navidrome/banner.jpg",
+    description:
+      "Contribuciones mergeadas al servidor de streaming musical self-hosted Navidrome (20.7K ⭐). Frontend en React, fixes de accesibilidad y nuevas features.",
+    technologies: [
+      "React",
+      "react-admin",
+      "JavaScript",
+      "Accesibilidad",
+      "Open Source",
+    ],
+    documentacionUrl: "/navidrome",
+    githubUrl:
+      "https://github.com/navidrome/navidrome/pulls?q=is%3Apr+author%3Adanielbanariba+is%3Amerged",
+    projectUrl: "https://github.com/navidrome/navidrome",
+  },
+  {
     title: "Metal Archive",
     imageUrl: "project/metal-archive.png",
     description:
@@ -116,12 +133,12 @@ export const projects = [
   //   githubUrl: "https://github.com/danielbanariba/arsenal-de-odio-web",
   //   projectUrl: "https://arsenaldeodio.reflex.run/",
   // },
-  {
-    title: "SoundCloud Clone",
-    imageUrl: "project/soundcloud.jpg",
-    description:
-      "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
-    technologies: ["OracleSQL", "Python", "FastAPI", "HTML", "CSS"],
-    githubUrl: "https://github.com/danielbanariba/soundclound",
-  },
+  // {
+  //   title: "SoundCloud Clone",
+  //   imageUrl: "project/soundcloud.jpg",
+  //   description:
+  //     "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
+  //   technologies: ["OracleSQL", "Python", "FastAPI", "HTML", "CSS"],
+  //   githubUrl: "https://github.com/danielbanariba/soundclound",
+  // },
 ];
