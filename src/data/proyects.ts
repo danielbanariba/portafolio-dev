@@ -74,8 +74,16 @@ export const projects = [
     title: "Metal Archive",
     imageUrl: "project/metal-archive.png",
     description:
-      "Catálogo de álbumes del canal con sincronización automática desde YouTube, filtrado por género/país/año y descubrimiento aleatorio. Backend con estado reactivo en tiempo real vía WebSocket.",
-    technologies: ["Python", "Reflex", "SQLite", "YouTube API"],
+      "Catálogo de 1300+ álbumes de metal underground sincronizado automáticamente desde YouTube. Migrado de Reflex a Astro SSG: el sitio se genera estático desde SQLite y carga como HTML completo en ~0.2s (sin hydration por WebSocket), con islands de Preact para el reproductor de YouTube y la búsqueda. Theming dinámico por color de portada (extraído en build), páginas de banda y un microservicio FastAPI para los formularios.",
+    technologies: [
+      "Astro",
+      "Preact",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "SQLite",
+      "YouTube API",
+    ],
     documentacionUrl: "/metal-archive",
     githubUrl: "https://github.com/danielbanariba/links-bio",
     projectUrl: "https://danielbanariba.com/metal-archive",

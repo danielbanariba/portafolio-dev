@@ -3,57 +3,68 @@ layout: "/src/layouts/MarkdownLayout.astro"
 title: Metal Archive - Catalogo de Metal Underground
 ---
 
-Catalogo web de albums de metal underground vinculado a un canal de YouTube. Sincroniza automaticamente los videos del canal, enriquece los datos con artwork de alta calidad, normaliza generos y paises, y ofrece una interfaz de busqueda y descubrimiento para los usuarios.
+Catalogo web de 1300+ albums de metal underground vinculado a un canal de YouTube. Sincroniza automaticamente los videos del canal, enriquece los datos con artwork de alta calidad, normaliza generos y paises, y ofrece busqueda, descubrimiento y un reproductor integrado.
 
-Construido con Reflex (Python full-stack) y desplegado en una arquitectura dual Vercel + Reflex Cloud.
+Originalmente construido con Reflex (Python full-stack). **Migrado a Astro SSG** tras un problema de rendimiento de fondo: Reflex renderiza todo via WebSocket, asi que cada pagina bajaba ~1MB de JS + 687KB de CSS y abria un WebSocket para hidratar el estado antes de pintar un solo album. Como el catalogo es contenido estatico (igual para todos, cambia cada 12h), la herramienta correcta era un sitio estatico, no una app con estado en tiempo real.
 
-## Arquitectura General
+## Resultado de la migracion
+
+| Metrica                 | Reflex (antes)                          | Astro (ahora)                |
+| ----------------------- | --------------------------------------- | ---------------------------- |
+| Carga de pagina         | 1MB JS + 687KB CSS + hydration ~967ms   | HTML completo en ~0.2s       |
+| JS en paginas de lectura| ~1MB (socket.io + state engine)         | 0 bytes                      |
+| Contenido               | shell vacio que hidrataba por WebSocket | renderizado en el HTML       |
+| Build catalogo completo | n/a (todo en runtime)                   | 1679 paginas en ~3.5s        |
+
+---
+
+## Arquitectura (Astro hibrido)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                      METAL ARCHIVE                              │
+│                      METAL ARCHIVE (Astro)                      │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌──────────────────────────────────────────────────────┐       │
-│  │  FRONTEND (Reflex Components)                        │       │
+│  │  STATIC SSG (Astro, 0 JS por defecto)               │       │
 │  │                                                      │       │
-│  │  9 paginas con rutas dinamicas                       │       │
-│  │  Landing ── Browse ── Album Detail                   │       │
-│  │  Genre/[genre] ── Country/[country] ── Year/[year]   │       │
-│  │  Submit ── Promo ── Newsletter                       │       │
+│  │  Bio en /  ──  Archive en /metal-archive/*          │       │
+│  │  album/[id] (1298) ── band/[band] (92)              │       │
+│  │  genre/[g] ── country/[c] ── year/[y] ── browse     │       │
+│  │  submit ── promo ── newsletter                       │       │
 │  │                                                      │       │
-│  │  Estado via WebSocket (MetalArchiveState)            │       │
+│  │  Pre-renderizado desde SQLite en build time          │       │
 │  └────────────────────┬─────────────────────────────────┘       │
 │                       │                                         │
 │  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  BACKEND (Reflex State + SQLModel)                   │       │
+│  │  ISLANDS (Preact, hidratan solo donde hay interaccion)│      │
 │  │                                                      │       │
-│  │  MetalArchiveState ── Busqueda, filtros, paginacion  │       │
-│  │  FormState ────────── Submissions, newsletter, promo │       │
+│  │  Player.tsx ── YouTube IFrame, now-playing,          │       │
+│  │                autoplay sincronico, mini-player       │       │
+│  │  Search.tsx ── filtro/orden/paginacion client-side    │       │
+│  │                sobre un indice JSON (~50KB gz)         │       │
 │  └────────────────────┬─────────────────────────────────┘       │
 │                       │                                         │
 │  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  DATA LAYER                                          │       │
+│  │  DATA (build time)                                   │       │
 │  │                                                      │       │
-│  │  SQLite (SQLModel + Alembic migrations)              │       │
-│  │  ┌────────┐ ┌───────┐ ┌─────────────┐                │       │
-│  │  │ Albums │ │ Tracks│ │ SimilarBands│                │       │
-│  │  └───┬────┘ └───┬───┘ └──────┬──────┘                │       │
-│  │      │          │             │                      │       │
-│  │      └──────────┴─────────────┘                      │       │
-│  │ FK: album_id (sin relationship(), joins manuales)    │       │
-│  │                                                      │       │
-│  │  ┌──────────────┐ ┌────────────┐ ┌────────────────┐  │       │
-│  │  │ Submissions  │ │ Newsletter │ │ ContactMessages│  │       │
-│  │  └──────────────┘ └────────────┘ └────────────────┘  │       │
+│  │  better-sqlite3 (read-only) sobre reflex.db          │       │
+│  │  Albums · Tracks · SimilarBands · Submissions ·      │       │
+│  │  Newsletter · ContactMessages                        │       │
 │  └──────────────────────────────────────────────────────┘       │
 │                                                                 │
 │  ┌──────────────────────────────────────────────────────┐       │
-│  │  BACKGROUND SYNC (daemon thread, cada 12h)           │       │
+│  │  FORMS (FastAPI en el host, no serverless)           │       │
 │  │                                                      │       │
-│  │  YouTube API ──► Parse ──► Upsert DB                 │       │
-│  │       ──► Normalizar generos/paises                  │       │
-│  │       ──► Enriquecer artwork (DeathGrind + fallback) │       │
+│  │  /api/metal-archive/{submit,promo,newsletter,contact}│       │
+│  │  Escribe a la misma SQLite + Gmail SMTP              │       │
+│  │  (serverless no puede escribir la DB local)          │       │
+│  └──────────────────────────────────────────────────────┘       │
+│                                                                 │
+│  ┌──────────────────────────────────────────────────────┐       │
+│  │  SYNC + AUTO-DEPLOY (daemon, cada 12h)               │       │
+│  │                                                      │       │
+│  │  YouTube API ─► DB ─► npm run build ─► vercel deploy │       │
 │  └──────────────────────────────────────────────────────┘       │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
@@ -61,233 +72,71 @@ Construido con Reflex (Python full-stack) y desplegado en una arquitectura dual 
 
 ---
 
-## Pipeline de Sincronizacion
+## Decisiones tecnicas clave
 
-Un daemon thread sincroniza el canal de YouTube con la base de datos cada 12 horas en 3 fases:
+**SSG puro, no ISR.** El catalogo son ~1500 paginas. Un spike midio que generarlas todas tarda ~2.5s, asi que ISR/on-demand solo agregaria complejidad (cache, cold starts) sin beneficio a esta escala. Build completo bajo 5s.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  DAEMON THREAD (background_sync.py)                             │
-│  Inicio: 60s despues del boot (0s si DB vacia)                  │
-│  Intervalo: 12 horas                                            │
-│                                                                 │
-│  ┌────────────────────────────────────────────────────────┐     │
-│  │  FASE 1: YouTube Sync (sync_youtube_to_db.py)          │     │
-│  │                                                        │     │
-│  │  YouTube API v3 (OAuth2, rotacion de 7 credenciales)   │     │
-│  │         │                                              │     │
-│  │         ▼                                              │     │
-│  │  Obtener uploads playlist del canal                    │     │
-│  │         │                                              │     │
-│  │         ▼                                              │     │
-│  │  Paginar videos (maxResults=50)                        │     │
-│  │  + enriquecer con snippet/contentDetails/statistics    │     │
-│  │         │                                              │     │
-│  │         ▼                                              │     │
-│  │  Parsear cada video:                                   │     │
-│  │                                                        │     │
-│  │  Titulo: "[🇭🇳] Band - Album (2024) . [Genre] <FULL>"   │     │
-│  │           │                                            │     │
-│  │           ▼                                            │     │
-│  │  parse_title_metadata() ──► banda, album, año,         │     │
-│  │                              genero, pais, tipo        │     │
-│  │                                                        │     │
-│  │  Descripcion: linea por linea                          │     │
-│  │           │                                            │     │
-│  │           ▼                                            │     │
-│  │  parse_description_metadata() ──►                      │     │
-│  │    Tracks:  "[00:08] > Track Name"                     │     │
-│  │    Links:   "🟢 Spotify: https://..."                  │     │
-│  │    Metadata: "Country: Honduras"                       │     │
-│  │                                                        │     │
-│  │  Upsert por youtube_video_id (batch commit cada 50)    │     │
-│  │  Top 10 por views ──► featured = True                  │     │
-│  └────────────────────────┬───────────────────────────────┘     │
-│                           │                                     │
-│  ┌────────────────────────▼───────────────────────────────┐     │
-│  │  FASE 2: Normalizacion (normalize_db.py)               │     │
-│  │                                                        │     │
-│  │  Generos:                                              │     │
-│  │  - Quitar prefijos numericos "(9)Metal" ──► "Metal"    │     │
-│  │  - Unificar separadores (,|;) ──► "/"                  │     │
-│  │  - Corregir typos: "grincore" ──► "Grindcore"          │     │
-│  │  - Merge inversos: "Death/Black" vs "Black/Death"      │     │
-│  │                                                        │     │
-│  │  Paises:                                               │     │
-│  │  - Ingles ──► Español (120+ mappings)                  │     │
-│  │  - "United States" ──► "Estados Unidos"                │     │
-│  │  - Corregir typos: "mexic" ──► "Mexico"                │     │
-│  └────────────────────────┬───────────────────────────────┘     │
-│                           │                                     │
-│  ┌────────────────────────▼───────────────────────────────┐     │
-│  │  FASE 3: Artwork Enrichment (batch de 50)              │     │
-│  │                                                        │     │
-│  │  Albums con thumbnail de YouTube                       │     │
-│  │  (ytimg.com o vacio)                                   │     │
-│  │         │                                              │     │
-│  │         ▼                                              │     │
-│  │  ┌─────────────────────────────────┐                   │     │
-│  │  │ 1. DeathGrind.club API          │                   │     │
-│  │  │    Login ──► Search banda+album │                   │     │
-│  │  │    3 niveles de matching:       │                   │     │
-│  │  │    Exacto > Parcial > Solo banda│                   │     │
-│  │  │    CDN: cdn.deathgrind.club     │                   │     │
-│  │  └──────────┬──────────────────────┘                   │     │
-│  │             │ Si no encuentra                          │     │
-│  │             ▼                                          │     │
-│  │  ┌─────────────────────────────────┐                   │     │
-│  │  │ 2. Metal Archives API           │                   │     │
-│  │  │    Busqueda avanzada de albums  │                   │     │
-│  │  │    Extraer URL de portada       │                   │     │
-│  │  └──────────┬──────────────────────┘                   │     │
-│  │             │ Si no encuentra                          │     │
-│  │             ▼                                          │     │
-│  │  ┌─────────────────────────────────┐                   │     │
-│  │  │ 3. YouTube HD fallback          │                   │     │
-│  │  │    Upgrade a maxresdefault      │                   │     │
-│  │  └─────────────────────────────────┘                   │     │
-│  └────────────────────────────────────────────────────────┘     │
-│                                                                 │
-│  Logica incremental vs full:                                    │
-│  - DB < 100 albums ──► siempre full sync                        │
-│  - DB >= 100 ──► incremental (solo nuevos)                      │
-│  - Cada 4to ciclo ──► full sync para llenar gaps                │
-│                                                                 │
-│  Credenciales YouTube: rotacion automatica en quotaExceeded     │
-│  (hasta 7 sets de client_id/secret/refresh_token)               │
-└─────────────────────────────────────────────────────────────────┘
-```
+**Build local + `vercel deploy --prebuilt`.** El build necesita `reflex.db`, que vive solo en el host (gitignored). En vez de subir la DB a la nube, el build corre localmente (donde estan los datos) y se publica el output pre-construido a Vercel. Cero infra nueva.
+
+**Theming dinamico en build time.** Cada pagina de album extrae el color dominante de su portada con node-vibrant y lo hornea como variable CSS (`--album-color`) — el fondo "se tine" del color del album sin JS en runtime. Las portadas `.webp` (que node-vibrant/Jimp no decodifica) se procesan con `sharp`; la extraccion respeta rate-limits del CDN con backoff. Resultado: 1298/1298 portadas con color real, cacheadas para builds incrementales.
+
+**Autoplay sin perder el user-gesture.** El reproductor es un island de Preact que controla el IFrame Player de YouTube. El click en una cancion llama `seekTo` + `playVideo` de forma sincronica en el handler (sin round-trip a un backend), preservando el gesto del usuario que exigen las politicas de autoplay del navegador. Auto-avance por timestamp: como cada album es un solo video, el progreso compara contra el inicio de la siguiente pista y avanza el nombre/resaltado al cruzar cada limite.
+
+**Solo lo interactivo lleva JS.** Astro envia 0 JS por defecto. Los unicos islands son el reproductor (en paginas de album) y el buscador (en browse). Todo lo demas — home, facetas, paginas de banda — es HTML estatico puro.
 
 ---
 
-## Sistema de Busqueda y Filtrado
+## Pipeline de Sincronizacion (sin cambios desde Reflex)
+
+Un daemon thread sincroniza el canal de YouTube con la base de datos cada 12 horas:
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│  MetalArchiveState (rx.State)                                    │
-│                                                                  │
-│  LANDING PAGE                                                    │
-│  ┌──────────────────────────────────────────────────────┐        │
-│  │  featured_albums ──► Top 10 por views (featured=True)│        │
-│  │  latest_albums ────► 12 mas recientes por upload_date│        │
-│  │  genre_counts ─────► GROUP BY genre + COUNT          │        │
-│  │  country_counts ──► GROUP BY country + COUNT         │        │
-│  │  year_counts ──────► GROUP BY year + COUNT (5+ albums)│       │
-│  └──────────────────────────────────────────────────────┘        │
-│                                                                  │
-│  LIVE SEARCH (cada keystroke)                                    │
-│  ┌──────────────────────────────────────────────────────┐        │
-│  │  Input >= 2 caracteres                               │        │
-│  │         │                                            │        │
-│  │         ▼                                            │        │
-│  │  ILIKE %query% en:                                   │        │
-│  │  band_name, album_title, genre                       │        │
-│  │         │                                            │        │
-│  │         ▼                                            │        │
-│  │  Top 8 resultados por views DESC                     │        │
-│  │  Dropdown con live_search_open = True                │        │
-│  └──────────────────────────────────────────────────────┘        │
-│                                                                  │
-│  BROWSE (filtros combinables)                                    │
-│  ┌──────────────────────────────────────────────────────┐        │
-│  │  Filtros:                                            │        │
-│  │  search_query + filter_genre + filter_country        │        │
-│  │  + filter_year + filter_release_type                 │        │
-│  │                                                      │        │
-│  │  Orden:                                              │        │
-│  │  newest | oldest | az | za | views                   │        │
-│  │                                                      │        │
-│  │  Paginacion:                                         │        │
-│  │  offset + limit (12) ──► fetch limit+1 para has_more │        │
-│  │  "Cargar mas" appends a lista existente              │        │
-│  │                                                      │        │
-│  │  URL-driven: /browse?genre=Death+Metal               │        │
-│  │  Random filters: genero o pais aleatorio             │        │
-│  └──────────────────────────────────────────────────────┘        │
-│                                                                  │
-│  ALBUM DETAIL (/album/[id])                                      │
-│  ┌──────────────────────────────────────────────────────┐        │
-│  │  Album + Tracks (ordenados por track_number)         │        │
-│  │  + SimilarBands                                      │        │
-│  │  + Albums similares (mismo genero, top 4 por views)  │        │
-│  │  + YouTube embed + links de streaming                │        │
-│  └──────────────────────────────────────────────────────┘        │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
+YouTube Data API v3 (API Key, sin OAuth)
+        │
+        ▼
+Uploads playlist ─► paginar videos + snippet/contentDetails/statistics
+        │
+        ▼
+parse_title_metadata()       ─► banda, album, año, genero, pais, tipo
+parse_description_metadata() ─► tracklist, links de streaming, metadata
+   (soporta 2 formatos: "[00:08] > Track" y el legacy "0 - Track (00:00)")
+        │
+        ▼
+Upsert por youtube_video_id (batch cada 50)
+Cleanup de huerfanos (albums cuyo video se elimino) con umbral de seguridad
+        │
+        ▼
+Normalizar generos/paises ─► Enriquecer artwork (DeathGrind/Metal Archives)
+        │
+        ▼
+npm run build ─► vercel deploy --prod --prebuilt   (auto-deploy)
 ```
+
+La autenticacion paso de OAuth (refresh tokens que expiraban cada pocos meses) a una **API Key** que no expira — solo lee datos publicos del canal, asi que OAuth era innecesario.
 
 ---
 
-## Modelo de Datos
+## Funcionalidades
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  SQLite (SQLModel + Alembic)                                    │
-│                                                                 │
-│  albums ────────────────────────────────────────────────────────│
-│  │ band_name (idx)        │ album_artwork_url                │  │
-│  │ album_title (idx)      │ youtube_url                      │  │
-│  │ year (idx)             │ spotify_url, bandcamp_url        │  │
-│  │ country (idx)          │ apple_music_url                  │  │
-│  │ genre (idx)            │ metal_archives_url               │  │
-│  │ release_type (idx)     │ facebook_url, instagram_url      │  │
-│  │ youtube_video_id (uniq)│ description                      │  │
-│  │ views (idx)            │ duration_minutes                 │  │
-│  │ featured (idx)         │ upload_date (idx)                │  │
-│  │                                                           │  │
-│  │  FK album_id                                              │  │
-│  │  ├──► tracks (track_number, track_name, timestamp)        │  │
-│  │  └──► similar_bands (similar_band_name)                   │  │
-│  │                                                           │  │
-│  submissions ── band_name, email, genre, country, status     │  │
-│  newsletter_subscribers ── email (uniq), active              │  │
-│  contact_messages ── name, email, company, message           │  │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Despliegue
-
-Arquitectura dual para separar el sitio estatico del backend con estado:
-
-```
-┌──────────────────┐         ┌──────────────────────────┐
-│     Vercel       │         │     Reflex Cloud         │
-│                  │         │                          │
-│  Portfolio       │  proxy  │  Metal Archive           │
-│  estatico        │────────►│  (Python + WebSocket)    │
-│                  │         │                          │
-│  /metal-archive/*│ ──────► │  /metal-archive/*        │
-│  (vercel.json    │         │                          │
-│   redirects)     │         │  SQLite + Daemon thread  │
-│                  │         │  (sync cada 12h)         │
-└──────────────────┘         └──────────────────────────┘
-```
-
-Alternativa local: systemd timer (`sync_web.timer`) ejecuta la sincronizacion 2 veces al dia (06:00 y 18:00).
-
----
-
-## Formularios
-
-**Submission de bandas** (`/metal-archive/submit`): Las bandas envian su musica para ser considerada en el canal. Se guarda en DB con status "pendiente".
-
-**Promo** (`/metal-archive/promo`): Formulario extendido con hasta 5 links adicionales y selector de genero custom. Envia notificacion por email via Gmail SMTP.
-
-**Newsletter** (`/metal-archive/newsletter`): Registro de email para actualizaciones. Lista de suscriptores almacenada en DB.
+- **Reproductor integrado** con tracklist navegable, now-playing bar, mini-player flotante y estados de carga/error.
+- **Theming por album** — el color de cada portada tine la pagina.
+- **Paginas de banda** (estilo Navidrome) — el nombre de banda es clickeable cuando tiene 2+ trabajos y lleva a su discografia.
+- **Live Recordings** separadas del catalogo oficial (grabaciones personales en vivo), con portada propia.
+- **Busqueda client-side** sobre un indice JSON ligero (sin llamadas al servidor).
+- **Descubrimiento**: Editor's Picks, Hidden Gems, showcases por genero, rotacion por pais, boton "Surprise Me".
+- **Formularios** (submit/promo/newsletter/contact) via FastAPI con notificacion por Gmail SMTP.
 
 ---
 
 ## Stack Tecnologico
 
-| Categoria     | Tecnologias                                         |
-| ------------- | --------------------------------------------------- |
-| Framework     | Reflex 0.8.26 (Python full-stack, WebSocket state)  |
-| Base de datos | SQLite via SQLModel + Alembic migrations            |
-| APIs externas | YouTube Data API v3 (OAuth2, 7 credenciales)        |
-| Artwork       | DeathGrind.club API, Metal Archives API, YouTube HD |
-| Email         | Gmail SMTP (notificaciones de promo)                |
-| Deploy        | Vercel (static proxy) + Reflex Cloud (backend)      |
-| Sync          | Daemon thread (12h) o systemd timer (2x/dia)        |
+| Categoria     | Tecnologias                                              |
+| ------------- | ------------------------------------------------------- |
+| Frontend      | Astro 6 (SSG) + islands de Preact + TypeScript          |
+| Estilos       | CSS propio (design system "Xerox Underground")          |
+| Datos (build) | better-sqlite3 sobre SQLite (read-only)                 |
+| Theming       | node-vibrant + sharp (extraccion de color en build)     |
+| Formularios   | FastAPI (host) + Gmail SMTP                              |
+| Sync          | Python daemon (12h) — YouTube Data API v3 (API Key)     |
+| Artwork       | DeathGrind.club API, Metal Archives API, YouTube HD     |
+| Deploy        | Build local + Vercel (`--prebuilt`) + Cloudflare Tunnel |
