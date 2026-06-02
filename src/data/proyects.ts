@@ -37,27 +37,11 @@ export const projects = [
   //   documentacionUrl: "/inventario-personal",
   //   githubUrl: "https://github.com/danielbanariba/inventario_personal",
   // },
-  // {
-  //   title: "Portfolio Self-Hosted + CI/CD",
-  //   imageUrl: "project/metal-archive.png",
-  //   description:
-  //     "Portfolio full-stack desplegado en hardware propio con Cloudflare Tunnel (sin IP estática ni puertos abiertos), servicios systemd para auto-arranque, y webhook con validación HMAC que ejecuta git pull + restart automático en cada push a main.",
-  //   technologies: [
-  //     "Python",
-  //     "Reflex",
-  //     "Cloudflare Tunnel",
-  //     "systemd",
-  //     "GitHub Webhooks",
-  //     "Linux",
-  //   ],
-  //   githubUrl: "https://github.com/danielbanariba/links-bio",
-  //   projectUrl: "https://danielbanariba.com",
-  // },
   {
     title: "Navidrome — Open Source",
     imageUrl: "project/navidrome/banner.jpg",
     description:
-      "Contribuciones mergeadas al servidor de streaming musical self-hosted Navidrome (20.7K ⭐). Frontend en React, fixes de accesibilidad y nuevas features.",
+      "Contribuciones mergeadas al servidor de streaming musical Navidrome. Frontend en React, fixes de accesibilidad y nuevas features.",
     technologies: [
       "React",
       "react-admin",
@@ -74,7 +58,7 @@ export const projects = [
     title: "Metal Archive",
     imageUrl: "project/metal-archive.png",
     description:
-      "Catálogo de 1300+ álbumes de metal underground sincronizado automáticamente desde YouTube. Migrado de Reflex a Astro SSG: el sitio se genera estático desde SQLite y carga como HTML completo en ~0.2s (sin hydration por WebSocket), con islands de Preact para el reproductor de YouTube y la búsqueda. Theming dinámico por color de portada (extraído en build), páginas de banda y un microservicio FastAPI para los formularios.",
+      "Catálogo de álbumes de metal sincronizado automáticamente desde YouTube. Migrado de Reflex a Astro: el sitio se genera estático desde SQLite y carga como HTML completo, con reproductor de YouTube y búsqueda. Páginas de banda y un microservicio FastAPI para los formularios.",
     technologies: [
       "Astro",
       "Preact",
@@ -140,13 +124,5 @@ export const projects = [
   //   technologies: ["Python", "Reflex", "Javascript"],
   //   githubUrl: "https://github.com/danielbanariba/arsenal-de-odio-web",
   //   projectUrl: "https://arsenaldeodio.reflex.run/",
-  // },
-  // {
-  //   title: "SoundCloud Clone",
-  //   imageUrl: "project/soundcloud.jpg",
-  //   description:
-  //     "Analizar y clonar la funcionalidad de SoundCloud, creación de la base de datos, backend y frontend.",
-  //   technologies: ["OracleSQL", "Python", "FastAPI", "HTML", "CSS"],
-  //   githubUrl: "https://github.com/danielbanariba/soundclound",
   // },
 ];

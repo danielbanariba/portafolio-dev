@@ -116,9 +116,8 @@ export const experiences: Experience[] = [
         points: [
           "Cree un servidor proxy con Docker que centraliza el acceso VPN, reduciendo la gestión de 30+ equipos a 1 servidor y eliminando configuraciones individuales.",
           "Automaticé proceso de construcción con script bash, reduciendo tiempo de setup de 30 minutos a 3 minutos con validación automática de dependencias.",
-          "Solucioné problemas críticos de DNS y conflictos Docker Engine.",
           "Implementé sistema de whitelist con Squid ACLs y configuré privilegios de red avanzados para operación segura de OpenVPN en contenedores.",
-          "Creé documentación técnica de 600+ líneas con diagramas de arquitectura, facilitando replicación en otras sucursales.",
+          "Creé documentación técnica con diagramas de arquitectura, facilitando replicación en otras sucursales.",
         ],
         technologies: [
           "Docker",
@@ -189,7 +188,6 @@ export const experiences: Experience[] = [
           "Implementé un sistema de comisiones automatizado para médicos referentes (10% sobre servicios), mejorando fidelización de profesionales externos.",
           "Desarrollé endpoint de reabastecimiento automático de inventario entre sucursales con lógica de puntos de reorden y disponibilidad real.",
           "Automaticé testing de API en Postman con extracción dinámica de tokens y variables de entorno multi-ambiente (dev/test/prod).",
-          "Hice un diagrama de flujo de las etiquetas del código de barras para entender el proceso y la lógica de negocio del sistema.",
         ],
         technologies: [
           "Node.js",

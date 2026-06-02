@@ -36,11 +36,6 @@ export const skills: Skill[] = [
   //   category: "IA & Automatización con IA",
   // },
   // {
-  //   name: "Cursor",
-  //   icon: "/icon/skills/cursor.svg",
-  //   category: "IA & Automatización con IA",
-  // },
-  // {
   //   name: "MCP",
   //   icon: "/icon/skills/mcp.svg",
   //   category: "IA & Automatización con IA",
@@ -55,22 +50,12 @@ export const skills: Skill[] = [
   //   icon: "/icon/skills/claude.svg",
   //   category: "IA & Automatización con IA",
   // },
-  // {
-  //   name: "Prompt Engineering",
-  //   icon: "/icon/skills/claude.svg",
-  //   category: "IA & Automatización con IA",
-  // },
 
   //---------------------------------------------Frameworks-------------------------------------------
   { name: "Astro", icon: "/icon/skills/astro.svg", category: "Frameworks" },
   // { name: "Reflex", icon: "/icon/skills/reflex.svg", category: "Frameworks" },
   { name: "FastAPI", icon: "/icon/skills/fastapi.svg", category: "Frameworks" },
   { name: "NestJS", icon: "/icon/skills/nestjs.svg", category: "Frameworks" },
-  // {
-  //   name: "Discord.py",
-  //   icon: "/icon/skills/discord.svg",
-  //   category: "Frameworks",
-  // },
   { name: "GraphQL", icon: "/icon/skills/graphql.svg", category: "Frameworks" },
   // { name: "Spring", icon: "/icon/skills/spring.svg", category: "Frameworks" },
 
