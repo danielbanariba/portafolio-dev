@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 interface HoverEffectProps {
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
   technologies: string[];
   documentacionUrl?: string;
-  githubUrl: string;
+  githubUrl?: string;
   projectUrl?: string;
 }
 
@@ -50,11 +50,19 @@ const HoverEffect = ({
           <h4 className="text-zinc-100 font-bold tracking-wide mb-4">
             {title}
           </h4>
-          <img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-48 object-cover rounded-xl mb-4"
-          />
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full h-48 object-cover rounded-xl mb-4"
+            />
+          ) : (
+            <div className="w-full h-48 rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-900 border border-slate-700">
+              <span className="text-slate-400 text-xs font-mono tracking-[0.2em] uppercase">
+                Proyecto corporativo · NDA
+              </span>
+            </div>
+          )}
           <div className="mb-4">
             <p className="text-zinc-400 tracking-wide leading-relaxed text-sm">
               {description}
@@ -72,24 +80,26 @@ const HoverEffect = ({
           </div>
         </div>
         <div className="mt-auto flex justify-end items-center gap-6 pt-4">
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group"
-          >
-            <svg
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              strokeWidth={2}
-              stroke="currentColor"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group"
             >
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-            </svg>
-          </a>
+              <svg
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth={2}
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
+              >
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+            </a>
+          )}
           {documentacionUrl && (
             <a
               href={documentacionUrl}

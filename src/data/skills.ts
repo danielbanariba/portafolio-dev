@@ -14,54 +14,43 @@ export interface Skill {
 
 export const skills: Skill[] = [
   //---------------------------------------------Backend---------------------------------------------
-  // { name: "Python", icon: "/icon/skills/python.svg", category: "Backend" },
-  // { name: "Typescript", icon: "/icon/skills/typescript.svg", category: "Backend" },
-  // { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
-  // { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
+  { name: "Python", icon: "/icon/skills/python.svg", category: "Backend" },
+  {
+    name: "TypeScript",
+    icon: "/icon/skills/typescript.svg",
+    category: "Backend",
+  },
+  { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
+  { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
 
   //---------------------------------------------IA & Automatización con IA-------------------------
-  // {
-  //   name: "Claude Code",
-  //   icon: "/icon/skills/claude.svg",
-  //   category: "IA & Automatización con IA",
-  // },
-  // {
-  //   name: "Codex CLI",
-  //   icon: "/icon/skills/claude.svg",
-  //   category: "IA & Automatización con IA",
-  // },
-  // {
-  //   name: "OpenCode",
-  //   icon: "/icon/skills/claude.svg",
-  //   category: "IA & Automatización con IA",
-  // },
-  // {
-  //   name: "MCP",
-  //   icon: "/icon/skills/mcp.svg",
-  //   category: "IA & Automatización con IA",
-  // },
-  // {
-  //   name: "Agent Skills",
-  //   icon: "/icon/skills/claude.svg",
-  //   category: "IA & Automatización con IA",
-  // },
-  // {
-  //   name: "Agentic AI",
-  //   icon: "/icon/skills/claude.svg",
-  //   category: "IA & Automatización con IA",
-  // },
+  {
+    name: "Claude Code",
+    icon: "/icon/skills/claude.svg",
+    category: "IA & Automatización con IA",
+  },
+  {
+    name: "Codex CLI",
+    icon: "/icon/skills/codex.svg",
+    category: "IA & Automatización con IA",
+  },
+  {
+    name: "OpenCode",
+    icon: "/icon/skills/open-code.svg",
+    category: "IA & Automatización con IA",
+  },
+  {
+    name: "MCP",
+    icon: "/icon/skills/mcp.svg",
+    category: "IA & Automatización con IA",
+  },
 
   //---------------------------------------------Frameworks-------------------------------------------
   { name: "Astro", icon: "/icon/skills/astro.svg", category: "Frameworks" },
-  // { name: "Reflex", icon: "/icon/skills/reflex.svg", category: "Frameworks" },
+  { name: "Reflex", icon: "/icon/skills/reflex.svg", category: "Frameworks" },
   { name: "FastAPI", icon: "/icon/skills/fastapi.svg", category: "Frameworks" },
   { name: "NestJS", icon: "/icon/skills/nestjs.svg", category: "Frameworks" },
   { name: "GraphQL", icon: "/icon/skills/graphql.svg", category: "Frameworks" },
-  // { name: "Spring", icon: "/icon/skills/spring.svg", category: "Frameworks" },
-
-  //---------------------------------------------Librerias---------------------------
-  // { name: 'React', icon: '/icon/skills/react.svg', category: 'Librerias' },
-  // { name: 'redux', icon: '/icon/skills/redux.svg', category: 'Librerias' },
 
   //---------------------------------------------Gestores de Bases de Datos---------------------------
   {
@@ -69,7 +58,6 @@ export const skills: Skill[] = [
     icon: "/icon/skills/sql-server.svg",
     category: "Gestores de Bases de Datos",
   },
-
   {
     name: "PostgreSQL",
     icon: "/icon/skills/postgresql.svg",
@@ -85,13 +73,6 @@ export const skills: Skill[] = [
     icon: "/icon/skills/aws-dynamodb.svg",
     category: "Gestores de Bases de Datos",
   },
-  // { name: 'SQLite', icon: '/icon/skills/sqlite.svg', category: 'Gestores de Bases de Datos' },
-  // { name: 'MySQL', icon: '/icon/skills/mysql.svg', category: 'Gestores de Bases de Datos' },
-  // {
-  //   name: "Oracle",
-  //   icon: "/icon/skills/oracle.svg",
-  //   category: "Gestores de Bases de Datos",
-  // },
 
   //---------------------------------------------Infraestructura---------------------------------
   {
@@ -101,15 +82,15 @@ export const skills: Skill[] = [
   },
   { name: "AWS", icon: "/icon/skills/aws.svg", category: "Infraestructura" },
   {
+    name: "Docker",
+    icon: "/icon/skills/docker.svg",
+    category: "Infraestructura",
+  },
+  {
     name: "Terraform",
     icon: "/icon/skills/terraform.svg",
     category: "Infraestructura",
   },
-  // {
-  //   name: "Docker",
-  //   icon: "/icon/skills/docker.svg",
-  //   category: "Infraestructura",
-  // },
   {
     name: "GitHub Actions",
     icon: "/icon/skills/github-actions.svg",
@@ -117,18 +98,11 @@ export const skills: Skill[] = [
   },
 
   //---------------------------------------------QA & Testing---------------------------------
-  // { name: "Jest", icon: "/icon/skills/jest.svg", category: "QA & Testing" },
   {
     name: "Selenium",
     icon: "/icon/skills/selenium.svg",
     category: "QA & Testing",
   },
-  // { name: "Jira", icon: "/icon/skills/jira.svg", category: "QA & Testing" },
-  // {
-  //   name: "Postman",
-  //   icon: "/icon/skills/postman.svg",
-  //   category: "QA & Testing",
-  // },
   {
     name: "ApiDog",
     icon: "/icon/skills/apidog.svg",
@@ -159,11 +133,6 @@ export const skills: Skill[] = [
   {
     name: "Power BI",
     icon: "/icon/skills/power-bi.svg",
-    category: "Datos/Analytics",
-  },
-  {
-    name: "MCP",
-    icon: "/icon/skills/mcp.svg",
     category: "Datos/Analytics",
   },
 ];

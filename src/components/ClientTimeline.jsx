@@ -165,7 +165,7 @@ export const ClientTimeline = ({ experiences }) => {
             className="flex justify-start pt-10 md:pt-10 md:gap-10"
           >
             {/* CÍRCULO Y TÍTULO - OCULTO EN MÓVILES */}
-            <div className="hidden md:flex sticky flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+            <div className="hidden md:flex flex-col md:flex-row z-40 items-center self-start max-w-xs lg:max-w-sm md:w-full">
               <div className="h-10 absolute left-0 md:left-1.5 w-10 rounded-full bg-gray-800 flex items-center justify-center shadow-lg border border-blue-600/30">
                 <div className="h-4 w-4 rounded-full bg-blue-500 border border-blue-700 p-2" />
               </div>

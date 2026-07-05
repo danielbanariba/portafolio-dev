@@ -48,24 +48,4 @@ export const educations: Education[] = [
     iconUrl: "icon/education/certificate-2.svg",
     url: "https://academy.oracle.com/en/oa-web-overview.html",
   },
-  {
-    title: "Java Foundations",
-    institution: "Oracle Academy",
-    date: "2021 - 2022",
-    logoUrl: "icon/education/oracle_academy.png",
-    certificateUrl:
-      "https://drive.google.com/file/d/1lCtk8rQ6Tnj9K4dKTR0QtCqrtgcZXIHr/view?usp=drive_link",
-    iconUrl: "icon/education/file-certificate.svg",
-    url: "https://academy.oracle.com/en/oa-web-overview.html",
-  },
-  {
-    title: "Pensamiento Computacional con Python",
-    institution: "Platzi",
-    date: "2021 - 2021",
-    logoUrl: "icon/education/platzi.svg",
-    certificateUrl:
-      "https://drive.google.com/file/d/1WOqYLkAPY5Jg7tdWA9dnHaLMTvYZXqap/view?usp=drive_link",
-    iconUrl: "icon/education/file-certificate.svg",
-    url: "https://platzi.com/",
-  },
 ];

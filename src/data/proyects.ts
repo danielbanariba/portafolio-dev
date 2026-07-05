@@ -1,42 +1,4 @@
 export const projects = [
-  // {
-  //   title: "MCP Servers Suite",
-  //   imageUrl: "project/metal-archive.png",
-  //   description:
-  //     "Suite de servidores MCP (Model Context Protocol) que habilitan operación completa desde Claude Code: (1) mcp-dagster — materialización de assets y consulta de runs/logs/errores en 3 entornos vía GraphQL, (2) mcp-db — allowlist de queries parametrizadas con Jinja sobre SQL Server y PostgreSQL, (3) mcp-api-check — verificación de health endpoints, (4) outlook-todoist-mcp — sincronización Outlook → Todoist vía Microsoft Graph. Permite un flujo end-to-end de CI/observabilidad operado desde IA.",
-  //   technologies: [
-  //     "Python",
-  //     "MCP Protocol",
-  //     "Dagster GraphQL",
-  //     "SQL Server",
-  //     "PostgreSQL",
-  //     "Jinja2",
-  //     "Microsoft Graph",
-  //     "Claude Code",
-  //   ],
-  // },
-  // {
-  //   title: "Dagster Watchdog",
-  //   imageUrl: "project/metal-archive.png",
-  //   description:
-  //     "Sistema autónomo de monitoreo para pipelines Dagster en producción. Consulta la API GraphQL cada 5 minutos, detecta runs pegados comparando contra baselines aprendidos de 100+ ejecuciones históricas por tipo de sensor, cancela y re-lanza automáticamente con tags de retry, y notifica vía Telegram. Desplegado como servicio systemd 24/7.",
-  //   technologies: [
-  //     "Python",
-  //     "Dagster GraphQL",
-  //     "Telegram Bot",
-  //     "systemd",
-  //     "asyncio",
-  //   ],
-  // },
-  // {
-  //   title: "Inventario Personal",
-  //   imageUrl: "project/inventario-personal.png",
-  //   description:
-  //     "App móvil para gestionar inventario doméstico con sincronización familiar en tiempo real, estadísticas de compras con insights accionables, presupuesto inteligente, escaneo de códigos de barras y comandos de voz.",
-  //   technologies: ["Flutter", "Dart", "SQLite", "Firebase", "fl_chart"],
-  //   documentacionUrl: "/inventario-personal",
-  //   githubUrl: "https://github.com/danielbanariba/inventario_personal",
-  // },
   {
     title: "Navidrome — Open Source",
     imageUrl: "project/navidrome/banner.jpg",
@@ -73,6 +35,23 @@ export const projects = [
     projectUrl: "https://danielbanariba.com/metal-archive",
   },
   {
+    title: "Canal de YouTube Automatizado",
+    imageUrl: "project/click-auto-editor.png",
+    description:
+      "Pipeline que automatiza un canal de YouTube: scraping de música underground, renderizado 4K con efectos VHS y subida programada con gestión de playlists y copyright.",
+    technologies: [
+      "Python",
+      "C++",
+      "CUDA",
+      "FFmpeg",
+      "Playwright",
+      "YouTube API",
+    ],
+    documentacionUrl: "/canal-youtube-automatizado",
+    githubUrl: "https://github.com/danielbanariba/click-auto-editor",
+    projectUrl: "https://www.youtube.com/@danielbanariba",
+  },
+  {
     title: "Sistema Contable",
     imageUrl: "project/azure-app-service.png",
     description:
@@ -99,30 +78,4 @@ export const projects = [
     githubUrl: "https://github.com/danielbanariba/sistemas-de-ecuaciones",
     projectUrl: "https://resuelvesistema-cyan-wood.reflex.run/",
   },
-  {
-    title: "Canal de YouTube Automatizado",
-    imageUrl: "project/click-auto-editor.png",
-    description:
-      "Pipeline que automatiza un canal de YouTube: scraping de música underground, renderizado 4K con efectos VHS y subida programada con gestión de playlists y copyright.",
-    technologies: [
-      "Python",
-      "C++",
-      "CUDA",
-      "FFmpeg",
-      "Playwright",
-      "YouTube API",
-    ],
-    documentacionUrl: "/canal-youtube-automatizado",
-    githubUrl: "https://github.com/danielbanariba/click-auto-editor",
-    projectUrl: "https://www.youtube.com/@danielbanariba",
-  },
-  // {
-  //   title: "Arsenal de Odio Website",
-  //   imageUrl: "project/arsenal-de-odio.png",
-  //   description:
-  //     "Arsenal De Odio es una banda de Thrash Metal de Honduras, quise plasmar su espíritu como banda en la pagina web. Aquí se puede encontrar todo relacionado con la banda, sus integrantes, discografía, mercadería, etc.",
-  //   technologies: ["Python", "Reflex", "Javascript"],
-  //   githubUrl: "https://github.com/danielbanariba/arsenal-de-odio-web",
-  //   projectUrl: "https://arsenaldeodio.reflex.run/",
-  // },
 ];
