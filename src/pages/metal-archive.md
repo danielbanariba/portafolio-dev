@@ -42,27 +42,7 @@ Originalmente construido con Reflex (Python full-stack). **Migrado a Astro SSG**
 
 Un daemon thread sincroniza el canal de YouTube con la base de datos cada 12 horas:
 
-```
-YouTube Data API v3 (API Key, sin OAuth)
-        │
-        ▼
-Uploads playlist ─► paginar videos + snippet/contentDetails/statistics
-        │
-        ▼
-parse_title_metadata()       ─► banda, album, año, genero, pais, tipo
-parse_description_metadata() ─► tracklist, links de streaming, metadata
-   (soporta 2 formatos: "[00:08] > Track" y el legacy "0 - Track (00:00)")
-        │
-        ▼
-Upsert por youtube_video_id (batch cada 50)
-Cleanup de huerfanos (albums cuyo video se elimino) con umbral de seguridad
-        │
-        ▼
-Normalizar generos/paises ─► Enriquecer artwork (DeathGrind/Metal Archives)
-        │
-        ▼
-npm run build ─► vercel deploy --prod --prebuilt   (auto-deploy)
-```
+![Pipeline de sincronización](/project/metal-archive/pipeline-sincronizacion.svg)
 
 La autenticacion paso de OAuth (refresh tokens que expiraban cada pocos meses) a una **API Key** que no expira — solo lee datos publicos del canal, asi que OAuth era innecesario.
 
