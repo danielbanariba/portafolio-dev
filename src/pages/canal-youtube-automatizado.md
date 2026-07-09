@@ -14,55 +14,6 @@ El sistema esta compuesto por dos repositorios que trabajan en conjunto como un 
 
 ![Diagrama de arquitectura del pipeline](/project/canal-youtube-automatizado/arquitectura.svg)
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    PIPELINE COMPLETO DEL CANAL                      │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  ┌───────────────────────────────────────────────────────────┐      │
-│  │              SCRAPPER-DEATHGRIND                          │      │
-│  │                                                           │      │
-│  │  DeathGrind.club API                                      │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  1. Extraer bandas ──► Filtro sellos discograficos        │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  2. Filtrar en YouTube ──► Excluir musica mainstream      │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  3. Extraer links de descarga                             │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  4. Descargar y organizar archivos                        │      │
-│  │        │                                                  │      │
-│  └────────┼──────────────────────────────────────────────────┘      │
-│           │                                                         │
-│           ▼                                                         │
-│  /01_limpieza_de_impurezas/   (carpetas: "Banda - Album/")          │
-│           │                                                         │
-│  ┌────────┼──────────────────────────────────────────────────┐      │
-│  │        ▼         CLICK-AUTO-EDITOR                        │      │
-│  │                                                           │      │
-│  │  0. Limpieza ──► Normalizar nombres, filtrar NSFW         │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  1. Verificacion previa ──► Ya existe en YouTube?         │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  2. Renderizado 4K VHS ──► C++/CUDA o FFmpeg              │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  3. Subir a YouTube ──► API + rotacion de credenciales    │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  4. Post-publicacion ──► Playlists + disputas copyright   │      │
-│  │                                                           │      │
-│  └───────────────────────────────────────────────────────────┘      │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
 ---
 
 ## Parte 1: Scrapper DeathGrind

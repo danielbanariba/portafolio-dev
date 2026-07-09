@@ -22,56 +22,6 @@ Originalmente construido con Reflex (Python full-stack). **Migrado a Astro SSG**
 
 ![Diagrama de arquitectura hibrida](/project/metal-archive/arquitectura.svg)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      METAL ARCHIVE (Astro)                      │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  STATIC SSG (Astro, 0 JS por defecto)               │       │
-│  │                                                      │       │
-│  │  Bio en /  ──  Archive en /metal-archive/*          │       │
-│  │  album/[id] (1298) ── band/[band] (92)              │       │
-│  │  genre/[g] ── country/[c] ── year/[y] ── browse     │       │
-│  │  submit ── promo ── newsletter                       │       │
-│  │                                                      │       │
-│  │  Pre-renderizado desde SQLite en build time          │       │
-│  └────────────────────┬─────────────────────────────────┘       │
-│                       │                                         │
-│  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  ISLANDS (Preact, hidratan solo donde hay interaccion)│      │
-│  │                                                      │       │
-│  │  Player.tsx ── YouTube IFrame, now-playing,          │       │
-│  │                autoplay sincronico, mini-player       │       │
-│  │  Search.tsx ── filtro/orden/paginacion client-side    │       │
-│  │                sobre un indice JSON (~50KB gz)         │       │
-│  └────────────────────┬─────────────────────────────────┘       │
-│                       │                                         │
-│  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  DATA (build time)                                   │       │
-│  │                                                      │       │
-│  │  better-sqlite3 (read-only) sobre reflex.db          │       │
-│  │  Albums · Tracks · SimilarBands · Submissions ·      │       │
-│  │  Newsletter · ContactMessages                        │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  FORMS (FastAPI en el host, no serverless)           │       │
-│  │                                                      │       │
-│  │  /api/metal-archive/{submit,promo,newsletter,contact}│       │
-│  │  Escribe a la misma SQLite + Gmail SMTP              │       │
-│  │  (serverless no puede escribir la DB local)          │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  SYNC + AUTO-DEPLOY (daemon, cada 12h)               │       │
-│  │                                                      │       │
-│  │  YouTube API ─► DB ─► npm run build ─► vercel deploy │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
 ---
 
 ## Decisiones tecnicas clave
