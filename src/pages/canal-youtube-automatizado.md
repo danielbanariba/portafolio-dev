@@ -12,6 +12,8 @@ El sistema esta compuesto por dos repositorios que trabajan en conjunto como un 
 
 ## Arquitectura General del Pipeline
 
+![Diagrama de arquitectura del pipeline](/project/canal-youtube-automatizado/arquitectura.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    PIPELINE COMPLETO DEL CANAL                      │

@@ -9,6 +9,8 @@ Funciona 100% offline con SQLite y opcionalmente sincroniza en tiempo real entre
 
 ## Arquitectura General
 
+![Diagrama de arquitectura (Clean Architecture)](/project/inventario-personal/arquitectura.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    INVENTARIO PERSONAL                          │

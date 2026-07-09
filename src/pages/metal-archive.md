@@ -20,6 +20,8 @@ Originalmente construido con Reflex (Python full-stack). **Migrado a Astro SSG**
 
 ## Arquitectura (Astro hibrido)
 
+![Diagrama de arquitectura hibrida](/project/metal-archive/arquitectura.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                      METAL ARCHIVE (Astro)                      │
