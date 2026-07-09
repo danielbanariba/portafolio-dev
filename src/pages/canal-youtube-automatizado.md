@@ -12,54 +12,7 @@ El sistema esta compuesto por dos repositorios que trabajan en conjunto como un 
 
 ## Arquitectura General del Pipeline
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    PIPELINE COMPLETO DEL CANAL                      │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  ┌───────────────────────────────────────────────────────────┐      │
-│  │              SCRAPPER-DEATHGRIND                          │      │
-│  │                                                           │      │
-│  │  DeathGrind.club API                                      │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  1. Extraer bandas ──► Filtro sellos discograficos        │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  2. Filtrar en YouTube ──► Excluir musica mainstream      │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  3. Extraer links de descarga                             │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  4. Descargar y organizar archivos                        │      │
-│  │        │                                                  │      │
-│  └────────┼──────────────────────────────────────────────────┘      │
-│           │                                                         │
-│           ▼                                                         │
-│  /01_limpieza_de_impurezas/   (carpetas: "Banda - Album/")          │
-│           │                                                         │
-│  ┌────────┼──────────────────────────────────────────────────┐      │
-│  │        ▼         CLICK-AUTO-EDITOR                        │      │
-│  │                                                           │      │
-│  │  0. Limpieza ──► Normalizar nombres, filtrar NSFW         │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  1. Verificacion previa ──► Ya existe en YouTube?         │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  2. Renderizado 4K VHS ──► C++/CUDA o FFmpeg              │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  3. Subir a YouTube ──► API + rotacion de credenciales    │      │
-│  │        │                                                  │      │
-│  │        ▼                                                  │      │
-│  │  4. Post-publicacion ──► Playlists + disputas copyright   │      │
-│  │                                                           │      │
-│  └───────────────────────────────────────────────────────────┘      │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
+![Diagrama de arquitectura del pipeline](/project/canal-youtube-automatizado/arquitectura.svg)
 
 ---
 
@@ -71,70 +24,7 @@ Scrappea la API de **DeathGrind.club** (una base de datos comunitaria de metal e
 
 ### Pipeline de Scraping
 
-```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│   DeathGrind.club│     │    YouTube       │     │  12+ Servicios   │
-│       API        │     │    Search        │     │   de Hosting     │
-└────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
-         │                        │                        │
-         ▼                        │                        │
-┌──────────────────┐              │                        │
-│  PASO 1          │              │                        │
-│  Extraer Bandas  │              │                        │
-│                  │              │                        │
-│  - Autenticacion │              │                        │
-│  - Paginar ~40   │              │                        │
-│    generos       │              │                        │
-│  - Filtrar por:  │              │                        │
-│    * Sello       │              │                        │
-│    * Tipo disco  │              │                        │
-│    * Ya descarg. │              │                        │
-│    * Fallidos    │              │                        │
-└────────┬─────────┘              │                        │
-         │                        │                        │
-         ▼                        ▼                        │
-┌──────────────────────────────────────┐                   │
-│  PASO 2: Filtro Underground          │                   │
-│                                      │                   │
-│  Para cada release:                  │                   │
-│  1. Buscar en YouTube                │                   │
-│  2. Si hay "full album" disponible   │                   │
-│     = MAINSTREAM = EXCLUIR           │                   │
-│  3. Solo pasan releases underground  │                   │
-│                                      │                   │
-│  Usa Playwright + stealth            │                   │
-│  5-12 workers paralelos              │                   │
-└────────┬─────────────────────────────┘                   │
-         │                                                 │
-         ▼                                                 │
-┌──────────────────┐                                       │
-│  PASO 3          │                                       │
-│  Extraer Links   │                                       │
-│  de Descarga     │                                       │
-│                  │                                       │
-│  API DeathGrind  │                                       │
-│  5 workers       │                                       │
-└────────┬─────────┘                                       │
-         │                                                 │
-         ▼                                                 ▼
-┌──────────────────────────────────────────────────────────────┐
-│  PASO 4: Descargar y Organizar                               │
-│                                                              │
-│  Servicios soportados:                                       │
-│  Mega.nz | Mediafire | Google Drive | Yandex Disk            │
-│  pCloud | Mail.ru | Icedrive | Krakenfiles                   │
-│  Workupload | WeTransfer | VK Docs | HTTP directo            │
-│                                                              │
-│  - Extrae archivos (ZIP/RAR/7z)                              │
-│  - Valida audio por magic bytes                              │
-│  - Organiza en: "Banda - Album (Año) [Tipo]/"                │
-│  - Manejo de cuota Mega (cooldown 20min + cola)              │
-└──────────────────────────────────┬───────────────────────────┘
-                                   │
-                                   ▼
-                    /01_limpieza_de_impurezas/
-                    (Carpetas listas para renderizar)
-```
+![Pipeline de scraping](/project/canal-youtube-automatizado/pipeline-scraping.svg)
 
 ### Sistema de Filtrado Inteligente
 
@@ -169,126 +59,13 @@ Toma las carpetas de musica descargadas (audio + portada) y produce videos 4K co
 
 ### Pipeline de Renderizado
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                     PIPELINE DE RENDERIZADO                      │
-│                                                                  │
-│  Carpeta de album                                                │
-│  ("Banda - Album/")                                              │
-│   ├── cover.png                                                  │
-│   ├── 01 - Track.mp3                                             │
-│   ├── 02 - Track.flac                                            │
-│   └── ...                                                        │
-│        │                                                         │
-│        ▼                                                         │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 0: Preparacion                        │                 │
-│  │                                             │                 │
-│  │  - Normalizar nombres de archivos           │                 │
-│  │  - Filtrar portadas NSFW (modelo ONNX)      │                 │
-│  │  - Censurar texto con profanidad            │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 1: Verificacion Previa                │                 │
-│  │                                             │                 │
-│  │  Busca en YouTube si el album ya            │                 │
-│  │  fue subido al canal                        │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 2: Optimizacion de I/O                │                 │
-│  │                                             │                 │
-│  │  Copia al medio mas rapido disponible:      │                 │
-│  │  Ramdisk (48GB tmpfs) > NVMe SSD > HDD      │                 │
-│  │                                             │                 │
-│  │  Ramdisk = ~7x mas rapido que NVMe          │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 3: Procesamiento de Portada           │                 │
-│  │                                             │                 │
-│  │  - Extraer portada del audio (mutagen)      │                 │
-│  │  - Generar sombra (Pillow)                  │                 │
-│  │  - Calcular colores dominantes              │                 │
-│  │  - Generar imagen de tracklist              │                 │
-│  │    (auto-dimensionado de fuente 28-90px)    │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 4: Renderizado VHS                    │                 │
-│  │  (ver diagrama detallado abajo)             │                 │
-│  │                                             │                 │
-│  │  Ruta principal: C++/CUDA (RTX 3090 Ti)     │                 │
-│  │  Fallback: FFmpeg NVENC                     │                 │
-│  │  Fallback final: FFmpeg libx264             │                 │
-│  │                                             │                 │
-│  │  Salida: 3840x2160, 24fps, 45 Mbps          │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│           "Banda - Album.mp4"                                    │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-```
+![Pipeline de renderizado](/project/canal-youtube-automatizado/pipeline-renderizado.svg)
 
 ### Cadena de Efectos VHS (CUDA)
 
 El corazon del renderizador es una cadena de **10+ kernels CUDA** que procesan cada frame para lograr una estetica VHS autentica. Todos los efectos se controlan con un unico parametro `intensity` (0.0 - 1.0):
 
-```
-Frame Original (3840x2160)
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│  1. Color Bleeding                                        │
-│     Simula el sangrado de color analogico                 │
-│     Blur horizontal: 5-25px segun intensidad              │
-├───────────────────────────────────────────────────────────┤
-│  2. Aberracion Cromatica                                  │
-│     Desplazamiento de canales RGB: 2-6px                  │
-├───────────────────────────────────────────────────────────┤
-│  3. Horizontal Wobble                                     │
-│     Desplazamiento sinusoidal por linea de escaneo        │
-│     Frecuencia: 30-60, Amplitud: 0-15px                   │
-├───────────────────────────────────────────────────────────┤
-│  4. Tracking Errors                                       │
-│     Bandas horizontales con offset aleatorio              │
-│     Simula errores de tracking de cintas VHS              │
-├───────────────────────────────────────────────────────────┤
-│  5. Position Jitter                                       │
-│     Vibracion del frame completo X/Y a 7-12 Hz            │
-├───────────────────────────────────────────────────────────┤
-│  6. Scanlines                                             │
-│     Oscurecimiento de lineas alternas estilo CRT          │
-│     Darkness: 0.7-0.85                                    │
-├───────────────────────────────────────────────────────────┤
-│  7. Noise / Grain                                         │
-│     Ruido de luminancia (10-30) + ruido de color          │
-│     Generado con cuRAND                                   │
-├───────────────────────────────────────────────────────────┤
-│  8. Color Grading                                         │
-│     Espacio de color NTSC YIQ para colores analogicos     │
-│     Desaturacion: 15-30%, elevacion de negros,            │
-│     reduccion de contraste                                │
-├───────────────────────────────────────────────────────────┤
-│  9. VHS Overlay Blend                                     │
-│     Composicion de video real de ruido VHS al 60%         │
-│     (content/vhs_noise.mp4)                               │
-├───────────────────────────────────────────────────────────┤
-│  10. VHS Transition                                       │
-│      Transiciones estilo cinta con distorsion,            │
-│      arrugas y offset de croma                            │
-└───────────────────────────────────┬───────────────────────┘
-                                    │
-                                    ▼
-                          Frame VHS Procesado
-                    (Double buffering en GPU)
-```
+![Cadena de efectos VHS (CUDA)](/project/canal-youtube-automatizado/cadena-vhs.svg)
 
 **Detalles tecnicos del renderizador C++/CUDA:**
 
@@ -301,98 +78,13 @@ Frame Original (3840x2160)
 
 ### Pipeline de Subida a YouTube
 
-```
-┌───────────────────────────────────────────────────────────────────┐
-│                   PIPELINE DE SUBIDA                              │
-│                                                                   │
-│  "Banda - Album.mp4"                                              │
-│        │                                                          │
-│        ▼                                                          │
-│  ┌──────────────────────────────────┐                             │
-│  │  Generacion de Metadata          │                             │
-│  │                                  │                             │
-│  │  - Parsear nombre de carpeta     │                             │
-│  │    (banda/album/anio)            │                             │
-│  │  - Generar titulo y descripcion  │                             │
-│  │  - Crear tracklist con           │                             │
-│  │    timestamps                    │                             │
-│  │  - Obtener generos y links       │                             │
-│  │    de streaming (DeathGrind API) │                             │
-│  │  - Censurar profanidad           │                             │
-│  └──────────┬───────────────────────┘                             │
-│             │                                                     │
-│             ▼                                                     │
-│  ┌──────────────────────────────────┐                             │
-│  │  Autenticacion OAuth             │                             │
-│  │                                  │                             │
-│  │  Sistema multi-credencial:       │                             │
-│  │  - 2 sets para upload            │                             │
-│  │  - 8 sets para playlists         │                             │
-│  │  - Rotacion automatica           │                             │
-│  │    cuando se agota la cuota      │                             │
-│  │    (HTTP 403/429)                │                             │
-│  └──────────┬───────────────────────┘                             │
-│             │                                                     │
-│             ▼                                                     │
-│  ┌──────────────────────────────────┐                             │
-│  │  Subida Programada               │                             │
-│  │                                  │                             │
-│  │  Modo batch:                     │                             │
-│  │  24 videos, 1 hora entre cada    │                             │
-│  │  uno, privacy="private" con      │                             │
-│  │  publishAt programado            │                             │
-│  │                                  │                             │
-│  │  Modo inmediato:                 │                             │
-│  │  Publicacion directa             │                             │
-│  └──────────┬───────────────────────┘                             │
-│             │                                                     │
-│             ▼                                                     │
-│  ┌──────────────────────────────────┐                             │
-│  │  Gestion de Playlists            │                             │
-│  │                                  │                             │
-│  │  - Playlist por banda            │                             │
-│  │  - Playlist por genero           │                             │
-│  │  - Servicio systemd persistente  │                             │
-│  │    (mapear_playlists.service)    │                             │
-│  └──────────────────────────────────┘                             │
-│                                                                   │
-└──────────────────────────────────────────────────────────────────┘
-```
+![Pipeline de subida a YouTube](/project/canal-youtube-automatizado/pipeline-subida.svg)
 
 ### Automatizacion de Copyright
 
 Cuando YouTube detecta contenido con copyright, el sistema automatiza las disputas y apelaciones usando Playwright:
 
-```
-Video con copyright claim
-        │
-        ▼
-┌───────────────────────────────┐
-│  inpunar_video.py             │
-│                               │
-│  Playwright + modo aprendizaje│
-│  (--aprender): el usuario     │
-│  demuestra el flujo y el      │
-│  script graba los selectores  │
-│                               │
-│  Flujo automatico:            │
-│  Seleccionar video ──►        │
-│  Click "disputar" ──►         │
-│  Razon: "licencia" ──►        │
-│  Llenar info ──► Firmar ──►   │
-│  Enviar                       │
-└───────────┬───────────────────┘
-            │
-            │  Si es rechazada
-            ▼
-┌───────────────────────────────┐
-│  apelacion.py                 │
-│                               │
-│  Automatiza la apelacion      │
-│  con datos personales y       │
-│  mensaje pre-escrito          │
-└───────────────────────────────┘
-```
+![Automatización de copyright](/project/canal-youtube-automatizado/automatizacion-copyright.svg)
 
 ---
 
@@ -433,49 +125,4 @@ Video con copyright claim
 
 ## Flujo de Datos Completo
 
-```
-DeathGrind.club ──► ~40 generos ──► Miles de releases
-                                          │
-                                    Filtro de sellos
-                                          │
-                                    Filtro de tipo
-                                          │
-                                    Filtro de duplicados
-                                          │
-                                    Filtro YouTube (underground)
-                                          │
-                                          ▼
-                                    ~Cientos de releases
-                                          │
-                                    Descarga (12+ servicios)
-                                          │
-                                          ▼
-                                  Carpetas organizadas
-                                  "Banda - Album/"
-                                   ├── audio files
-                                   └── cover art
-                                          │
-                                    Limpieza + NSFW filter
-                                          │
-                                    Verificacion previa
-                                          │
-                                    Renderizado 4K VHS
-                                    (C++/CUDA kernels)
-                                          │
-                                          ▼
-                                    "Banda - Album.mp4"
-                                    3840x2160, 24fps
-                                          │
-                                    Subida programada
-                                    (rotacion de credenciales)
-                                          │
-                                    Gestion de playlists
-                                    (servicio systemd)
-                                          │
-                                    Disputas automaticas
-                                    (Playwright)
-                                          │
-                                          ▼
-                                    Canal de YouTube
-                                    funcionando 24/7
-```
+![Flujo de datos completo](/project/canal-youtube-automatizado/flujo-datos.svg)

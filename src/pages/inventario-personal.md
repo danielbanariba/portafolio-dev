@@ -9,48 +9,7 @@ Funciona 100% offline con SQLite y opcionalmente sincroniza en tiempo real entre
 
 ## Arquitectura General
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    INVENTARIO PERSONAL                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  PRESENTATION (Flutter UI)                           │       │
-│  │                                                      │       │
-│  │  ViewModels (ChangeNotifier + Provider)              │       │
-│  │  ├── InventoryViewModel                              │       │
-│  │  ├── ShoppingListViewModel ◄──► InventoryViewModel   │       │
-│  │  ├── FamilySyncViewModel ──► ambos VMs               │       │
-│  │  ├── BudgetViewModel                                 │       │
-│  │  ├── CollectionsViewModel                            │       │
-│  │  └── StatisticsViewModel                             │       │
-│  └────────────────────┬─────────────────────────────────┘       │
-│                       │                                         │
-│  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  DOMAIN (Logica de Negocio Pura)                     │       │
-│  │                                                      │       │
-│  │  Entities: Product, Expense, Income, SavingsGoal,    │       │
-│  │  PurchaseStatistics, FamilyGroup, PriceHistory       │       │
-│  │                                                      │       │
-│  │  UseCases: ManageInventory (CRUD + toggle + precio)  │       │
-│  └────────────────────┬─────────────────────────────────┘       │
-│                       │                                         │
-│  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  DATA (Repositorios + Servicios)                     │       │
-│  │                                                      │       │
-│  │  ┌─────────────┐  ┌──────────────────────────────┐   │       │
-│  │  │  LOCAL       │  │  REMOTE                     │   │       │
-│  │  │             │  │                              │   │       │
-│  │  │  SQLite v7  │  │  Firebase Firestore (sync)   │   │       │
-│  │  │  SharedPrefs│  │  FCM (notificaciones push)   │   │       │
-│  │  │  Cache imgs │  │  Open Food Facts API         │   │       │
-│  │  │             │  │  Google Custom Search API    │   │       │
-│  │  │             │  │  UPCItemDB API               │   │       │
-│  │  └─────────────┘  └──────────────────────────────┘   │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Diagrama de arquitectura (Clean Architecture)](/project/inventario-personal/arquitectura.svg)
 
 **Patron**: Clean Architecture + MVVM + Provider. Los ViewModels se sincronizan entre si: `InventoryVM` y `ShoppingListVM` son bidireccionales (con guards anti-loop), y `FamilySyncVM` empuja cambios a ambos.
 

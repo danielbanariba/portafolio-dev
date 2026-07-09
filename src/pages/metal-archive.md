@@ -20,55 +20,7 @@ Originalmente construido con Reflex (Python full-stack). **Migrado a Astro SSG**
 
 ## Arquitectura (Astro hibrido)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      METAL ARCHIVE (Astro)                      │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  STATIC SSG (Astro, 0 JS por defecto)               │       │
-│  │                                                      │       │
-│  │  Bio en /  ──  Archive en /metal-archive/*          │       │
-│  │  album/[id] (1298) ── band/[band] (92)              │       │
-│  │  genre/[g] ── country/[c] ── year/[y] ── browse     │       │
-│  │  submit ── promo ── newsletter                       │       │
-│  │                                                      │       │
-│  │  Pre-renderizado desde SQLite en build time          │       │
-│  └────────────────────┬─────────────────────────────────┘       │
-│                       │                                         │
-│  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  ISLANDS (Preact, hidratan solo donde hay interaccion)│      │
-│  │                                                      │       │
-│  │  Player.tsx ── YouTube IFrame, now-playing,          │       │
-│  │                autoplay sincronico, mini-player       │       │
-│  │  Search.tsx ── filtro/orden/paginacion client-side    │       │
-│  │                sobre un indice JSON (~50KB gz)         │       │
-│  └────────────────────┬─────────────────────────────────┘       │
-│                       │                                         │
-│  ┌────────────────────▼─────────────────────────────────┐       │
-│  │  DATA (build time)                                   │       │
-│  │                                                      │       │
-│  │  better-sqlite3 (read-only) sobre reflex.db          │       │
-│  │  Albums · Tracks · SimilarBands · Submissions ·      │       │
-│  │  Newsletter · ContactMessages                        │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  FORMS (FastAPI en el host, no serverless)           │       │
-│  │                                                      │       │
-│  │  /api/metal-archive/{submit,promo,newsletter,contact}│       │
-│  │  Escribe a la misma SQLite + Gmail SMTP              │       │
-│  │  (serverless no puede escribir la DB local)          │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────┐       │
-│  │  SYNC + AUTO-DEPLOY (daemon, cada 12h)               │       │
-│  │                                                      │       │
-│  │  YouTube API ─► DB ─► npm run build ─► vercel deploy │       │
-│  └──────────────────────────────────────────────────────┘       │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Diagrama de arquitectura hibrida](/project/metal-archive/arquitectura.svg)
 
 ---
 
@@ -90,27 +42,7 @@ Originalmente construido con Reflex (Python full-stack). **Migrado a Astro SSG**
 
 Un daemon thread sincroniza el canal de YouTube con la base de datos cada 12 horas:
 
-```
-YouTube Data API v3 (API Key, sin OAuth)
-        │
-        ▼
-Uploads playlist ─► paginar videos + snippet/contentDetails/statistics
-        │
-        ▼
-parse_title_metadata()       ─► banda, album, año, genero, pais, tipo
-parse_description_metadata() ─► tracklist, links de streaming, metadata
-   (soporta 2 formatos: "[00:08] > Track" y el legacy "0 - Track (00:00)")
-        │
-        ▼
-Upsert por youtube_video_id (batch cada 50)
-Cleanup de huerfanos (albums cuyo video se elimino) con umbral de seguridad
-        │
-        ▼
-Normalizar generos/paises ─► Enriquecer artwork (DeathGrind/Metal Archives)
-        │
-        ▼
-npm run build ─► vercel deploy --prod --prebuilt   (auto-deploy)
-```
+![Pipeline de sincronización](/project/metal-archive/pipeline-sincronizacion.svg)
 
 La autenticacion paso de OAuth (refresh tokens que expiraban cada pocos meses) a una **API Key** que no expira — solo lee datos publicos del canal, asi que OAuth era innecesario.
 
