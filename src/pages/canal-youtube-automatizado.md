@@ -84,36 +84,7 @@ El corazon del renderizador es una cadena de **10+ kernels CUDA** que procesan c
 
 Cuando YouTube detecta contenido con copyright, el sistema automatiza las disputas y apelaciones usando Playwright:
 
-```
-Video con copyright claim
-        │
-        ▼
-┌───────────────────────────────┐
-│  inpunar_video.py             │
-│                               │
-│  Playwright + modo aprendizaje│
-│  (--aprender): el usuario     │
-│  demuestra el flujo y el      │
-│  script graba los selectores  │
-│                               │
-│  Flujo automatico:            │
-│  Seleccionar video ──►        │
-│  Click "disputar" ──►         │
-│  Razon: "licencia" ──►        │
-│  Llenar info ──► Firmar ──►   │
-│  Enviar                       │
-└───────────┬───────────────────┘
-            │
-            │  Si es rechazada
-            ▼
-┌───────────────────────────────┐
-│  apelacion.py                 │
-│                               │
-│  Automatiza la apelacion      │
-│  con datos personales y       │
-│  mensaje pre-escrito          │
-└───────────────────────────────┘
-```
+![Automatización de copyright](/project/canal-youtube-automatizado/automatizacion-copyright.svg)
 
 ---
 
@@ -154,49 +125,4 @@ Video con copyright claim
 
 ## Flujo de Datos Completo
 
-```
-DeathGrind.club ──► ~40 generos ──► Miles de releases
-                                          │
-                                    Filtro de sellos
-                                          │
-                                    Filtro de tipo
-                                          │
-                                    Filtro de duplicados
-                                          │
-                                    Filtro YouTube (underground)
-                                          │
-                                          ▼
-                                    ~Cientos de releases
-                                          │
-                                    Descarga (12+ servicios)
-                                          │
-                                          ▼
-                                  Carpetas organizadas
-                                  "Banda - Album/"
-                                   ├── audio files
-                                   └── cover art
-                                          │
-                                    Limpieza + NSFW filter
-                                          │
-                                    Verificacion previa
-                                          │
-                                    Renderizado 4K VHS
-                                    (C++/CUDA kernels)
-                                          │
-                                          ▼
-                                    "Banda - Album.mp4"
-                                    3840x2160, 24fps
-                                          │
-                                    Subida programada
-                                    (rotacion de credenciales)
-                                          │
-                                    Gestion de playlists
-                                    (servicio systemd)
-                                          │
-                                    Disputas automaticas
-                                    (Playwright)
-                                          │
-                                          ▼
-                                    Canal de YouTube
-                                    funcionando 24/7
-```
+![Flujo de datos completo](/project/canal-youtube-automatizado/flujo-datos.svg)
