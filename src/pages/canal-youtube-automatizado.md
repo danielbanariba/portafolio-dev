@@ -24,70 +24,7 @@ Scrappea la API de **DeathGrind.club** (una base de datos comunitaria de metal e
 
 ### Pipeline de Scraping
 
-```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│   DeathGrind.club│     │    YouTube       │     │  12+ Servicios   │
-│       API        │     │    Search        │     │   de Hosting     │
-└────────┬─────────┘     └────────┬─────────┘     └────────┬─────────┘
-         │                        │                        │
-         ▼                        │                        │
-┌──────────────────┐              │                        │
-│  PASO 1          │              │                        │
-│  Extraer Bandas  │              │                        │
-│                  │              │                        │
-│  - Autenticacion │              │                        │
-│  - Paginar ~40   │              │                        │
-│    generos       │              │                        │
-│  - Filtrar por:  │              │                        │
-│    * Sello       │              │                        │
-│    * Tipo disco  │              │                        │
-│    * Ya descarg. │              │                        │
-│    * Fallidos    │              │                        │
-└────────┬─────────┘              │                        │
-         │                        │                        │
-         ▼                        ▼                        │
-┌──────────────────────────────────────┐                   │
-│  PASO 2: Filtro Underground          │                   │
-│                                      │                   │
-│  Para cada release:                  │                   │
-│  1. Buscar en YouTube                │                   │
-│  2. Si hay "full album" disponible   │                   │
-│     = MAINSTREAM = EXCLUIR           │                   │
-│  3. Solo pasan releases underground  │                   │
-│                                      │                   │
-│  Usa Playwright + stealth            │                   │
-│  5-12 workers paralelos              │                   │
-└────────┬─────────────────────────────┘                   │
-         │                                                 │
-         ▼                                                 │
-┌──────────────────┐                                       │
-│  PASO 3          │                                       │
-│  Extraer Links   │                                       │
-│  de Descarga     │                                       │
-│                  │                                       │
-│  API DeathGrind  │                                       │
-│  5 workers       │                                       │
-└────────┬─────────┘                                       │
-         │                                                 │
-         ▼                                                 ▼
-┌──────────────────────────────────────────────────────────────┐
-│  PASO 4: Descargar y Organizar                               │
-│                                                              │
-│  Servicios soportados:                                       │
-│  Mega.nz | Mediafire | Google Drive | Yandex Disk            │
-│  pCloud | Mail.ru | Icedrive | Krakenfiles                   │
-│  Workupload | WeTransfer | VK Docs | HTTP directo            │
-│                                                              │
-│  - Extrae archivos (ZIP/RAR/7z)                              │
-│  - Valida audio por magic bytes                              │
-│  - Organiza en: "Banda - Album (Año) [Tipo]/"                │
-│  - Manejo de cuota Mega (cooldown 20min + cola)              │
-└──────────────────────────────────┬───────────────────────────┘
-                                   │
-                                   ▼
-                    /01_limpieza_de_impurezas/
-                    (Carpetas listas para renderizar)
-```
+![Pipeline de scraping](/project/canal-youtube-automatizado/pipeline-scraping.svg)
 
 ### Sistema de Filtrado Inteligente
 
@@ -122,72 +59,7 @@ Toma las carpetas de musica descargadas (audio + portada) y produce videos 4K co
 
 ### Pipeline de Renderizado
 
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                     PIPELINE DE RENDERIZADO                      │
-│                                                                  │
-│  Carpeta de album                                                │
-│  ("Banda - Album/")                                              │
-│   ├── cover.png                                                  │
-│   ├── 01 - Track.mp3                                             │
-│   ├── 02 - Track.flac                                            │
-│   └── ...                                                        │
-│        │                                                         │
-│        ▼                                                         │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 0: Preparacion                        │                 │
-│  │                                             │                 │
-│  │  - Normalizar nombres de archivos           │                 │
-│  │  - Filtrar portadas NSFW (modelo ONNX)      │                 │
-│  │  - Censurar texto con profanidad            │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 1: Verificacion Previa                │                 │
-│  │                                             │                 │
-│  │  Busca en YouTube si el album ya            │                 │
-│  │  fue subido al canal                        │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 2: Optimizacion de I/O                │                 │
-│  │                                             │                 │
-│  │  Copia al medio mas rapido disponible:      │                 │
-│  │  Ramdisk (48GB tmpfs) > NVMe SSD > HDD      │                 │
-│  │                                             │                 │
-│  │  Ramdisk = ~7x mas rapido que NVMe          │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 3: Procesamiento de Portada           │                 │
-│  │                                             │                 │
-│  │  - Extraer portada del audio (mutagen)      │                 │
-│  │  - Generar sombra (Pillow)                  │                 │
-│  │  - Calcular colores dominantes              │                 │
-│  │  - Generar imagen de tracklist              │                 │
-│  │    (auto-dimensionado de fuente 28-90px)    │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│  ┌─────────────────────────────────────────────┐                 │
-│  │  FASE 4: Renderizado VHS                    │                 │
-│  │  (ver diagrama detallado abajo)             │                 │
-│  │                                             │                 │
-│  │  Ruta principal: C++/CUDA (RTX 3090 Ti)     │                 │
-│  │  Fallback: FFmpeg NVENC                     │                 │
-│  │  Fallback final: FFmpeg libx264             │                 │
-│  │                                             │                 │
-│  │  Salida: 3840x2160, 24fps, 45 Mbps          │                 │
-│  └──────────────┬──────────────────────────────┘                 │
-│                 │                                                │
-│                 ▼                                                │
-│           "Banda - Album.mp4"                                    │
-│                                                                  │
-└──────────────────────────────────────────────────────────────────┘
-```
+![Pipeline de renderizado](/project/canal-youtube-automatizado/pipeline-renderizado.svg)
 
 ### Cadena de Efectos VHS (CUDA)
 
