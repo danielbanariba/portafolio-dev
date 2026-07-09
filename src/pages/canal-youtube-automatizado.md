@@ -65,55 +65,7 @@ Toma las carpetas de musica descargadas (audio + portada) y produce videos 4K co
 
 El corazon del renderizador es una cadena de **10+ kernels CUDA** que procesan cada frame para lograr una estetica VHS autentica. Todos los efectos se controlan con un unico parametro `intensity` (0.0 - 1.0):
 
-```
-Frame Original (3840x2160)
-        │
-        ▼
-┌───────────────────────────────────────────────────────────┐
-│  1. Color Bleeding                                        │
-│     Simula el sangrado de color analogico                 │
-│     Blur horizontal: 5-25px segun intensidad              │
-├───────────────────────────────────────────────────────────┤
-│  2. Aberracion Cromatica                                  │
-│     Desplazamiento de canales RGB: 2-6px                  │
-├───────────────────────────────────────────────────────────┤
-│  3. Horizontal Wobble                                     │
-│     Desplazamiento sinusoidal por linea de escaneo        │
-│     Frecuencia: 30-60, Amplitud: 0-15px                   │
-├───────────────────────────────────────────────────────────┤
-│  4. Tracking Errors                                       │
-│     Bandas horizontales con offset aleatorio              │
-│     Simula errores de tracking de cintas VHS              │
-├───────────────────────────────────────────────────────────┤
-│  5. Position Jitter                                       │
-│     Vibracion del frame completo X/Y a 7-12 Hz            │
-├───────────────────────────────────────────────────────────┤
-│  6. Scanlines                                             │
-│     Oscurecimiento de lineas alternas estilo CRT          │
-│     Darkness: 0.7-0.85                                    │
-├───────────────────────────────────────────────────────────┤
-│  7. Noise / Grain                                         │
-│     Ruido de luminancia (10-30) + ruido de color          │
-│     Generado con cuRAND                                   │
-├───────────────────────────────────────────────────────────┤
-│  8. Color Grading                                         │
-│     Espacio de color NTSC YIQ para colores analogicos     │
-│     Desaturacion: 15-30%, elevacion de negros,            │
-│     reduccion de contraste                                │
-├───────────────────────────────────────────────────────────┤
-│  9. VHS Overlay Blend                                     │
-│     Composicion de video real de ruido VHS al 60%         │
-│     (content/vhs_noise.mp4)                               │
-├───────────────────────────────────────────────────────────┤
-│  10. VHS Transition                                       │
-│      Transiciones estilo cinta con distorsion,            │
-│      arrugas y offset de croma                            │
-└───────────────────────────────────┬───────────────────────┘
-                                    │
-                                    ▼
-                          Frame VHS Procesado
-                    (Double buffering en GPU)
-```
+![Cadena de efectos VHS (CUDA)](/project/canal-youtube-automatizado/cadena-vhs.svg)
 
 **Detalles tecnicos del renderizador C++/CUDA:**
 
@@ -126,63 +78,7 @@ Frame Original (3840x2160)
 
 ### Pipeline de Subida a YouTube
 
-```
-┌───────────────────────────────────────────────────────────────────┐
-│                   PIPELINE DE SUBIDA                              │
-│                                                                   │
-│  "Banda - Album.mp4"                                              │
-│        │                                                          │
-│        ▼                                                          │
-│  ┌──────────────────────────────────┐                             │
-│  │  Generacion de Metadata          │                             │
-│  │                                  │                             │
-│  │  - Parsear nombre de carpeta     │                             │
-│  │    (banda/album/anio)            │                             │
-│  │  - Generar titulo y descripcion  │                             │
-│  │  - Crear tracklist con           │                             │
-│  │    timestamps                    │                             │
-│  │  - Obtener generos y links       │                             │
-│  │    de streaming (DeathGrind API) │                             │
-│  │  - Censurar profanidad           │                             │
-│  └──────────┬───────────────────────┘                             │
-│             │                                                     │
-│             ▼                                                     │
-│  ┌──────────────────────────────────┐                             │
-│  │  Autenticacion OAuth             │                             │
-│  │                                  │                             │
-│  │  Sistema multi-credencial:       │                             │
-│  │  - 2 sets para upload            │                             │
-│  │  - 8 sets para playlists         │                             │
-│  │  - Rotacion automatica           │                             │
-│  │    cuando se agota la cuota      │                             │
-│  │    (HTTP 403/429)                │                             │
-│  └──────────┬───────────────────────┘                             │
-│             │                                                     │
-│             ▼                                                     │
-│  ┌──────────────────────────────────┐                             │
-│  │  Subida Programada               │                             │
-│  │                                  │                             │
-│  │  Modo batch:                     │                             │
-│  │  24 videos, 1 hora entre cada    │                             │
-│  │  uno, privacy="private" con      │                             │
-│  │  publishAt programado            │                             │
-│  │                                  │                             │
-│  │  Modo inmediato:                 │                             │
-│  │  Publicacion directa             │                             │
-│  └──────────┬───────────────────────┘                             │
-│             │                                                     │
-│             ▼                                                     │
-│  ┌──────────────────────────────────┐                             │
-│  │  Gestion de Playlists            │                             │
-│  │                                  │                             │
-│  │  - Playlist por banda            │                             │
-│  │  - Playlist por genero           │                             │
-│  │  - Servicio systemd persistente  │                             │
-│  │    (mapear_playlists.service)    │                             │
-│  └──────────────────────────────────┘                             │
-│                                                                   │
-└──────────────────────────────────────────────────────────────────┘
-```
+![Pipeline de subida a YouTube](/project/canal-youtube-automatizado/pipeline-subida.svg)
 
 ### Automatizacion de Copyright
 
