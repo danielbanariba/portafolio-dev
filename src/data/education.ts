@@ -23,8 +23,7 @@ export const educations: Education[] = [
     institution: "Universidad Nacional Autónoma de Honduras",
     date: "2019 - 2025",
     logoUrl: "icon/education/unah.svg",
-    certificateUrl:
-      "https://drive.google.com/file/d/1jNBiozGkUHsO0SzRW-VLop12h4uv-2DT/view?usp=sharing",
+    certificateUrl: "/certificates/titulo-ingenieria-sistemas.pdf",
     iconUrl: "icon/education/certificate.svg",
     url: "https://www.unah.edu.hn/",
   },
