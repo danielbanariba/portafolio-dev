@@ -21,7 +21,6 @@ export const skills: Skill[] = [
     category: "Backend",
   },
   { name: "Java", icon: "/icon/skills/java.svg", category: "Backend" },
-  { name: "C++", icon: "/icon/skills/cpp.svg", category: "Backend" },
   { name: "Rust", icon: "/icon/skills/rust.svg", category: "Backend" },
 
   //---------------------------------------------IA & Automatización con IA-------------------------
