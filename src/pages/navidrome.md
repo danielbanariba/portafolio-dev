@@ -110,7 +110,7 @@ Reporté que al abrir más de 6 tabs de Navidrome simultáneamente, la UI se col
 
 **Resolución:** [@deluan](https://github.com/deluan) confirmó que la nueva UI ya está migrando a **WebSockets** y recomendó **HTTP/2** como solución correcta hoy (multiplexa requests sobre una única conexión TCP, eliminando el límite). Cerré el issue con un comentario que documenta el workaround para usuarios futuros que googleen el síntoma:
 
-```caddy
+```text
 navidrome.localhost {
     reverse_proxy localhost:4533
     tls internal
