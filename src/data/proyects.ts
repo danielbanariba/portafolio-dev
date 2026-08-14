@@ -17,6 +17,18 @@ export const projects = [
     projectUrl: "https://github.com/navidrome/navidrome",
   },
   {
+    title: "hvault — Sincronización de Certificados TLS",
+    description:
+      "Servicio en Rust puro (CLI + daemon) que sincroniza certificados TLS de Traefik entre nodos vía HashiCorp Vault (KV-v2): escritura atómica para hot-reload sin downtime, validación x509 sin OpenSSL y UI de administración en Leptos/WASM con OIDC.",
+    technologies: ["Rust", "HashiCorp Vault", "Traefik", "Leptos", "WASM", "OIDC", "x509"],
+  },
+  {
+    title: "MCP Servers Suite — Fleet propio en producción",
+    description:
+      "Fleet de servidores MCP (Model Context Protocol) que habilitan a la IA operar Dagster, SQL Server, SMB, Dokploy y Microsoft Graph desde Claude Code. Endurecido con validador SQL read-only, optimización de tokens y auditoría adversarial multiagente.",
+    technologies: ["Python", "MCP", "Dagster", "SQL Server", "Claude Code", "smbprotocol", "Dokploy"],
+  },
+  {
     title: "Metal Archive",
     imageUrl: "project/metal-archive.png",
     description:
