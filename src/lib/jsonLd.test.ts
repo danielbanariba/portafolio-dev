@@ -40,6 +40,13 @@ describe("serializeJsonLd", () => {
     expect(serializeJsonLd(input)).toBe(JSON.stringify(input));
   });
 
+  it("throws a descriptive TypeError for values JSON.stringify cannot represent", () => {
+    // JSON.stringify returns the primitive undefined for these, not a string.
+    for (const value of [undefined, () => {}, Symbol("x")]) {
+      expect(() => serializeJsonLd(value)).toThrow(/serializeJsonLd/);
+    }
+  });
+
   it("escapes every occurrence, not just the first", () => {
     const input = { a: "</script>", b: "</script>" };
     const result = serializeJsonLd(input);

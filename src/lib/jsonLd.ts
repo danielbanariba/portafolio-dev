@@ -22,5 +22,18 @@ const ESCAPES: Record<string, string> = {
 };
 
 export function serializeJsonLd(value: unknown): string {
-  return JSON.stringify(value).replace(HTML_UNSAFE, (char) => ESCAPES[char]);
+  const json = JSON.stringify(value);
+
+  // JSON.stringify returns the primitive undefined - not a string - for
+  // undefined, functions and symbols, which would make the call below throw an
+  // opaque "cannot read properties of undefined". Fail loudly instead: an
+  // unserializable value means the page would ship a broken or missing
+  // JSON-LD block, and a failed build is better than silent invisibility.
+  if (json === undefined) {
+    throw new TypeError(
+      `serializeJsonLd: JSON.stringify cannot represent a value of type ${typeof value}`,
+    );
+  }
+
+  return json.replace(HTML_UNSAFE, (char) => ESCAPES[char]);
 }
