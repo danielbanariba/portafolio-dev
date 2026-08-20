@@ -1,27 +1,33 @@
 ---
 import "../styles/global.css";
+import Seo from "../components/Seo.astro";
 
 interface Props {
-    title: string;
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: "website" | "article";
+    includePersonSchema?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, description, image, type, includePersonSchema } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="Portafolio de Daniel Banariba, Ingeniero de Software Full Stack." />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="sitemap" href="/sitemap-index.xml" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-        <meta property="og:title" content="Daniel Banariba - Ingeniero de Software Full Stack" />
-        <meta property="og:description" content="Bienvenido a mi portafolio, donde puedes encontrar mis proyectos mas destacados y experiencia como Ingeniero de Software." />
-        <meta property="og:image" content="https://www.danielbanariba.dev/img/banner.png" />
-        <meta property="og:url" content="https://www.danielbanariba.dev" />
-        <meta property="og:type" content="website" />
+        <Seo
+            title={title}
+            description={description}
+            image={image}
+            type={type}
+            includePersonSchema={includePersonSchema}
+        />
     </head>
     <body>
         <slot />
