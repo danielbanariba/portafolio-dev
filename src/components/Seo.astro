@@ -7,6 +7,7 @@
  * "who is this and what do they do" without inferring it from page copy.
  */
 import { site } from "../data/site";
+import { serializeJsonLd } from "../lib/jsonLd";
 
 interface Props {
   title?: string;
@@ -88,7 +89,7 @@ const personSchema = {
   includePersonSchema && (
     <script
       type="application/ld+json"
-      set:html={JSON.stringify(personSchema)}
+      set:html={serializeJsonLd(personSchema)}
       is:inline
     />
   )
