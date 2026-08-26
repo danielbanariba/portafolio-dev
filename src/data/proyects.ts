@@ -17,6 +17,27 @@ export const projects = [
     projectUrl: "https://github.com/navidrome/navidrome",
   },
   {
+    title: "Navidrome + Lidarr — Biblioteca musical autocompletable",
+    imageUrl: "project/navidrome-lidarr-bridge/banner.jpg",
+    description:
+      "Sistema que completa y mejora una biblioteca musical self-hosted de 2000 álbumes sin intervención. Resuelve nombres ambiguos comparando catálogos en vez de adivinar (10 bandas se llaman \"Delirium\"), audiciona varios torrents del mismo álbum y detecta transcodificaciones midiendo el acantilado del espectro con FFT, y marca los discos guardados con pérdida ofreciendo buscar una copia mejor. Servicio Python sin dependencias, userscript y 5 herramientas CLI.",
+    technologies: [
+      "Python",
+      "JavaScript",
+      "Docker",
+      "nginx",
+      "numpy",
+      "FFmpeg",
+      "MusicBrainz",
+      "Lidarr",
+      "Prowlarr",
+    ],
+    documentacionUrl: "/navidrome-lidarr-bridge",
+    githubUrl: "https://github.com/danielbanariba/navidrome-lidarr-bridge",
+    projectUrl:
+      "https://github.com/danielbanariba/navidrome-missing-albums-userscript",
+  },
+  {
     title: "hvault — Sincronización de Certificados TLS",
     description:
       "Servicio en Rust puro (CLI + daemon) que sincroniza certificados TLS de Traefik entre nodos vía HashiCorp Vault (KV-v2): escritura atómica para hot-reload sin downtime, validación x509 sin OpenSSL y UI de administración en Leptos/WASM con OIDC.",
