@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # local tooling caches
 .atl/
+
+# CodeGraph index — machine-local, tied to this checkout
+.codegraph/
