@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
     positions: [
       {
         role: "Desarrollador RPA & Data Engineer",
-        period: "15 de Noviembre 2025 - Actualidad",
+        period: "Noviembre 2025 - Actualidad",
         points: [
           "Reduje un 94% los falsos positivos del control de cumplimiento de la cartera de crédito, desarrollando el RPA que la evalúa contra listas restrictivas internacionales (OFAC, ONU, PEP) con matching difuso, sin perder un solo verdadero positivo. Entregado con ciclo SDD completo y TDD estricto, y validado y cerrado por el área de Cumplimiento.",
           "Convertí la operación de la infraestructura de producción —orquestación, consultas a bases de datos, archivos y despliegues— en algo que se maneja desde un asistente de IA, construyendo un fleet de 6 servidores MCP (Model Context Protocol) propios. Endurecidos con validador SQL read-only, confirmación de dos pasos para mutaciones, políticas de blast-radius y OAuth2; optimización de tokens (~10-20x) y auditoría adversarial multiagente.",
@@ -83,7 +83,7 @@ export const experiences: Experience[] = [
     positions: [
       {
         role: "DevOps & Infrastructure Engineer | Implementación Proxy Corporativo con VPN",
-        period: "6 de Octubre - 14 de Octubre",
+        period: "Octubre 2025",
         points: [
           "Cree un servidor proxy con Docker que centraliza el acceso VPN, reduciendo la gestión de 30+ equipos a 1 servidor y eliminando configuraciones individuales.",
           "Automaticé proceso de construcción con script bash, reduciendo tiempo de setup de 30 minutos a 3 minutos con validación automática de dependencias.",
@@ -99,7 +99,7 @@ export const experiences: Experience[] = [
       },
       {
         role: "Backend Developer | Migración CRM Bacteriología",
-        period: "3 de Junio - 12 de Julio",
+        period: "Junio - Julio 2025",
         points: [
           "Automaticé integración VITEK-CRM con FastAPI, eliminando ingreso manual de resultados de cultivos bacteriológicos en producción.",
           "Implementé sistema de trazabilidad de protocolos médicos ASTM/HL7 con reintentos automáticos y logging para comunicación con equipos de laboratorio.",
@@ -127,7 +127,7 @@ export const experiences: Experience[] = [
     positions: [
       {
         role: "QA & Backend Developer",
-        period: "28 de Octubre - 14 de Marzo",
+        period: "Octubre 2024 - Marzo 2025",
         points: [
           "Diseñé la documentación técnica de la arquitectura completa para un sistema de pagos comunitarios con NestJS, DynamoDB y servicios AWS (S3, SNS).",
           "Implementé pruebas automatizadas end-to-end con Playwright para flujos críticos (login, formularios, gestión de cotizaciones, handshake) y testing de API con Postman/Apidog, reportando bugs críticos con reproducciones precisas.",

@@ -29,6 +29,8 @@ export interface SiteConfig {
   };
   /** Profiles the same person controls — feeds schema.org `sameAs`. */
   profiles: string[];
+  /** Other spellings of the name in the wild — feeds schema.org `alternateName`. */
+  alternateNames: string[];
   /** Technologies stated explicitly — feeds schema.org `knowsAbout`. */
   knowsAbout: string[];
   /**
@@ -67,7 +69,11 @@ export const site: SiteConfig = {
   profiles: [
     "https://github.com/danielbanariba",
     "https://www.linkedin.com/in/danielbanariba/",
+    "https://www.youtube.com/@danielbanariba",
   ],
+  // Las otras grafías del apellido que usan LinkedIn y GitHub. Sin esto un motor
+  // de búsqueda trata "Daniel Anariba" y "Daniel Banariba" como dos personas.
+  alternateNames: ["Daniel Anariba", "Daniel Barrientos Anariba", "Daniel Alejandro Barrientos"],
   // Ordered by positioning: data and AI first, then the supporting stack.
   knowsAbout: [
     "Data Engineering",
