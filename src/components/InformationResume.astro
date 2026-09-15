@@ -1,11 +1,13 @@
 ---
-const startYear = 2023; // fecha que empecé a programar de manera profesional
+const startYear = 2023; // cuando empecé a programar. El historial laboral
+// documentado arranca en octubre 2024: por eso la etiqueta dice "programando"
+// y no "de experiencia", que contradecía al CV.
 const currentYear = new Date().getFullYear();
 const yearsOfExperience = currentYear - startYear;
 ---
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 mb-8">
-  <!-- Años de Experiencia -->
+  <!-- Años Programando -->
   <div class="text-center">
     <div class="flex items-center justify-center gap-4 mb-2">
       <div class="icon-container mb-0 floating shrink-0">
@@ -40,7 +42,7 @@ const yearsOfExperience = currentYear - startYear;
       </div>
       <h3 class="text-3xl md:text-4xl font-bold text-purple-400">+{yearsOfExperience}</h3>
     </div>
-    <p class="text-sm md:text-base text-gray-400">Años de Experiencia</p>
+    <p class="text-sm md:text-base text-gray-400">Años Programando</p>
   </div>
 
   <!-- Proyectos Personales -->

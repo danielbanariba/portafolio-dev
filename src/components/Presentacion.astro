@@ -6,11 +6,11 @@ import DownloadButton from "../components/DownloadButton.astro";
 <div class="grid md:grid-cols-[1fr_1.5fr] gap-12 items-center mb-1">
   <div>
     <div class="animated-title">
-      <p>
+      <h1>
         <span class="profession">Ingeniero de Software</span>
         <span class="name">Daniel<br />Banariba</span>
         <span class="profession">Data Engineer<br />Backend Developer</span>
-      </p>
+      </h1>
     </div>
     <div class="grid grid-cols-2 gap-4 mt-8 buttons-container">
       <DownloadButton />
@@ -72,7 +72,7 @@ import DownloadButton from "../components/DownloadButton.astro";
     height: 300px;
   }
 
-  .animated-title p {
+  .animated-title h1 {
     text-transform: uppercase;
     letter-spacing: 0.5em;
     display: inline-block;
@@ -86,12 +86,12 @@ import DownloadButton from "../components/DownloadButton.astro";
     transform: translate(-50%, -50%);
   }
 
-  .animated-title p .profession {
+  .animated-title h1 .profession {
     color: #ffffff;
     font-size: 0.9em;
   }
 
-  .animated-title p .name {
+  .animated-title h1 .name {
     font:
       700 6em/1 "Oswald",
       sans-serif;
@@ -143,21 +143,21 @@ import DownloadButton from "../components/DownloadButton.astro";
   }
 
   @media (max-width: 768px) {
-    .animated-title p {
+    .animated-title h1 {
       width: 90%;
     }
 
-    .animated-title p .name {
+    .animated-title h1 .name {
       font-size: 4em;
     }
   }
 
   @media (min-width: 769px) {
-    .animated-title p {
+    .animated-title h1 {
       width: 40em;
     }
 
-    .animated-title p .name {
+    .animated-title h1 .name {
       font-size: 6em;
     }
 
