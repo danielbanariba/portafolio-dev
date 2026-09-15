@@ -55,7 +55,7 @@ export const site: SiteConfig = {
   // exact search for "Data Engineer", the higher-volume of the two terms.
   defaultTitle: "Daniel Banariba — Data Engineer & AI Engineer en Honduras",
   defaultDescription:
-    "Daniel Banariba, Data Engineer y AI Engineer en Tegucigalpa, Honduras. Construyo pipelines de datos con Dagster, dbt y SQL Server, y herramientas que permiten a la IA operar infraestructura en producción: 5 servidores MCP (Model Context Protocol), Agentic AI y Power BI as Code. Python, Rust, FastAPI y PostgreSQL.",
+    "Daniel Banariba, Data Engineer y AI Engineer en Tegucigalpa, Honduras. Construyo pipelines de datos con Dagster, dbt y SQL Server bajo TDD estricto, y herramientas que permiten a la IA operar infraestructura en producción: 6 servidores MCP (Model Context Protocol), Agentic AI y Power BI as Code. Python, Rust, FastAPI, PostgreSQL, Azure y Terraform.",
   defaultImage: "/img/banner.png",
   email: "danielbanariba@protonmail.com",
   locale: "es_HN",

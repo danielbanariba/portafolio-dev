@@ -46,7 +46,7 @@ export const projects = [
   {
     title: "MCP Servers Suite — Fleet propio en producción",
     description:
-      "Fleet de servidores MCP (Model Context Protocol) que habilitan a la IA operar Dagster, SQL Server, SMB, Dokploy y Microsoft Graph desde Claude Code. Endurecido con validador SQL read-only, optimización de tokens y auditoría adversarial multiagente.",
+      "Fleet de 6 servidores MCP (Model Context Protocol) propios que permiten operar orquestación, bases de datos, archivos y despliegues desde un asistente de IA. Endurecido con validador SQL read-only, confirmación de dos pasos para mutaciones, optimización de tokens (~10-20x) y auditoría adversarial multiagente.",
     technologies: ["Python", "MCP", "Dagster", "SQL Server", "Claude Code", "smbprotocol", "Dokploy"],
   },
   {
