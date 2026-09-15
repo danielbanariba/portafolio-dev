@@ -77,6 +77,13 @@ const personSchema = {
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+
+<!--
+  Un agente que aterriza en el HTML no adivina rutas. Sin estos dos enlaces
+  /llms.txt existe pero es inalcanzable, y el agente termina parseando markup.
+-->
+<link rel="alternate" type="text/plain" href={`${site.url}/llms.txt`} title="llms.txt" />
+<link rel="alternate" type="text/plain" href={`${site.url}/llms-full.txt`} title="llms-full.txt" />
 <meta name="author" content={site.name} />
 
 <meta property="og:type" content={type} />

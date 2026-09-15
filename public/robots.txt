@@ -44,3 +44,9 @@ User-agent: CCBot
 Allow: /
 
 Sitemap: https://www.danielbanariba.dev/sitemap-index.xml
+
+# Índice legible por máquina. Los estudios de logs muestran que los agentes
+# piden robots.txt cientos de veces por cada vez que piden llms.txt, así que
+# el puntero va acá: es el archivo que sí buscan.
+# llms.txt: https://www.danielbanariba.dev/llms.txt
+# llms-full.txt: https://www.danielbanariba.dev/llms-full.txt

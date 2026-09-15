@@ -14,14 +14,15 @@ export const educations: Education[] = [
     institution: "Universidad Nacional Autónoma de Honduras",
     date: "2024 - Actualidad",
     logoUrl: "icon/education/unah.svg",
-    certificateUrl: "https://ejemplo.com/certificado",
+    // Carrera en curso: todavía no hay certificado que enlazar.
+    certificateUrl: "",
     iconUrl: "icon/education/certificate-off.svg",
     url: "https://www.unah.edu.hn/",
   },
   {
-    title: "Ingeniería en Sistemas Computacionales",
+    title: "Ingeniería en Sistemas Computacionales — Cum Laude",
     institution: "Universidad Nacional Autónoma de Honduras",
-    date: "2019 - 2025",
+    date: "2019 - 2026",
     logoUrl: "icon/education/unah.svg",
     certificateUrl: "/certificates/titulo-ingenieria-sistemas.pdf",
     iconUrl: "icon/education/certificate.svg",

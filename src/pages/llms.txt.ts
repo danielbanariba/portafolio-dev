@@ -18,8 +18,23 @@ export const GET: APIRoute = () => {
   const roles = experiences
     .map((e) => `- **${e.company}** — ${e.positions[0]?.role ?? e.title} (${e.date})`)
     .join("\n");
+  // Las páginas de detalle que realmente existen bajo src/pages/*.md. Sin este
+  // mapa cada proyecto enlazaba al índice, y un índice cuyos enlaces apuntan a
+  // sí mismo no es un índice.
+  const PAGES: Record<string, string> = {
+    "Navidrome — Open Source": "/navidrome",
+    "Navidrome + Lidarr — Biblioteca musical autocompletable": "/navidrome-lidarr-bridge",
+    "Metal Archive": "/metal-archive",
+    "Canal de YouTube Automatizado": "/canal-youtube-automatizado",
+    "Sistema Contable": "/sistema-contable",
+  };
   const projectList = projects
-    .map((p) => `- [${p.title}](${site.url}): ${p.description.split(".")[0]}.`)
+    .map((p) => {
+      const page = PAGES[p.title];
+      const url = page ? `${site.url}${page}` : site.url;
+      const note = page ? "" : " (sin página de detalle; repositorio privado o corporativo)";
+      return `- [${p.title}](${url}): ${p.description.split(".")[0]}.${note}`;
+    })
     .join("\n");
 
   const body = `# ${site.name}
@@ -50,7 +65,8 @@ ${site.profiles.map((u) => `- ${u}`).join("\n")}
 ## También conocido como
 ${site.alternateNames.join(" · ")}
 
-## Contenido completo
+## Documentos
+- [CV en PDF](${site.url}/document/cv_daniel_banariba.pdf)
 - [/llms-full.txt](${site.url}/llms-full.txt): el detalle de cada rol y proyecto.
 `;
 
