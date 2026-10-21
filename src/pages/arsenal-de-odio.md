@@ -4,7 +4,7 @@ title: Arsenal de Odio — Sitio web de la banda
 description: Rediseño del sitio web oficial de Arsenal de Odio, banda de thrash metal de Tegucigalpa. Dirección de arte, desarrollo con Astro, animación con GSAP, pruebas con Playwright y accesibilidad.
 ---
 
-Sitio web oficial de **Arsenal de Odio**, una banda de thrash metal de Tegucigalpa, Honduras. Su álbum debut, *Muerte en el Mosh* (2023), tiene diez temas y cinco integrantes. El diseño, el desarrollo, las pruebas y la publicación son míos.
+Sitio web oficial de **Arsenal de Odio**, una banda de thrash metal de Tegucigalpa, Honduras. Son cinco integrantes, y su álbum debut, *Muerte en el Mosh* (2023), tiene diez temas. El diseño, el desarrollo, las pruebas y la publicación son míos.
 
 **En vivo:** [arsenaldeodio.danielbanariba.com](https://arsenaldeodio.danielbanariba.com)
 
@@ -58,7 +58,7 @@ Lo probé con Playwright en 10 tamaños de pantalla, de 360x640 a 1920x1080. Ade
 - sin JavaScript;
 - con el texto del navegador al 200 %.
 
-La primera pasada encontró **9 errores**. Los corregí todos y los volví a verificar en el sitio publicado, en unas 100 ejecuciones de prueba. Algunos ejemplos:
+La primera pasada encontró **9 errores**. Corregí los que dependían del sitio y volví a verificar todo en el sitio publicado, en unas 100 ejecuciones de prueba. Quedan abiertos dos detalles menores: las paradas de tabulación que agrega el reproductor de Spotify y el menú del teléfono, que sin JavaScript no se cierra solo. Algunos de los errores corregidos:
 
 - el primer click del menú caía corto de su sección;
 - la portada daba un salto cuando la barra del navegador del teléfono cambiaba de tamaño;
@@ -77,7 +77,7 @@ La primera pasada encontró **9 errores**. Los corregí todos y los volví a ver
 ## Rendimiento y SEO
 
 - Build estático de Astro.
-- Todas las imágenes salen en AVIF y WebP con `srcset` (sharp).
+- Las imágenes del contenido salen en AVIF y WebP con `srcset` (sharp).
 - Fuentes alojadas en el propio sitio.
 - Cambio de diseño acumulado (CLS) medido en 0.001 o menos.
 - SEO: canonical, Open Graph y Twitter cards, JSON-LD de la banda y del álbum, sitemap y robots.
