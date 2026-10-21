@@ -25,10 +25,11 @@ The user wants more web work. The redesign is live at https://arsenaldeodio.dani
 `single-pr` on `feat/arsenal-de-odio-case-study`.
 
 ## Tasks
-- [ ] T1 Screenshots of the live redesign (desktop and phone), optimized, under `public/project/`
-- [ ] T2 Project card in `proyects.ts`, linking to the live site and the case study
-- [ ] T3 Case-study page `src/pages/arsenal-de-odio.md` and its `llms.txt.ts` `PAGES` entry
-- [ ] T4 Verification (tests, build, Playwright check of the card and the page), then the PR
+- [x] T1 Screenshots of the live redesign (desktop and phone), optimized, under `public/project/`
+- [x] T2 Project card in `proyects.ts`, linking to the live site and the case study
+- [x] T3 Case-study page `src/pages/arsenal-de-odio.md` and its `llms.txt.ts` `PAGES` entry
+- [x] T4 Verification (tests, build, Playwright check of the card and the page)
+- [ ] T5 Open the PR (parent, after the user's OK)
 
 ## Acceptance criteria
 - `npm test` and `npm run build` (which runs `astro check`) pass.
@@ -37,6 +38,15 @@ The user wants more web work. The redesign is live at https://arsenaldeodio.dani
 - `/llms.txt` lists the project with its page.
 
 ## Progress / evidence
+Route: delegated writer (T1-T4, one thread). Trigger: 2+ non-trivial files plus screenshot capture.
+
+- T1: screenshots of the live site taken with Playwright against https://arsenaldeodio.danielbanariba.com, with googletagmanager.com and google-analytics.com blocked, fonts ready, hero video confirmed playing on a lit frame (3.7 s). System Chromium 153 was used because Playwright's bundled browsers did not match the library version. Every shot was viewed before use. Files: `public/project/arsenal-de-odio-2026.jpg` (card, 1920x1080, 156 KB) and `public/project/arsenal-de-odio/` (hero-escritorio, canciones, mercaderia, galeria at 1440x900, movil 1600x1688 with the phone hero and tracks side by side, antes 1600x908 from the old PNG with its scrollbar cropped).
+- T2 / T3: card first in `projects` (no `githubUrl`, repo is private), case study at `src/pages/arsenal-de-odio.md`, `PAGES` entry in `llms.txt.ts`. `llms-full.txt.ts` derives from `projects`, so it needs no entry.
+- Functional RED (before the change, preview on 4410): card not found, `/arsenal-de-odio` returned 404, `/llms.txt` had no Arsenal line (7 failed, 2 passed).
+- Functional GREEN (after): 17 of 17 checks passed on 1440x900 and 390x844 (card first and its image loads, links go to the live site and `/arsenal-de-odio`, page returns 200, 6 images load with alt, no overflow, no page errors, `/llms.txt` lists the project with its page).
+- `npm test`: 2 files, 12 tests passed. `npm run build`: `astro check` 0 errors, 0 warnings, 0 hints, 8 pages built. Node v25.8.0 (`.nvmrc` says 23.11.0; fnm only has the system Node).
+- Commits: 0618312 (case study), f35fb76 (card and llms entry).
+- The old `public/project/arsenal-de-odio.png` (3.2 MB) is still tracked and unreferenced; the case study uses a re-encoded copy.
 
 ## Next step
-T1–T3 via one delegated writer, then T4.
+Parent: push the branch, open the single PR, get the user's OK to merge (Cloudflare Pages deploys `main`).
