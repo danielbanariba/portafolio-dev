@@ -29,7 +29,7 @@ The user wants more web work. The redesign is live at https://arsenaldeodio.dani
 - [x] T2 Project card in `proyects.ts`, linking to the live site and the case study
 - [x] T3 Case-study page `src/pages/arsenal-de-odio.md` and its `llms.txt.ts` `PAGES` entry
 - [x] T4 Verification (tests, build, Playwright check of the card and the page)
-- [ ] T5 Open the PR (parent, after the user's OK)
+- [x] T5 Open the PR — route: inline (git/gh) — PR #11; merge waits for the user's explicit OK
 
 ## Acceptance criteria
 - `npm test` and `npm run build` (which runs `astro check`) pass.
@@ -47,6 +47,19 @@ Route: delegated writer (T1-T4, one thread). Trigger: 2+ non-trivial files plus 
 - `npm test`: 2 files, 12 tests passed. `npm run build`: `astro check` 0 errors, 0 warnings, 0 hints, 8 pages built. Node v25.8.0 (`.nvmrc` says 23.11.0; fnm only has the system Node).
 - Commits: 0618312 (case study), f35fb76 (card and llms entry).
 - The old `public/project/arsenal-de-odio.png` (3.2 MB) is still tracked and unreferenced; the case study uses a re-encoded copy.
+- Parent review:
+  - Read the case study and fixed three inaccurate claims in `8b200be`:
+    - the five members belong to the band, not the album;
+    - not all nine QA bugs were fixed, since two minor ones remain open (Spotify tab stops, no-JS phone menu);
+    - only content images ship as AVIF/WebP.
+  - Build re-run green.
+  - Viewed the card and the websites screenshots.
+- Templates: the repo had none. Added the English commit template and a PR template, noted in CLAUDE.md (`bee0b5d`).
+- RDD: assess medium, `under_budget`, so no review was due.
+- PR #11 opened. The Cloudflare Pages preview passed at https://feat-arsenal-de-odio-case-st.portafolio-dev.pages.dev:
+  - the card renders;
+  - `/arsenal-de-odio/` returns 200, with the same trailing-slash 308 as `/metal-archive`;
+  - `/llms.txt` lists the page.
 
 ## Next step
-Parent: push the branch, open the single PR, get the user's OK to merge (Cloudflare Pages deploys `main`).
+The user reviews PR #11 (preview above). Merge only with the user's explicit OK; Cloudflare Pages deploys `main`.
