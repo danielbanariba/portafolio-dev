@@ -61,5 +61,7 @@ Route: delegated writer (T1-T4, one thread). Trigger: 2+ non-trivial files plus 
   - `/arsenal-de-odio/` returns 200, with the same trailing-slash 308 as `/metal-archive`;
   - `/llms.txt` lists the page.
 
+- User change request: use the hero frame where the black-and-white singer photo covers the video, taken by the parent rather than from the user's screenshot. Retaken from the live site with Playwright, with GA blocked: 1920x1080 at scroll 880 for the card, 1440x900@2x at scroll 730 for the case-study hero. The hero alt text was updated. `1432c7a`; build green. The Cloudflare preview serves the new files, and their sha256 matches the local copies.
+
 ## Next step
 The user reviews PR #11 (preview above). Merge only with the user's explicit OK; Cloudflare Pages deploys `main`.
