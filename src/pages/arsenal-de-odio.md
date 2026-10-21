@@ -8,7 +8,7 @@ Sitio web oficial de **Arsenal de Odio**, una banda de thrash metal de Tegucigal
 
 **En vivo:** [arsenaldeodio.danielbanariba.com](https://arsenaldeodio.danielbanariba.com)
 
-![Portada del sitio de Arsenal de Odio en escritorio: el logo de la banda a caballo sobre una franja de video en vivo, con la frase "Thrash metal de Tegucigalpa" y el botón "Pausar video"](/project/arsenal-de-odio/hero-escritorio.jpg)
+![Portada del sitio de Arsenal de Odio en escritorio: el logo de la banda sobre una foto en blanco y negro del cantante en vivo, con la frase "Thrash metal de Tegucigalpa"](/project/arsenal-de-odio/hero-escritorio.jpg)
 
 ---
 
