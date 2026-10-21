@@ -1,5 +1,14 @@
 export const projects = [
   {
+    title: "Arsenal de Odio — Sitio web de la banda",
+    imageUrl: "project/arsenal-de-odio-2026.jpg",
+    description:
+      "Rediseño del sitio web oficial de una banda de thrash metal de Tegucigalpa: dirección de arte propia, hero fijado con video y fotos en vivo, reproductor de Spotify, mercadería y galería. Sitio estático con imágenes AVIF/WebP, probado con Playwright en 10 tamaños de pantalla, solo con teclado, sin JavaScript y con movimiento reducido.",
+    technologies: ["Astro", "Tailwind CSS", "GSAP", "TypeScript", "Playwright"],
+    documentacionUrl: "/arsenal-de-odio",
+    projectUrl: "https://arsenaldeodio.danielbanariba.com",
+  },
+  {
     title: "Navidrome — Open Source",
     imageUrl: "project/navidrome/banner.jpg",
     description:
