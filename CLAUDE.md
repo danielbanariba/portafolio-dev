@@ -73,3 +73,8 @@ Assets in `public/` referenced with absolute paths (e.g., `/icon/skills/python.s
 2. Add screenshot to `public/project/`
 3. Optional fields: `documentacionUrl` (markdown page route), `githubUrl`, `projectUrl`
 4. For documentation pages, create a `.md` file in `src/pages/` with `layout: '/src/layouts/MarkdownLayout.astro'` in frontmatter
+
+## Commits and Pull Requests
+
+- Commits: Gitmoji + Conventional Commits in English, `<gitmoji> <type>(<scope>): <description>` (template: `templates/commit-template.en.git.txt`).
+- PR bodies follow `.github/pull_request_template.md`. Merging `main` deploys production (Cloudflare Pages).
