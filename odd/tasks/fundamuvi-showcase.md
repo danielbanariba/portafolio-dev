@@ -10,7 +10,7 @@ The user asked (2026-10-21): "publicarlo en mi portafolio web, para poder vender
 
 ## Scope (authorized by the user, 2026-10-21)
 - A card in `src/data/proyects.ts`, with a screenshot of the redesign, following the arsenal-de-odio pattern (PR #11, `odd/tasks/arsenal-de-odio-showcase.md`).
-- A case-study page `src/pages/fundamuvi.md`: the before and after, what was done (built from the owner's own hand sketch and research, bilingual ES/EN, Netlify forms, accessibility, reduced motion), how it was tested, and screenshots. The card links to it, and it gets a `PAGES` entry in `src/pages/llms.txt.ts`.
+- A case-study page `src/pages/fundamuvi.md`: where the design comes from, what was done (built from the owner's own hand sketch and research, bilingual ES/EN, Netlify forms, accessibility, reduced motion), how it was tested, and screenshots. The card links to it, and it gets a `PAGES` entry in `src/pages/llms.txt.ts`.
 - Out of scope:
   - a link to the GitHub repo (`danielbanariba/fundamuvi-web` is private);
   - invented metrics, clients, prices or quotes;
@@ -18,6 +18,7 @@ The user asked (2026-10-21): "publicarlo en mi portafolio web, para poder vender
 
 ## Decisions (user)
 - 2026-10-21: the children's faces in every screenshot are blurred. The design stays visible; the photo consent covers the foundation's site, not a commercial portfolio.
+- 2026-10-21: there was never a previous, published FUNDAMUVI site. `main` f6c1fd5 is the user's own earlier, unpublished version, paused while they were still working on it. The case study has no before and after, and the copy says "Sitio web", not "Rediseño".
 - The redesign is live as a demo at https://fundamuvi.danielbanariba.com, so the portfolio no longer waits for the FUNDAMUVI merge. Cloudflare Pages deploys `main`, so the portfolio merge still needs the user's explicit OK.
 
 ## Constraints
@@ -54,7 +55,7 @@ None. The live URL was answered on 2026-10-21: the user publishes it on their ow
   - Images (path under `public/project/`, size, KB, blurred regions, hand-placed):
     - `fundamuvi-2026.jpg` (card), 1920x1080, 202 KB, 9 regions (7 hero faces, 2 in the "Quiénes somos" photo cut at the bottom), all by hand.
     - `fundamuvi/hero-escritorio.jpg`, 1440x900, 154 KB, 7 regions, all by hand.
-    - `fundamuvi/antes.jpg`, 1440x900, 97 KB, 22 regions, all by hand (1 added after review).
+    - `fundamuvi/antes.jpg`, 1440x900, 97 KB, 22 regions, all by hand (1 added after review). Removed later: see the correction below.
     - `fundamuvi/historia.jpg`, 1440x900, 70 KB, no people.
     - `fundamuvi/donacion.jpg`, 1440x900, 77 KB, no people (the dialog opened over the history section).
     - `fundamuvi/clases.jpg`, 1440x900, 101 KB, no people (illustrations only).
@@ -75,6 +76,7 @@ None. The live URL was answered on 2026-10-21: the user publishes it on their ow
 - Independent face audit (a read-only verifier zoomed into every image): 8 of 9 pass. `piano.jpg` had the top of a child's head with no blur at the bottom edge (about x 1048-1085, y 880-900, eyes cut off). `12dcb67` pixelates the box 50x24+1042+876; the parent checked zoomed crops before and after.
 - Native review `review-b0ef497de45c56df` (3c34130..01382b7, medium, reliability lens): granted by the user, approved and acknowledged. Advisories (informational): R3-llms-title-coupling `src/pages/llms.txt.ts:25`; R3-piano-fix-unaudited (the piano fix was checked only by the parent, with zoomed crops); R3-unproven-metric-claim `src/pages/fundamuvi.md:76` (the local harnesses ran 1,402 checks on the redesign, but they live outside this repo; the PR body says so).
 - T5 (route: inline git/gh): `npm test` (12 passed) and `npm run build` (0 errors, 0 warnings, 0 hints; 9 pages) re-run on 01382b7; no AI attribution in the commits or the PR body; pushed and opened PR #12. Its body is in English, like PR #11 and the template.
+- Correction (user, 2026-10-21, after PR #12 opened): there was never a previous site, so `:memo: docs(portfolio): drop the fundamuvi before and after` removes the "Antes y después" section and `antes.jpg`, renames the title to "FUNDAMUVI — Sitio web de una fundación de música" in `proyects.ts`, `fundamuvi.md` and the `llms.txt.ts` `PAGES` key, and replaces "Rediseño" in the copy. `npm test` 12 passed; `npm run build` 0 errors, 0 warnings, 0 hints, 9 pages; `/llms.txt` lists the page under the new title; `/fundamuvi` references 7 images. The PR body was updated to match.
 
 ## Next step
 Wait for the user's explicit OK to merge PR #12 (Cloudflare Pages deploys `main`).

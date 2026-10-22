@@ -22,7 +22,7 @@ export const GET: APIRoute = () => {
   // mapa cada proyecto enlazaba al índice, y un índice cuyos enlaces apuntan a
   // sí mismo no es un índice.
   const PAGES: Record<string, string> = {
-    "FUNDAMUVI — Rediseño del sitio de una fundación de música": "/fundamuvi",
+    "FUNDAMUVI — Sitio web de una fundación de música": "/fundamuvi",
     "Arsenal de Odio — Sitio web de la banda": "/arsenal-de-odio",
     "Navidrome — Open Source": "/navidrome",
     "Navidrome + Lidarr — Biblioteca musical autocompletable": "/navidrome-lidarr-bridge",
