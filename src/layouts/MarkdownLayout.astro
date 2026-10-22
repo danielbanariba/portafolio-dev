@@ -70,6 +70,10 @@ const { frontmatter } = Astro.props;
   .prose img {
     @apply rounded-lg shadow-lg border border-gray-700 my-8 mx-auto;
   }
+  /* A device mockup brings its own frame on a transparent ground: no box around it. */
+  .prose img.mockup {
+    @apply rounded-none shadow-none border-0;
+  }
   .prose figure {
     @apply my-8;
   }
