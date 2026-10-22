@@ -32,7 +32,7 @@ The user asked (2026-10-21): "publicarlo en mi portafolio web, para poder vender
 - [x] T2 Project card in `proyects.ts`, linking to https://fundamuvi.danielbanariba.com and the case study.
 - [x] T3 Case-study page `src/pages/fundamuvi.md` and its `llms.txt.ts` `PAGES` entry.
 - [x] T4 Verification (`npm test`, `npm run build`, browser check of the card and the page).
-- [ ] T5 Open the PR (route: inline git/gh) only with the user's OK; the merge waits for the FUNDAMUVI deploy and the user's explicit OK.
+- [x] T5 Open the PR (route: inline git/gh) with the user's OK: https://github.com/danielbanariba/portafolio-dev/pull/12. The merge needs the user's explicit OK (it deploys danielbanariba.dev).
 
 ## Open questions
 None. The live URL was answered on 2026-10-21: the user publishes it on their own domain, like brutal-ink, at https://fundamuvi.danielbanariba.com (live, serving redesign/sketch a362c4b).
@@ -73,6 +73,8 @@ None. The live URL was answered on 2026-10-21: the user publishes it on their ow
 - Parent spot check (2026-10-21): `npm run build` gave 0 errors, 0 warnings and 0 hints. RDD assess (base 3c34130, committed-only) gave medium, `review_due` false, `under_budget`.
 - The user confirmed they drew the sketch and did the reference research, not the foundation. `c90ec16` fixes the card and the case study, and removes the line about a rejected first redesign.
 - Independent face audit (a read-only verifier zoomed into every image): 8 of 9 pass. `piano.jpg` had the top of a child's head with no blur at the bottom edge (about x 1048-1085, y 880-900, eyes cut off). `12dcb67` pixelates the box 50x24+1042+876; the parent checked zoomed crops before and after.
+- Native review `review-b0ef497de45c56df` (3c34130..01382b7, medium, reliability lens): granted by the user, approved and acknowledged. Advisories (informational): R3-llms-title-coupling `src/pages/llms.txt.ts:25`; R3-piano-fix-unaudited (the piano fix was checked only by the parent, with zoomed crops); R3-unproven-metric-claim `src/pages/fundamuvi.md:76` (the local harnesses ran 1,402 checks on the redesign, but they live outside this repo; the PR body says so).
+- T5 (route: inline git/gh): `npm test` (12 passed) and `npm run build` (0 errors, 0 warnings, 0 hints; 9 pages) re-run on 01382b7; no AI attribution in the commits or the PR body; pushed and opened PR #12. Its body is in English, like PR #11 and the template.
 
 ## Next step
-Relay the native review consent for the slice 3c34130..HEAD, then ask the user about T5 (push and PR).
+Wait for the user's explicit OK to merge PR #12 (Cloudflare Pages deploys `main`).
