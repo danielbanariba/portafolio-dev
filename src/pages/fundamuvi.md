@@ -1,10 +1,10 @@
 ---
 layout: "/src/layouts/MarkdownLayout.astro"
 title: FUNDAMUVI — Rediseño del sitio de una fundación de música
-description: Rediseño del sitio web de FUNDAMUVI (Fundación Música para Vivir), una fundación de Tegucigalpa que da educación musical gratuita. Hecho a partir del boceto de la propia fundación, bilingüe español e inglés, con Astro 7, CSS puro, accesibilidad y movimiento reducido.
+description: Rediseño del sitio web de FUNDAMUVI (Fundación Música para Vivir), una fundación de Tegucigalpa que da educación musical gratuita. Hecho a partir de mi propio boceto a mano, bilingüe español e inglés, con Astro 7, CSS puro, accesibilidad y movimiento reducido.
 ---
 
-Rediseño del sitio web de **FUNDAMUVI** (Fundación Música para Vivir), una fundación de Tegucigalpa, Honduras, que da educación musical gratuita a niños y jóvenes en situación de vulnerabilidad. El desarrollo y las pruebas son míos, y la vista previa corre en mi propio dominio. El diseño parte del boceto que dibujó la propia fundación.
+Rediseño del sitio web de **FUNDAMUVI** (Fundación Música para Vivir), una fundación de Tegucigalpa, Honduras, que da educación musical gratuita a niños y jóvenes en situación de vulnerabilidad. El diseño, el desarrollo y las pruebas son míos, y la vista previa corre en mi propio dominio.
 
 **Vista previa:** [fundamuvi.danielbanariba.com](https://fundamuvi.danielbanariba.com). Es una vista previa del rediseño: los formularios (donación y contacto) no envían nada.
 
@@ -20,10 +20,10 @@ El sitio anterior tenía un fondo oscuro con detalles en amarillo, un menú de s
 
 ![El sitio anterior: fondo oscuro con el titular "La Música Salva Vidas", dos botones amarillos, tres cifras y una foto de estudiantes sentados en un salón, con los rostros difuminados](/project/fundamuvi/antes.jpg)
 
-Mi primer rediseño fue genérico y la fundación lo rechazó. El que ves ahora sigue su boceto:
+Antes de escribir código preparé dos cosas, y el diseño nuevo sale de ellas:
 
-- Un boceto dibujado a mano por la fundación, en un PDF de 5 páginas.
-- La investigación de la propia fundación: 11 sitios de referencia de ONG y escuelas de música.
+- Un boceto dibujado a mano, en un PDF de 5 páginas.
+- Una investigación de 11 sitios de referencia de ONG y escuelas de música.
 
 ---
 

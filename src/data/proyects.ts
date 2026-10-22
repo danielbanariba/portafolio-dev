@@ -3,7 +3,7 @@ export const projects = [
     title: "FUNDAMUVI — Rediseño del sitio de una fundación de música",
     imageUrl: "/project/fundamuvi-2026.jpg",
     description:
-      "Rediseño del sitio web de una fundación de música de Tegucigalpa que da clases gratis, hecho a partir del boceto dibujado a mano por la propia fundación. Sitio estático en español e inglés, con 20 páginas: línea de tiempo, estadísticas con contadores, galería con visor, diálogo de donación, mapa, formulario de contacto, blog y una página por instrumento. Funciona sin JavaScript, con teclado y con movimiento reducido.",
+      "Rediseño del sitio web de una fundación de música de Tegucigalpa que da clases gratis, hecho a partir de mi propio boceto dibujado a mano. Sitio estático en español e inglés, con 20 páginas: línea de tiempo, estadísticas con contadores, galería con visor, diálogo de donación, mapa, formulario de contacto, blog y una página por instrumento. Funciona sin JavaScript, con teclado y con movimiento reducido.",
     technologies: ["Astro", "CSS", "MDX", "TypeScript", "Netlify Forms", "Accesibilidad"],
     documentacionUrl: "/fundamuvi",
     projectUrl: "https://fundamuvi.danielbanariba.com",
