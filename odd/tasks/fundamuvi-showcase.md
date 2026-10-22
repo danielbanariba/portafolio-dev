@@ -69,7 +69,10 @@ None. The live URL was answered on 2026-10-21: the user publishes it on their ow
   - Not added: no test. This is content and images, so there is no realistic RED, and a test that checks the title or the paths would only echo the diff.
 - Commits on `feat/fundamuvi-case-study`: `e4e6afc` (case study and its 8 images), `5c3635d` (card, card image and llms.txt entry).
 - Test Value Gate: no new tests, so Pass 3 has nothing to list.
-- Engram mirror `odd/fundamuvi-showcase/tasks` (id 8475): update PENDING. `mem_update` with `expected_project` `portafolio-dev` failed with `project_mismatch` because the writer's session runs in the `fundamuvi-web` project. The parent has to resync it from this file.
+- Engram mirror `odd/fundamuvi-showcase/tasks`: the writer's `mem_update` on id 8475 failed with `project_mismatch` (its session runs in the `fundamuvi-web` project), so the parent resynced the full document with `mem_save` in project `portafolio-dev`.
+- Parent spot check (2026-10-21): `npm run build` gave 0 errors, 0 warnings and 0 hints. RDD assess (base 3c34130, committed-only) gave medium, `review_due` false, `under_budget`.
+- The user confirmed they drew the sketch and did the reference research, not the foundation. `c90ec16` fixes the card and the case study, and removes the line about a rejected first redesign.
+- Independent face audit (a read-only verifier zoomed into every image): 8 of 9 pass. `piano.jpg` had the top of a child's head with no blur at the bottom edge (about x 1048-1085, y 880-900, eyes cut off). `12dcb67` pixelates the box 50x24+1042+876; the parent checked zoomed crops before and after.
 
 ## Next step
-Parent spot check, then ask the user about T5 (push and PR). Open points for the user: the page says the first redesign was generic and the foundation rejected it; the card sits before Arsenal de Odio; the gallery is not shown.
+Relay the native review consent for the slice 3c34130..HEAD, then ask the user about T5 (push and PR).
