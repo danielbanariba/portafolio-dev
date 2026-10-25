@@ -68,7 +68,8 @@ merge is the user's, because Cloudflare Pages deploys `main`.
 - [x] B3 Case-study page `src/pages/brutal-ink.md`.
 - [x] B4 Verification: `npm test`, `npm run build`, browser check of the
       card, the page and `/llms.txt` at 1440 and 390.
-- [ ] B5 Review, push and open the PR. The merge is the user's.
+- [x] B5 Review, push and open the PR. The merge is the user's.
+      PR #15: https://github.com/danielbanariba/portafolio-dev/pull/15
 
 ## Acceptance criteria
 
@@ -156,5 +157,5 @@ granted, reliability lens, approved and acknowledged, lineage
 
 ## Next step
 
-B5: push `feat/brutal-ink-case-study` and open one PR. The merge is the
-user's.
+Wait for the user's explicit OK to merge PR #15 (Cloudflare Pages
+deploys `main`). After the merge, sync `main` and delete the branch.
