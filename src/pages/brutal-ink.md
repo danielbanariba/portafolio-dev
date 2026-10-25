@@ -26,7 +26,7 @@ Brutal Ink vende camisetas con diseños de rock y metal, anime, terror y cine, y
 ## Por qué un sitio estático y WhatsApp
 
 - **Sin servidor.** Cada página se genera de antemano, incluida una por producto para poder compartir su enlace. No hay servidor, base de datos ni panel de administración que mantener. El catálogo es un archivo de datos del proyecto y lo edito yo, así que cambiar un precio o una existencia pasa por mí. Ese es el costo de la decisión.
-- **WhatsApp como caja.** El pedido sale como un mensaje ya escrito, y la entrega y el pago se confirman en esa conversación. La gente no crea una cuenta ni llena un pago largo: según los estudios de usabilidad que revisé (Baymard y Nielsen Norman Group), quien compra ropa abandona por dudas con la talla, costos escondidos, cuentas obligatorias y pagos largos. Por eso el carrito muestra subtotal, envío y total antes de pedir.
+- **WhatsApp como caja.** El pedido sale como un mensaje ya escrito, y la entrega y el pago se confirman en esa conversación. La gente no crea una cuenta ni llena un pago largo. En la encuesta de [Baymard sobre carritos abandonados](https://baymard.com/lists/cart-abandonment-rate), los costos extra (40%), la cuenta obligatoria (18%), un pago largo o complicado (17%) y no ver el total desde el principio (12%) están entre las razones más comunes para abandonar una compra. Por eso el carrito muestra subtotal, envío y total antes de pedir.
 
 ---
 
@@ -90,7 +90,7 @@ Las sugerencias siguen la investigación de [Baymard sobre recomendaciones en el
 
 ## Cómo lo probé
 
-- Pruebas unitarias con Vitest sobre la lógica de negocio: disponibilidad, carrito, totales, mensaje de WhatsApp, enlace del pedido y sugerencias. Son 318, y las de la lógica nueva se escribieron primero y se vieron fallar antes de implementar.
+- Pruebas unitarias con Vitest sobre la lógica de negocio: disponibilidad, carrito, totales, mensaje de WhatsApp, enlace del pedido y sugerencias. Son 318. Las de las sugerencias se escribieron primero y se vieron fallar antes de implementarlas.
 - Pruebas que revisan los datos del catálogo en busca de errores de captura: una categoría que no existe, una foto que falta o una talla sin medidas.
 - `astro check` y el build, sin errores: 38 páginas.
 - Verificación en el navegador sobre el sitio público, a 390 y 1440 px, con las rutas de WhatsApp bloqueadas y `window.open` reemplazado, para que ninguna prueba llegue a una persona real.
