@@ -1,5 +1,14 @@
 export const projects = [
   {
+    title: "Brutal Ink — Tienda de camisetas con pedidos por WhatsApp",
+    imageUrl: "/project/brutal-ink-2026.jpg",
+    description:
+      "Tienda en línea de una marca hondureña de camisetas, sin servidor ni pasarela de pago: el pedido sale por WhatsApp. Catálogo por temas con color y talla según existencias, carrito guardado en el navegador y accesorios para juegos de cartas. El mensaje lleva un solo enlace a una página con la foto de cada producto, y el nombre de quien compra viaja en el fragmento de la dirección, que nunca llega al servidor. Sugerencias con su motivo a la vista y envío gratis desde L 1,000, sin cuentas regresivas ni avisos de poco stock.",
+    technologies: ["Astro", "TypeScript", "CSS", "Vitest", "WhatsApp"],
+    documentacionUrl: "/brutal-ink",
+    projectUrl: "https://brutal-ink.danielbanariba.com",
+  },
+  {
     title: "FUNDAMUVI — Sitio web de una fundación de música",
     imageUrl: "/project/fundamuvi-2026.jpg",
     description:
