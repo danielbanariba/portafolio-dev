@@ -98,7 +98,7 @@ export const projects = [
     title: "Canal de YouTube Automatizado",
     imageUrl: "project/click-auto-editor.png",
     description:
-      "Pipeline que automatiza un canal de YouTube: scraping de música underground, renderizado 4K con efectos VHS y subida programada con gestión de playlists y copyright.",
+      "Pipeline que automatiza un canal de YouTube: scraping de música underground, renderizado 4K con efectos VHS, aprobación de cada video por Telegram y subida programada con gestión de playlists y copyright.",
     technologies: [
       "Python",
       "C++",
@@ -106,6 +106,7 @@ export const projects = [
       "FFmpeg",
       "Playwright",
       "YouTube API",
+      "Telegram Bot API",
     ],
     documentacionUrl: "/canal-youtube-automatizado",
     githubUrl: "https://github.com/danielbanariba/click-auto-editor",

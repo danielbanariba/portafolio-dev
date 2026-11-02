@@ -80,6 +80,17 @@ El corazon del renderizador es una cadena de **10+ kernels CUDA** que procesan c
 
 ![Pipeline de subida a YouTube](/project/canal-youtube-automatizado/pipeline-subida.svg)
 
+### Publicación con aprobación por Telegram
+
+Un servicio de systemd publica un álbum por vez, y no sube nada sin mi visto bueno:
+
+1. Renderiza el próximo álbum de la biblioteca (álbumes y EP, el más nuevo primero). El video terminado espera en un SSD.
+2. Verifica el video: que tenga audio, que dure lo mismo que el álbum y que sea 4K.
+3. Me manda por Telegram una captura de la búsqueda del álbum en YouTube, para ver si ya está publicado, y un fotograma del video con tres botones: **Subir**, **Rechazar** y **Eliminar (ya está publicado)**.
+4. Con **Subir**, lo sube como privado y borra la carpeta. Una hora después de que YouTube lo procesa, revisa en YouTube Studio si tiene reclamos de copyright y lo programa: a la próxima hora libre (uno por hora) o, si tiene un reclamo, dos años después.
+
+Mientras no apriete un botón, no sube ni renderiza otro álbum. Si el servicio se reinicia, las preguntas pendientes siguen ahí.
+
 ### Automatizacion de Copyright
 
 Cuando YouTube detecta contenido con copyright, el sistema automatiza las disputas y apelaciones usando Playwright:
@@ -111,14 +122,15 @@ Cuando YouTube detecta contenido con copyright, el sistema automatiza las disput
 | YouTube API     | google-api-python-client, google-auth-oauthlib          |
 | Automatizacion  | Playwright (disputas/apelaciones de copyright)          |
 | IA              | ONNX Runtime (clasificador NSFW para portadas)          |
-| Sistema         | psutil, ramdisk tmpfs (48 GB)                           |
+| Publicación     | Telegram Bot API (botones de aprobación), systemd       |
+| Sistema         | psutil, ramdisk tmpfs (20 GB)                           |
 
 ### Requisitos de Hardware
 
 - **GPU**: NVIDIA con soporte NVENC/NVDEC (optimizado para RTX 3090 Ti)
-- **RAM**: 64 GB (48 GB para ramdisk tmpfs)
+- **RAM**: 64 GB (20 GB para ramdisk tmpfs)
 - **CPU**: Intel i9-9900K o equivalente
-- **Almacenamiento**: Disco externo para biblioteca de musica + NVMe para staging
+- **Almacenamiento**: disco externo para la biblioteca de música, NVMe para renderizar y un SSD donde los videos esperan la aprobación
 - **SO**: Linux (Arch/CachyOS)
 
 ---
