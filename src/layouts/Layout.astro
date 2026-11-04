@@ -49,6 +49,9 @@ const { title, description, image, type, includePersonSchema } = Astro.props;
     html {
         font-family: system-ui, sans-serif;
         background: #13151a;
+        /* Keep focused elements and #anchor targets out from under the
+           fixed 4rem navbar (WCAG 2.4.11). */
+        scroll-padding-top: 4rem;
     }
     code {
         font-family:
