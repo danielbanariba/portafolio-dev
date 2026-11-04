@@ -42,4 +42,19 @@ describe("home page", () => {
 
     expect(repeated).toEqual([]);
   });
+
+  // WCAG 2.5.3 Label in Name: a voice-control user says what they see, so an
+  // aria-label must contain the control's visible text.
+  it("keeps each control's visible text inside its aria-label", () => {
+    const controls = [...html.matchAll(/<(a|button)\b([^>]*)>([\s\S]*?)<\/\1>/g)];
+    const mismatches = controls
+      .map(([, , attributes, inner]) => ({
+        label: attributes.match(/\baria-label="([^"]*)"/)?.[1],
+        visible: inner.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim(),
+      }))
+      .filter(({ label, visible }) => label !== undefined && visible !== "")
+      .filter(({ label, visible }) => !label!.toLowerCase().includes(visible.toLowerCase()));
+
+    expect(mismatches).toEqual([]);
+  });
 });
