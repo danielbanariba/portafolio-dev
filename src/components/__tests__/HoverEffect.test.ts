@@ -43,4 +43,11 @@ describe("HoverEffect", () => {
       expect(svg).toContain('aria-hidden="true"');
     }
   });
+
+  it("titles the card one level below the section's h2", () => {
+    const html = render();
+
+    expect(html).toMatch(/<h3\b[^>]*>Sistema Contable<\/h3>/);
+    expect(html).not.toMatch(/<h4\b/);
+  });
 });

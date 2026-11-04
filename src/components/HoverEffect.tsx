@@ -47,9 +47,9 @@ const HoverEffect = ({
       </AnimatePresence>
       <div className="rounded-2xl h-full w-full p-4 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-800/[0.2] border border-transparent group-hover:border-slate-700 relative z-50 flex flex-col">
         <div className="flex-grow">
-          <h4 className="text-zinc-100 font-bold tracking-wide mb-4">
+          <h3 className="text-zinc-100 font-bold tracking-wide mb-4">
             {title}
-          </h4>
+          </h3>
           {imageUrl ? (
             <img
               src={imageUrl}
