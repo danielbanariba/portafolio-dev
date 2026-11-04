@@ -19,7 +19,7 @@ export const projects = [
   },
   {
     title: "Arsenal de Odio — Sitio web de la banda",
-    imageUrl: "project/arsenal-de-odio-2026.jpg",
+    imageUrl: "/project/arsenal-de-odio-2026.jpg",
     description:
       "Rediseño del sitio web oficial de una banda de thrash metal de Tegucigalpa: dirección de arte propia, hero fijado con video y fotos en vivo, reproductor de Spotify, mercadería y galería. Sitio estático con imágenes AVIF/WebP, probado con Playwright en 10 tamaños de pantalla, solo con teclado, sin JavaScript y con movimiento reducido.",
     technologies: ["Astro", "Tailwind CSS", "GSAP", "TypeScript", "Playwright"],
@@ -28,7 +28,7 @@ export const projects = [
   },
   {
     title: "Navidrome — Open Source",
-    imageUrl: "project/navidrome/banner.jpg",
+    imageUrl: "/project/navidrome/banner.jpg",
     description:
       "Contribuciones mergeadas al servidor de streaming musical Navidrome. Frontend en React, fixes de accesibilidad y nuevas features.",
     technologies: [
@@ -45,7 +45,7 @@ export const projects = [
   },
   {
     title: "Navidrome + Lidarr — Biblioteca musical autocompletable",
-    imageUrl: "project/navidrome-lidarr-bridge/banner.jpg",
+    imageUrl: "/project/navidrome-lidarr-bridge/banner.jpg",
     description:
       "Sistema que completa y mejora una biblioteca musical self-hosted de 2000 álbumes sin intervención. Resuelve nombres ambiguos comparando catálogos en vez de adivinar (10 bandas se llaman \"Delirium\"), audiciona varios torrents del mismo álbum y detecta transcodificaciones midiendo el acantilado del espectro con FFT, y marca los discos guardados con pérdida ofreciendo buscar una copia mejor. Servicio Python sin dependencias, userscript y 5 herramientas CLI.",
     technologies: [
@@ -78,7 +78,7 @@ export const projects = [
   },
   {
     title: "Metal Archive",
-    imageUrl: "project/metal-archive.png",
+    imageUrl: "/project/metal-archive.png",
     description:
       "Catálogo de álbumes de metal sincronizado automáticamente desde YouTube. Migrado de Reflex a Astro: el sitio se genera estático desde SQLite y carga como HTML completo, con reproductor de YouTube y búsqueda. Páginas de banda y un microservicio FastAPI para los formularios.",
     technologies: [
@@ -96,7 +96,7 @@ export const projects = [
   },
   {
     title: "Canal de YouTube Automatizado",
-    imageUrl: "project/click-auto-editor.png",
+    imageUrl: "/project/click-auto-editor.png",
     description:
       "Pipeline que automatiza un canal de YouTube: scraping de música underground, renderizado 4K con efectos VHS, aprobación de cada video por Telegram y subida programada con gestión de playlists y copyright.",
     technologies: [
@@ -114,7 +114,7 @@ export const projects = [
   },
   {
     title: "Sistema Contable",
-    imageUrl: "project/azure-app-service.png",
+    imageUrl: "/project/azure-app-service.png",
     description:
       "Infraestructura en Azure para un sistema contable. Incluye red virtual, base de datos SQL, almacenamiento y aplicación web.",
     technologies: ["Azure", "Terraform"],
@@ -123,7 +123,7 @@ export const projects = [
   },
   {
     title: "Analyzepy",
-    imageUrl: "project/analizador_lexico.png",
+    imageUrl: "/project/analizador_lexico.png",
     description:
       "Es una herramienta que traduce código de Python a JavaScript, utilizando técnicas avanzadas de parsing y generación de código",
     technologies: ["Python", "Reflex"],
@@ -132,7 +132,7 @@ export const projects = [
   },
   {
     title: "Resuelve Sistemas de Ecuaciones",
-    imageUrl: "project/sistemas_de_ecuaciones.png",
+    imageUrl: "/project/sistemas_de_ecuaciones.png",
     description:
       "Aplicación web para resolver sistemas de ecuaciones lineales, aplicando métodos algebraicos y ofreciendo una interfaz amigable para los usuarios.",
     technologies: ["Python", "Reflex"],
