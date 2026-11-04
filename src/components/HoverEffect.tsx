@@ -86,8 +86,10 @@ const HoverEffect = ({
               target="_blank"
               rel="noopener noreferrer"
               className="group"
+              aria-label={`${title} en GitHub`}
             >
               <svg
+                aria-hidden="true"
                 strokeLinejoin="round"
                 strokeLinecap="round"
                 strokeWidth={2}
@@ -106,8 +108,10 @@ const HoverEffect = ({
               target="_blank"
               rel="noopener noreferrer"
               className="group"
+              aria-label={`Documentación de ${title}`}
             >
               <svg
+                aria-hidden="true"
                 className="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
                 strokeLinejoin="round"
                 strokeLinecap="round"
@@ -126,8 +130,10 @@ const HoverEffect = ({
               target="_blank"
               rel="noopener noreferrer"
               className="group"
+              aria-label={`Abrir ${title}`}
             >
               <svg
+                aria-hidden="true"
                 className="w-8 h-8 hover:scale-125 duration-200 hover:stroke-blue-500"
                 strokeLinejoin="round"
                 strokeLinecap="round"
