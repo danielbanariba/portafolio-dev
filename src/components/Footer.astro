@@ -41,6 +41,8 @@ const email = "danielbanariba@protonmail.com";
         </h2>
       </div>
     </div>
+    <!-- Announces the copy confirmation to screen readers (WCAG 4.1.3). -->
+    <span id="copyStatus" class="sr-only" role="status"></span>
   </div>
 </footer>
 
@@ -158,6 +160,7 @@ const email = "danielbanariba@protonmail.com";
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const copyButton = document.getElementById("copyButton");
+    const copyStatus = document.getElementById("copyStatus");
     const email = "danielbanariba@protonmail.com";
 
     if (copyButton) {
@@ -169,8 +172,10 @@ const email = "danielbanariba@protonmail.com";
             if (textElement) {
               const originalText = textElement.textContent;
               textElement.textContent = "COPIED!";
+              if (copyStatus) copyStatus.textContent = textElement.textContent;
               setTimeout(() => {
                 textElement.textContent = originalText;
+                if (copyStatus) copyStatus.textContent = "";
               }, 2000);
             }
           })
