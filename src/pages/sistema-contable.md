@@ -324,4 +324,4 @@ Este proyecto implementa varias medidas de seguridad:
 
 ## Video Explicativo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/0oGockqFLQc" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0oGockqFLQc" title="Video explicativo del Sistema Contable en Azure" frameborder="0" allowfullscreen></iframe>
