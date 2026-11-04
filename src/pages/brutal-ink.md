@@ -69,7 +69,7 @@ El nombre de quien compra viaja en el fragmento del enlace, lo que va después d
 
 ### En el teléfono
 
-<img class="mockup" src="/project/brutal-ink/movil.webp" alt="La tienda en dos teléfonos de 390 px de ancho: a la izquierda la portada, con el título y las primeras camisetas, y a la derecha el carrito con el aviso Te faltan L 550 para el envío gratis">
+<img class="mockup" src="/project/brutal-ink/movil.webp" width="1600" height="1528" loading="lazy" decoding="async" alt="La tienda en dos teléfonos de 390 px de ancho: a la izquierda la portada, con el título y las primeras camisetas, y a la derecha el carrito con el aviso Te faltan L 550 para el envío gratis">
 
 ---
 

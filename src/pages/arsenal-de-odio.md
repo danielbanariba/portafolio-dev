@@ -45,7 +45,7 @@ Antes de rediseñar estudié los sitios oficiales de Slayer, Cannibal Corpse y o
 
 ### En el teléfono
 
-<img class="mockup" src="/project/arsenal-de-odio/movil.webp" alt="El sitio en dos teléfonos de 390 px de ancho: en el de la izquierda, la portada, con el logo sobre una foto en blanco y negro del cantante; en el de la derecha, la sección de canciones con el reproductor de Spotify">
+<img class="mockup" src="/project/arsenal-de-odio/movil.webp" width="1600" height="1528" loading="lazy" decoding="async" alt="El sitio en dos teléfonos de 390 px de ancho: en el de la izquierda, la portada, con el logo sobre una foto en blanco y negro del cantante; en el de la derecha, la sección de canciones con el reproductor de Spotify">
 
 ---
 

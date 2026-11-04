@@ -15,4 +15,17 @@ describe.each(markdownPages)("%s", (file) => {
       expect(iframe).toMatch(/\btitle="[^"]+"/);
     }
   });
+
+  // Markdown images are sized by the markdownImageAttributes plugin, but
+  // Sätteri passes raw HTML through, so an <img> written as HTML must carry
+  // its own size and loading hint.
+  it("sizes and lazy-loads every image written as raw HTML", () => {
+    const images = source.match(/<img\b[^>]*>/g) ?? [];
+
+    for (const image of images) {
+      expect(image).toMatch(/\bwidth="\d+"/);
+      expect(image).toMatch(/\bheight="\d+"/);
+      expect(image).toContain('loading="lazy"');
+    }
+  });
 });

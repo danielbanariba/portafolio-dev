@@ -62,7 +62,7 @@ El español está en `/` y el inglés en `/en/`. El inglés refleja el mismo sit
 
 ### En el teléfono
 
-<img src="/project/fundamuvi/movil.webp" alt="El sitio en dos teléfonos de 390 px de ancho: a la izquierda la portada, con los rostros difuminados, y a la derecha la sección de clases con la tarjeta de guitarra" style="border: 0; box-shadow: none;" />
+<img src="/project/fundamuvi/movil.webp" width="1600" height="1512" loading="lazy" decoding="async" alt="El sitio en dos teléfonos de 390 px de ancho: a la izquierda la portada, con los rostros difuminados, y a la derecha la sección de clases con la tarjeta de guitarra" style="border: 0; box-shadow: none;" />
 
 ---
 
