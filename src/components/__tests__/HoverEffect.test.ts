@@ -50,4 +50,11 @@ describe("HoverEffect", () => {
     expect(html).toMatch(/<h3\b[^>]*>Sistema Contable<\/h3>/);
     expect(html).not.toMatch(/<h4\b/);
   });
+
+  it("defers the screenshot, which sits far below the fold", () => {
+    const img = render().match(/<img\b[^>]*>/)?.[0] ?? "";
+
+    expect(img).toContain('loading="lazy"');
+    expect(img).toContain('decoding="async"');
+  });
 });

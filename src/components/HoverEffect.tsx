@@ -54,6 +54,8 @@ const HoverEffect = ({
             <img
               src={imageUrl}
               alt={title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-48 object-cover rounded-xl mb-4"
             />
           ) : (
