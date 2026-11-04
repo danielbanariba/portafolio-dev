@@ -33,9 +33,14 @@ Follow existing conventions and prefer minimal, focused changes.
 
 ### Tests
 
-- No automated test runner is configured.
-- There is no single-test command because no test framework is installed.
-- If you add tests, document the new commands here.
+- `npm test` — run the whole suite once with Vitest (`vitest run`).
+- `npx vitest run <path>` — run a single test file, e.g.
+  `npx vitest run src/__tests__/homePage.test.ts`.
+- `vitest.config.ts` uses Astro's `getViteConfig`, so tests can render
+  `.astro` components with the Container API (`astro/container`).
+- Tests live next to the code they cover (`*.test.ts`) or in a `__tests__/`
+  folder. Never put them under `src/pages/`: Astro would treat them as routes.
+- If you add npm scripts, document them here.
 
 ## Repo Structure
 
