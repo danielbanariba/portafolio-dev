@@ -33,4 +33,13 @@ describe("home page", () => {
     expect(levels[0]).toBe(1);
     expect(skips).toEqual([]);
   });
+
+  // A repeated id makes getElementById, label[for] and aria-* references
+  // resolve to whichever element comes first.
+  it("never repeats an id", () => {
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
+    const repeated = [...new Set(ids.filter((id, i) => ids.indexOf(id) !== i))];
+
+    expect(repeated).toEqual([]);
+  });
 });
