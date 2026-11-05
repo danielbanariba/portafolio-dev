@@ -23,7 +23,8 @@ Follow existing conventions and prefer minimal, focused changes.
 
 ### Build
 
-- `npm run build` — runs `npm install`, then `astro check`, then `astro build`.
+- `npm run build` — runs `astro check`, then `astro build` (it does not install
+  dependencies; run `npm install` first).
 - `npm run preview` — serve the production build from `dist/`.
 
 ### Lint / Typecheck

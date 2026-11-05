@@ -9,7 +9,7 @@ Personal portfolio website for Daniel Banariba, built with Astro. Hybrid archite
 ## Development Commands
 
 - `npm run dev` or `npm start` - Start development server
-- `npm run build` - Build for production (runs `npm install && astro check && astro build`)
+- `npm run build` - Build for production (runs `astro check && astro build`; run `npm install` first)
 - `npm run preview` - Preview production build locally
 - Requires Node.js v23.x
 
