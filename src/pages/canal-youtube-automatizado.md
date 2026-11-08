@@ -28,7 +28,7 @@ Scrappea la API de **DeathGrind.club** (una base de datos comunitaria de metal e
 
 ### Sistema de Filtrado Inteligente
 
-El scraper aplica **4 filtros en cascada** para garantizar que solo se descargue musica underground libre de problemas de copyright:
+El scraper aplica **6 filtros en cascada** para garantizar que solo se descargue musica underground libre de problemas de copyright, sin gastar creditos de mas:
 
 1. **Filtro de sellos discograficos**: Una lista negra (`lista_sello.txt`) excluye releases de sellos conocidos como Century Media, Nuclear Blast, AFM Records, etc.
 
@@ -36,7 +36,15 @@ El scraper aplica **4 filtros en cascada** para garantizar que solo se descargue
 
 3. **Filtro de duplicados**: Compara contra `descargados.txt` para no re-descargar musica ya procesada
 
-4. **Filtro de YouTube (el mas innovador)**: Usa Playwright con stealth para buscar cada release en YouTube. Si encuentra un video "full album" facilmente disponible, el release se clasifica como mainstream y se excluye. Solo pasa musica verdaderamente underground/obscura.
+4. **Filtro de fallidos**: Un release cuyos links ya fallaron queda en `fallidos_bandas.txt` y no se vuelve a pedir, porque su credito ya se gasto.
+
+5. **Filtro de YouTube (el mas innovador)**: Usa Playwright con stealth para buscar cada release en YouTube. Si encuentra un video "full album" facilmente disponible, el release se clasifica como mainstream y se excluye. Solo pasa musica verdaderamente underground/obscura.
+
+6. **Filtro de ya publicados**: Antes de pedir los links, compara contra el registro de albumes que ya estan en el canal (`ya_publicados.tsv`, de click-auto-editor).
+
+### Creditos de descarga
+
+DeathGrind cobra **1 credito por cada album** del que se piden los links de descarga, y da 1 credito por cada like. Los likes se dan a mano: un script abre en el navegador, uno por uno, los posts de los albumes que ya estan en el canal, espera el like y pasa al siguiente. El script nunca da el like por su cuenta. Si los creditos se acaban, el paso de links se detiene en vez de seguir pidiendo.
 
 ### Tecnologias del Scraper
 
