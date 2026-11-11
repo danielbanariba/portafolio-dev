@@ -22,6 +22,7 @@ export const GET: APIRoute = () => {
   // mapa cada proyecto enlazaba al índice, y un índice cuyos enlaces apuntan a
   // sí mismo no es un índice.
   const PAGES: Record<string, string> = {
+    "Esperando Las Lluvias — Videoclip animado en producción": "/esperando-las-lluvias",
     "Brutal Ink — Tienda de camisetas con pedidos por WhatsApp": "/brutal-ink",
     "FUNDAMUVI — Sitio web de una fundación de música": "/fundamuvi",
     "Arsenal de Odio — Sitio web de la banda": "/arsenal-de-odio",
