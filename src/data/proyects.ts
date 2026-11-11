@@ -1,5 +1,13 @@
 export const projects = [
   {
+    title: "Esperando Las Lluvias — Videoclip animado en producción",
+    imageUrl: "/project/esperando-las-lluvias/tarjeta.jpg",
+    description:
+      "Videoclip animado de 7 minutos y 38 segundos para la canción «Esperando Las Lluvias» de la banda Delirium, en producción. Película híbrida entre dibujo y 3D hecha en Blender, con un campesino hondureño como protagonista. La página reúne la propuesta con misión y visión, el guion visual por actos, 19 storyboards, cómo se hace (referencias reales, poses junto a sus fotos, ángulos de cámara y mapas con medidas) y las bases del proyecto: mundo, personajes, aspecto, técnica, proceso de aprobación, estado y créditos, con el animatic completo en video. De 133 planos, 74 tienen cuadros de borrador y ninguno está en calidad final.",
+    technologies: ["Blender", "EEVEE", "Rigify", "Python", "Animación 2D/3D"],
+    documentacionUrl: "/esperando-las-lluvias",
+  },
+  {
     title: "Brutal Ink — Tienda de camisetas con pedidos por WhatsApp",
     imageUrl: "/project/brutal-ink-2026.jpg",
     description:
