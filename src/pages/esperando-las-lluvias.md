@@ -315,6 +315,7 @@ Las hojas con que se ve este proceso están más arriba, en [Cómo se hace](#có
 
 - **Canción.** «Esperando Las Lluvias», de Delirium, del álbum *Los Signos Del Fauno* (pista 13), según las etiquetas del archivo de audio.
 - **Película.** Daniel Banariba.
+- **Producción ejecutiva y relaciones públicas.** Analog Diamant.
 - **Recursos y herramientas.** Blender Studio Human Base Meshes 1.4.1 (CC0; autores: Dan Ulrich, Julien Kaspar, Paul Kotelevets y Tonatiuh de San Julián) y la malla base «Hand - Stylized» (CC0); Blender 5.2.3; y las tipografías Noto Serif Display, Open Sans y Abril Fatface, con licencia SIL OFL.
 - **Fotos de referencia.** Las de las hojas de «Cómo se hace»: [Neil Palmer / CIAT](https://commons.wikimedia.org/wiki/File:Cracked_earth2_%284460361396%29.jpg) ([CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/), recortada), Wilfredor (CC0), Anderson Pereira Lima (CC0) y Joshua Tree National Park / NPS (dominio público), todas vía Wikimedia Commons.
 
@@ -325,5 +326,25 @@ El animatic a color completo (7:38) de la película, en producción: cuadros fij
 <iframe src="https://www.youtube.com/embed/O7zqUNt17YM" title="Animatic completo de Esperando Las Lluvias, en producción, con la franja de trabajo de cada plano" loading="lazy" allowfullscreen style="width: 100%; aspect-ratio: 16 / 9; border: 0; margin-bottom: 1.5rem;"></iframe>
 
 [Ver el animatic en YouTube](https://youtu.be/O7zqUNt17YM)
+
+## Producción y contacto
+
+<img src="/project/esperando-las-lluvias/analog-diamant-logo.webp" alt="Logo de Analog Diamant" width="480" height="420" loading="lazy" style="width: 140px; max-width: 100%; height: auto; margin: 0 0 1.5rem 0; border: 0; border-radius: 0; box-shadow: none;" />
+
+**Producción ejecutiva y relaciones públicas:** Analog Diamant, productora enfocada en cine.
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+<div style="background: #1f2937; border: 1px solid #374151; border-radius: 0.5rem; padding: 1rem 1.25rem; overflow-wrap: anywhere;">
+<strong>Relaciones públicas</strong><br>
+Anthony Joseph Mc. Carthy Rodríguez<br>
+Mercadólogo, Cineasta<br>
+<a href="tel:+50497352726">9735-2726</a>
+</div>
+<div style="background: #1f2937; border: 1px solid #374151; border-radius: 0.5rem; padding: 1rem 1.25rem; overflow-wrap: anywhere;">
+<strong>Película</strong><br>
+Daniel Banariba<br>
+<a href="mailto:danielbanariba@protonmail.com">danielbanariba@protonmail.com</a>
+</div>
+</div>
 
 [Ver mis otros proyectos](/#projects)
