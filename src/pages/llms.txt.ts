@@ -57,6 +57,9 @@ ${titles}
 ## Experiencia
 ${roles}
 
+## Consultoría
+- [Consultoría en datos](${site.url}/consultoria): automatiza procesos que hoy se hacen a mano en Excel (conciliaciones, cargas de archivos y reportes). Tres casos reales y anonimizados con sus resultados.
+
 ## Proyectos
 
 ${projectList}
